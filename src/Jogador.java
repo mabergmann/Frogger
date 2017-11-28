@@ -1,3 +1,6 @@
+
+import java.awt.image.BufferedImage;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,11 +14,27 @@
 public class Jogador {
     private int vida;
     private int pontos;
-    //(???) imagem;
+   // BufferedImage imagem = ; 
     private int altura;
     private int largura;
     private int posicaoVertical;
     private int posicaoHorizontal;
+
+    public int getPosicaoVertical() {
+        return posicaoVertical;
+    }
+
+    public void setPosicaoVertical(int posicaoVertical) {
+        this.posicaoVertical = posicaoVertical;
+    }
+
+    public int getPosicaoHorizontal() {
+        return posicaoHorizontal;
+    }
+
+    public void setPosicaoHorizontal(int posicaoHorizontal) {
+        this.posicaoHorizontal = posicaoHorizontal;
+    }
     
     private void moveEsquerda(){
         System.out.println("move para a esquerda");

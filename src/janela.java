@@ -10,12 +10,14 @@
  */
 public class janela extends javax.swing.JFrame {
 
+    static Jogo jogoFrogger = new Jogo();
+    
     /**
      * Creates new form janela
      */
     public janela() {
-        initComponents();
-    }
+        initComponents();     
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +28,52 @@ public class janela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitulo = new javax.swing.JLabel();
+        btnStartGame = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblTitulo.setText("Frogger");
+
+        btnStartGame.setText("Start");
+        btnStartGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartGameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(btnStartGame)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(btnStartGame)
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
+        // TODO add your handling code here:
+        jogoFrogger.setPodeiniciar(true);
+    }//GEN-LAST:event_btnStartGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,8 +108,23 @@ public class janela extends javax.swing.JFrame {
                 new janela().setVisible(true);
             }
         });
+        
+        
+        jogoFrogger.mostraMenu();
+        
+        // Esses comandos tornam o titulo Frogger e o botao Start invisiveis.
+        lblTitulo.setVisible(false);
+        btnStartGame.setVisible(false);
+        
+        jogoFrogger.iniciaJogo();
+        
+        
     }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JButton btnStartGame;
+    public static javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
