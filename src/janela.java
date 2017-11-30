@@ -11,13 +11,13 @@
 public class janela extends javax.swing.JFrame {
 
     static Jogo jogoFrogger = new Jogo();
-    
+
     /**
      * Creates new form janela
      */
     public janela() {
-        initComponents();     
-        }
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,12 +29,20 @@ public class janela extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        lblJogador = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
+        lblCalcada1 = new javax.swing.JLabel();
+        lblCalcada2 = new javax.swing.JLabel();
+        lblAsfalto1 = new javax.swing.JLabel();
+        lblAsfalto3 = new javax.swing.JLabel();
+        lblAsfalto2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         lblTitulo.setText("Frogger");
+
+        lblJogador.setText("Jogador");
 
         btnStartGame.setText("Start");
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
@@ -43,6 +51,16 @@ public class janela extends javax.swing.JFrame {
             }
         });
 
+        lblCalcada1.setText("Calcada1");
+
+        lblCalcada2.setText("Calcada2");
+
+        lblAsfalto1.setText("Asfalto1");
+
+        lblAsfalto3.setText("Asfalto3");
+
+        lblAsfalto2.setText("Asfalto2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -50,21 +68,44 @@ public class janela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCalcada2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCalcada1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblJogador))
+                            .addComponent(lblAsfalto3)
+                            .addComponent(lblAsfalto1)
+                            .addComponent(lblAsfalto2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
                         .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
+                        .addGap(231, 231, 231)
                         .addComponent(btnStartGame)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap()
+                .addComponent(lblCalcada2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAsfalto3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAsfalto2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAsfalto1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCalcada1)
+                    .addComponent(lblJogador))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnStartGame)
-                .addGap(43, 43, 43))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,23 +149,35 @@ public class janela extends javax.swing.JFrame {
                 new janela().setVisible(true);
             }
         });
-        
+
         
         jogoFrogger.mostraMenu();
+        
+        // Setando os labels para os labels criados na classe Jogo.(Vinculando-os)
+        jogoFrogger.setLblJogador(lblJogador);
+        jogoFrogger.setCalcada1(lblCalcada1);
+        jogoFrogger.setCalcada2(lblCalcada2);
+        jogoFrogger.setAsfalto1(lblAsfalto1);
+        jogoFrogger.setAsfalto2(lblAsfalto2);
+        jogoFrogger.setAsfalto3(lblAsfalto3);
         
         // Esses comandos tornam o titulo Frogger e o botao Start invisiveis.
         lblTitulo.setVisible(false);
         btnStartGame.setVisible(false);
-        
+
         jogoFrogger.iniciaJogo();
-        
-        
+
     }
-    
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton btnStartGame;
+    private static javax.swing.JLabel lblAsfalto1;
+    private static javax.swing.JLabel lblAsfalto2;
+    private static javax.swing.JLabel lblAsfalto3;
+    private static javax.swing.JLabel lblCalcada1;
+    private static javax.swing.JLabel lblCalcada2;
+    private static javax.swing.JLabel lblJogador;
     public static javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
