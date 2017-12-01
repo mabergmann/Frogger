@@ -1,7 +1,10 @@
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -161,7 +164,7 @@ public class janela extends javax.swing.JFrame {
         //</editor-fold>
 
         janela janela = new janela();
-        PainelDeJogo painelDoJogo = new PainelDeJogo(); 
+        PainelDeJogo componentesEstaticos = new PainelDeJogo(); 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -185,38 +188,48 @@ public class janela extends javax.swing.JFrame {
         jogoFrogger.setAsfalto2(lblAsfalto2);
         jogoFrogger.setAsfalto3(lblAsfalto3);
         
-        jogoFrogger.setCalcada1(painelDoJogo.getCalcada1());
-        jogoFrogger.setCalcada2(painelDoJogo.getCalcada2());
-        jogoFrogger.setAsfalto1(painelDoJogo.getAsfalto1());
-        jogoFrogger.setAsfalto2(painelDoJogo.getAsfalto2());
-        jogoFrogger.setAsfalto3(painelDoJogo.getAsfalto3());
+        jogoFrogger.setCalcada1(componentesEstaticos.getCalcada1());
+        jogoFrogger.setCalcada2(componentesEstaticos.getCalcada2());
+        jogoFrogger.setAsfalto1(componentesEstaticos.getAsfalto1());
+        jogoFrogger.setAsfalto2(componentesEstaticos.getAsfalto2());
+        jogoFrogger.setAsfalto3(componentesEstaticos.getAsfalto3());
         
         JLabel personagem = new JLabel();
         GridBagConstraints gbc = new GridBagConstraints();
         jogoFrogger.setLblJogador(personagem);
         GridBagLayout gridbag = new GridBagLayout();
+        JLayeredPane painelEmCamadas = new JLayeredPane();
+        JPanel componentesMoveis = new JPanel();
         
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gridbag.addLayoutComponent(painelDoJogo.getCalcada1(), gbc);
+        gridbag.addLayoutComponent(componentesEstaticos.getCalcada1(), gbc);
         gbc.gridy = 1;
-        gridbag.addLayoutComponent(painelDoJogo.getAsfalto3(), gbc);
+        gridbag.addLayoutComponent(componentesEstaticos.getAsfalto3(), gbc);
         gbc.gridy = 2;
-        gridbag.addLayoutComponent(painelDoJogo.getAsfalto1(), gbc);
+        gridbag.addLayoutComponent(componentesEstaticos.getAsfalto1(), gbc);
         gbc.gridy = 3;
-        gridbag.addLayoutComponent(painelDoJogo.getAsfalto2(), gbc);
+        gridbag.addLayoutComponent(componentesEstaticos.getAsfalto2(), gbc);
         gbc.gridy = 4;
-        gridbag.addLayoutComponent(painelDoJogo.getCalcada2(), gbc);
+        gridbag.addLayoutComponent(componentesEstaticos.getCalcada2(), gbc);
         
-        painelDoJogo.add(personagem);
+        componentesMoveis.setLayout(null);
+        componentesMoveis.add(personagem);
+        personagem.setBounds(100, 90, 30, 30);
+        componentesEstaticos.setLayout(gridbag);
+        painelEmCamadas.add(componentesEstaticos, 0);
+        painelEmCamadas.add(componentesMoveis, 1);
+        componentesEstaticos.setBounds(0, 0, janela.getWidth(), janela.getHeight());
+        componentesMoveis.setBounds(0, 0, janela.getWidth(), janela.getHeight());
+        //painelDoJogo.add(personagem, 0);
         janela.getContentPane().removeAll();
-        janela.setContentPane(painelDoJogo);
-        
-        painelDoJogo.setLayout(gridbag);
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        gridbag.setConstraints(personagem, gbc);
-        //personagem.setLocation(400, 500);
+        //janela.setContentPane(painelDoJogo);
+        janela.setContentPane(painelEmCamadas);
+        //painelDoJogo.setLayout(gridbag);
+        //gbc.gridx = 2;
+        //gbc.gridy = 1;
+        //gridbag.setConstraints(personagem, gbc);
+        //personagem.setLocation(20, 30);
         //personagem.setLocation(gbc);
         janela.repaint();
         
