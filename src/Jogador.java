@@ -37,27 +37,43 @@ public class Jogador {
     }
     
     private void moveEsquerda(){
-        System.out.println("move para a esquerda");
+        this.posicaoHorizontal = this.posicaoHorizontal - 10;
     }
     
     private void moveDireita(){
-        System.out.println("move para a direita");
+        this.posicaoHorizontal = this.posicaoHorizontal + 10;
     }
     
     private void moveCima(){
-        System.out.println("move para cima");
+        this.posicaoVertical = this.posicaoVertical + 1;
     }
     
     private void moveBaixo(){
-        System.out.println("move para baixo");
+        this.posicaoVertical = this.posicaoVertical - 1;
     }
     
     private void resetVida(){
-        System.out.println("reseta vida");
+        this.setVida(0);
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
     
     private void reduzVida(){
-        System.out.println("reduz vida");
+        this.setVida(this.getVida()-1);
     }
     
     private int somaPontos(int pontos){
