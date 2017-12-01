@@ -1,3 +1,8 @@
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,6 +33,7 @@ public class janela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblJogador = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
@@ -36,6 +42,17 @@ public class janela extends javax.swing.JFrame {
         lblAsfalto1 = new javax.swing.JLabel();
         lblAsfalto3 = new javax.swing.JLabel();
         lblAsfalto2 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,15 +160,22 @@ public class janela extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        janela janela = new janela();
+        PainelDeJogo painelDoJogo = new PainelDeJogo(); 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new janela().setVisible(true);
+               // new janela().setVisible(true);
+               janela.setVisible(true);
             }
         });
 
         
         jogoFrogger.mostraMenu();
+
+        //janela janela = new janela();
+        //janela.setVisible(true);
+
         
         // Setando os labels para os labels criados na classe Jogo.(Vinculando-os)
         jogoFrogger.setLblJogador(lblJogador);
@@ -161,10 +185,46 @@ public class janela extends javax.swing.JFrame {
         jogoFrogger.setAsfalto2(lblAsfalto2);
         jogoFrogger.setAsfalto3(lblAsfalto3);
         
+        jogoFrogger.setCalcada1(painelDoJogo.getCalcada1());
+        jogoFrogger.setCalcada2(painelDoJogo.getCalcada2());
+        jogoFrogger.setAsfalto1(painelDoJogo.getAsfalto1());
+        jogoFrogger.setAsfalto2(painelDoJogo.getAsfalto2());
+        jogoFrogger.setAsfalto3(painelDoJogo.getAsfalto3());
+        
+        JLabel personagem = new JLabel();
+        GridBagConstraints gbc = new GridBagConstraints();
+        jogoFrogger.setLblJogador(personagem);
+        GridBagLayout gridbag = new GridBagLayout();
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gridbag.addLayoutComponent(painelDoJogo.getCalcada1(), gbc);
+        gbc.gridy = 1;
+        gridbag.addLayoutComponent(painelDoJogo.getAsfalto3(), gbc);
+        gbc.gridy = 2;
+        gridbag.addLayoutComponent(painelDoJogo.getAsfalto1(), gbc);
+        gbc.gridy = 3;
+        gridbag.addLayoutComponent(painelDoJogo.getAsfalto2(), gbc);
+        gbc.gridy = 4;
+        gridbag.addLayoutComponent(painelDoJogo.getCalcada2(), gbc);
+        
+        painelDoJogo.add(personagem);
+        janela.getContentPane().removeAll();
+        janela.setContentPane(painelDoJogo);
+        
+        painelDoJogo.setLayout(gridbag);
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gridbag.setConstraints(personagem, gbc);
+        //personagem.setLocation(400, 500);
+        //personagem.setLocation(gbc);
+        janela.repaint();
+        
+       
         // Esses comandos tornam o titulo Frogger e o botao Start invisiveis.
-        lblTitulo.setVisible(false);
-        btnStartGame.setVisible(false);
-
+        //lblTitulo.setVisible(false);
+        //btnStartGame.setVisible(false);
+        
         jogoFrogger.iniciaJogo();
 
     }
@@ -172,6 +232,7 @@ public class janela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton btnStartGame;
+    private javax.swing.JPanel jPanel1;
     private static javax.swing.JLabel lblAsfalto1;
     private static javax.swing.JLabel lblAsfalto2;
     private static javax.swing.JLabel lblAsfalto3;
