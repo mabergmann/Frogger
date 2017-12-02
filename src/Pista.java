@@ -1,5 +1,8 @@
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,22 +16,29 @@ import java.awt.image.BufferedImage;
  * @author Júlia
  */
 abstract class Pista {
-    private BufferedImage background;
+    private ImageIcon background;
     private int altura;
     private int largura;
     private int posicaoVertical;
     private int posicaoHorizontal;
+    private JLabel label;
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+    }
     
     private boolean estaColidindo(int x){
         System.out.println("retorna booleano");
         return false;
     }  
     
-    public BufferedImage getBackground() {
+    public ImageIcon getBackground() {
         return background;
     }
 
     public void setBackground(BufferedImage background) {
-        this.background = background;
+        ImageIcon backgroundIcon = new ImageIcon(background);
+        this.background = backgroundIcon;
+        label.setIcon(this.background);
     }
 }

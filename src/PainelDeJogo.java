@@ -1,4 +1,5 @@
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /*
@@ -19,14 +20,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
     public PainelDeJogo() {
         initComponents();
     }
-    
-    public JLabel getCalcada1() {
-        return calcada1;
-    }
-
-    public JLabel getCalcada2() {
-        return calcada2;
-    }
 
     public JLabel getAsfalto1() {
         return asfalto1;
@@ -38,6 +31,14 @@ public class PainelDeJogo extends javax.swing.JPanel {
 
     public JLabel getAsfalto3() {
         return asfalto3;
+    }
+
+    public JLabel getCalcada1() {
+        return calcada1;
+    }
+
+    public JLabel getCalcada2() {
+        return calcada2;
     }
     
     /**

@@ -2,87 +2,43 @@
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author bergmann
- */
-public class Janela extends javax.swing.JFrame {
+public class Janela extends javax.swing.JFrame implements KeyListener {
 
     static GridBagConstraints gbc = new GridBagConstraints();
     static GridBagLayout gridbag = new GridBagLayout();
     static JLayeredPane painelEmCamadas = new JLayeredPane();
     static JPanel componentesMoveis = new JPanel();
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
-    static Janela janela = new Janela();
-    private final JLabel lblJogador;
     private int janelaAtual = 0;
-    private int teclaPressionada = 0;
-    private int posixLblJogador;
-    private int posiyLblJogador;
+    private int tempo;
+    private Jogador jogador = new Jogador();
+    private Pista[] pistas = new Pista[5]; // 2 Calçadas + 3 Asfaltos = 5 Pistas
+    boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
-    /**
-     * Creates new form janela
-     */
-    public Janela() {
+    
+    public static void main(String args[]) throws IOException {
+        new Janela();
+    }
+        
+    public Janela() throws IOException {
         initComponents();
-        lblJogador = new JLabel();
-    }
-    
-    public int getPosixLblJogador() {
-        return posixLblJogador;
+        this.addKeyListener(this);
+        this.setSize(640,480);
+        this.setVisible(true);
+        
+        inicializaPistas();
+        inicializaJogador();
+
+        jogador.setVida(1);
     }
 
-    public void setPosixLblJogador(int posixLblJogador) {
-        this.posixLblJogador = posixLblJogador;
-    }
-
-    public int getPosiyLblJogador() {
-        return posiyLblJogador;
-    }
-
-    public void setPosiyLblJogador(int posiyLblJogador) {
-        this.posiyLblJogador = posiyLblJogador;
-    }
-    
-    public void setCalcada1(ImageIcon calcada1) {
-        //this.calcada1.setIcon(calcada1);
-        componentesEstaticos.getCalcada1().setIcon(calcada1);
-    }
-
-    public void setCalcada2(ImageIcon calcada2) {
-        //this.calcada2.setIcon(calcada2);
-        componentesEstaticos.getCalcada2().setIcon(calcada2);
-    }
-
-    public void setAsfalto1(ImageIcon asfalto1) {
-        //this.asfalto1.setIcon(asfalto1);
-        componentesEstaticos.getAsfalto1().setIcon(asfalto1);
-    }
-
-    public void setAsfalto2(ImageIcon asfalto2) {
-        //this.asfalto2.setIcon(asfalto2);
-        componentesEstaticos.getAsfalto2().setIcon(asfalto2);
-    }
-
-    public void setAsfalto3(ImageIcon asfalto3) {
-        //this.asfalto3.setIcon(asfalto3);
-        componentesEstaticos.getAsfalto3().setIcon(asfalto3);
-    }
-     
-    public void setLblJogador(ImageIcon lblJogador) {
-        this.lblJogador.setIcon(lblJogador);
-    }
-      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,6 +70,7 @@ public class Janela extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Frogger");
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
@@ -192,6 +149,39 @@ public class Janela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inicializaPistas() throws IOException{
+        pistas[4] = new Calcada();
+        pistas[4].setLabel(componentesEstaticos.getCalcada1());
+        
+        pistas[3] = new Asfalto();
+        pistas[3].setLabel(componentesEstaticos.getAsfalto1());
+        
+        pistas[2] = new Asfalto();
+        pistas[2].setLabel(componentesEstaticos.getAsfalto2());
+        
+        pistas[1] = new Asfalto();
+        pistas[1].setLabel(componentesEstaticos.getAsfalto3());
+        
+        pistas[0] = new Calcada();
+        pistas[0].setLabel(componentesEstaticos.getCalcada2());
+        
+        for(Pista pista : pistas){
+            if(pista instanceof Asfalto){
+                pista.setBackground(ImageIO.read(new File("imagens/asfalto.png")));
+            }else{
+                pista.setBackground(ImageIO.read(new File("imagens/calcada.png")));
+            }
+        }
+    }
+    
+    private void inicializaJogador() throws IOException{
+        jogador = new Jogador();
+        jogador.setPosicao(0, 0);
+        jogador.setTamanho(30,30);
+        jogador.setLabel(lblPersonagem);
+        jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
+    }
+    
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
         // TODO add your handling code here:
         //jogoFrogger.setPodeiniciar(true);
@@ -201,31 +191,61 @@ public class Janela extends javax.swing.JFrame {
         painelEmCamadas.add(componentesMoveis, 1);
         painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
         painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
-        
+
         getContentPane().removeAll();
         setContentPane(painelEmCamadas);
-        add(lblJogador, 0);
+        add(lblPersonagem, 0);
         validate();
         repaint();
         janelaAtual = 1;
+        this.requestFocus();
 
     }//GEN-LAST:event_btnStartGameActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
-        if(janelaAtual == 1){
-            add(lblJogador, 0);
+        if (janelaAtual == 1) {
+            add(lblPersonagem, 0);
             revalidate();
             repaint();
         }
     }//GEN-LAST:event_formComponentResized
 
-    public void atualizaJanela(){
-        lblJogador.setLocation(posixLblJogador, posiyLblJogador);
-        janela.repaint();
+    public void atualizaJanela() {
+        lblPersonagem.setLocation(0, 0);
+        this.repaint();
     }
 
-    void configuraElementosEstaticos(){
+    void mostraMenu() {
+        while (!podeIniciar) {
+            System.out.println("Esperando o botão start ser apertado...");
+        }
+    }
+
+    public boolean getPodeiniciar() {
+        return podeIniciar;
+    }
+
+    public void setPodeiniciar(boolean podeiniciar) {
+        this.podeIniciar = podeiniciar;
+    }
+
+    public int getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(int tempo) {
+        this.tempo = tempo;
+    }
+
+    void iniciaJogo() {
+        System.out.println("Iniciou o jogo.");
+    }
+
+    void mostraMenuPosJogo() {
+        System.out.println("mostra menu");
+    }
+
+    void configuraElementosEstaticos() {
         //gbc.anchor  = GridBagConstraints.NORTHWEST;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -249,13 +269,26 @@ public class Janela extends javax.swing.JFrame {
         componentesEstaticos.setBounds(0, 0, 400, 300); //posixLblJogador*2, posiyLblJogador);
 
     }
-        
-    void configuraElementosMoveis(){
+
+    void configuraElementosMoveis() {
         componentesMoveis.setLayout(null);
-        componentesMoveis.add(lblJogador);
-        lblJogador.setBounds(posixLblJogador, posiyLblJogador, 30, 30);
+        componentesMoveis.add(lblPersonagem);
+        lblPersonagem.setBounds(jogador.getX(), jogador.getY(), jogador.getAltura(), jogador.getLargura());
         componentesMoveis.setBounds(0, 0, getWidth(), getHeight());
     }
+
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    public void keyPressed(KeyEvent e) {
+        System.out.println("Voce pressionou" + e);
+    }
+
+    public void keyReleased(KeyEvent e) {
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton btnStartGame;
