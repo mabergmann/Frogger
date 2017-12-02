@@ -24,17 +24,16 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private Pista[] pistas = new Pista[5]; // 2 Calçadas + 3 Asfaltos = 5 Pistas
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
-    
     public static void main(String args[]) throws IOException {
         new Janela();
     }
-        
+
     public Janela() throws IOException {
         initComponents();
         this.addKeyListener(this);
-        this.setSize(640,480);
+        this.setSize(640, 480);
         this.setVisible(true);
-        
+
         inicializaPistas();
         inicializaJogador();
 
@@ -110,39 +109,39 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inicializaPistas() throws IOException{
+    private void inicializaPistas() throws IOException {
         pistas[4] = new Calcada();
         pistas[4].setLabel(componentesEstaticos.getCalcada1());
-        
+
         pistas[3] = new Asfalto();
         pistas[3].setLabel(componentesEstaticos.getAsfalto1());
-        
+
         pistas[2] = new Asfalto();
         pistas[2].setLabel(componentesEstaticos.getAsfalto2());
-        
+
         pistas[1] = new Asfalto();
         pistas[1].setLabel(componentesEstaticos.getAsfalto3());
-        
+
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
-        
-        for(Pista pista : pistas){
-            if(pista instanceof Asfalto){
+
+        for (Pista pista : pistas) {
+            if (pista instanceof Asfalto) {
                 pista.setBackground(ImageIO.read(new File("imagens/asfalto.png")));
-            }else{
+            } else {
                 pista.setBackground(ImageIO.read(new File("imagens/calcada.png")));
             }
         }
     }
-    
-    private void inicializaJogador() throws IOException{
+
+    private void inicializaJogador() throws IOException {
         jogador = new Jogador();
-        jogador.setPosicao(0, 0);
-        jogador.setTamanho(30,30);
+        jogador.setPosicao(200, 0);
+        jogador.setTamanho(50, 50);
         jogador.setLabel(lblPersonagem);
         jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
     }
-    
+
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
         // TODO add your handling code here:
         //jogoFrogger.setPodeiniciar(true);
@@ -234,7 +233,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     void configuraElementosMoveis() {
         componentesMoveis.setLayout(null);
         componentesMoveis.add(lblPersonagem);
-        lblPersonagem.setBounds(jogador.getX(), jogador.getY(), jogador.getAltura(), jogador.getLargura());
+        jogador.atualizaPosicao();
         componentesMoveis.setBounds(0, 0, getWidth(), getHeight());
     }
 
@@ -243,7 +242,24 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-        System.out.println("Voce pressionou" + e);
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                jogador.moveCima();
+                break;
+
+            case KeyEvent.VK_DOWN:
+                jogador.moveBaixo();
+                break;
+
+            case KeyEvent.VK_LEFT:
+                jogador.moveEsquerda();
+                break;
+
+            case KeyEvent.VK_RIGHT:
+                jogador.moveDireita();
+                break;
+
+        }
     }
 
     public void keyReleased(KeyEvent e) {

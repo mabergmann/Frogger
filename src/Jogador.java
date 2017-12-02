@@ -21,8 +21,6 @@ public class Jogador {
     private int largura;
     private int x;
     private int y;
-    private int posicaoVertical;
-    private int posicaoHorizontal;
     private JLabel label;
 
     public void setTamanho(int largura, int altura) {
@@ -48,27 +46,11 @@ public class Jogador {
     }
 
     public int getY() {
-        return y;
+        return 250-y*50;
     }
 
     public void setLabel(JLabel label) {
         this.label = label;
-    }
-
-    public int getPosicaoVertical() {
-        return posicaoVertical;
-    }
-
-    public void setPosicaoVertical(int posicaoVertical) {
-        this.posicaoVertical = posicaoVertical;
-    }
-
-    public int getPosicaoHorizontal() {
-        return posicaoHorizontal;
-    }
-
-    public void setPosicaoHorizontal(int posicaoHorizontal) {
-        this.posicaoHorizontal = posicaoHorizontal;
     }
 
     public void setImagem(BufferedImage imagem) {
@@ -78,23 +60,27 @@ public class Jogador {
     }
     
     public void moveEsquerda(){
-        this.posicaoHorizontal = this.posicaoHorizontal - 10;
+        this.x -= 10;
+        atualizaPosicao();
     }
     
     public void moveDireita(){
-        this.posicaoHorizontal = this.posicaoHorizontal + 10;
+        this.x += 10;
+        atualizaPosicao();
     }
     
     public void moveCima(){
-        this.posicaoVertical = this.posicaoVertical + 1;
+        this.y++;
+        atualizaPosicao();
     }
     
     public void moveBaixo(){
-        this.posicaoVertical = this.posicaoVertical - 1;
+        this.y--;
+        atualizaPosicao();
     }
     
     private void resetVida(){
-        this.setVida(0);
+        this.setVida(3);
     }
 
     public int getVida() {
@@ -126,4 +112,8 @@ public class Jogador {
         System.out.println("retorna booleano");
         return true;
     }  
+    
+    public void atualizaPosicao(){
+        label.setBounds(getX(), getY(), getAltura(), getLargura());
+    }
 }
