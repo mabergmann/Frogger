@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 
 public class Janela extends javax.swing.JFrame implements KeyListener {
 
-    private static GridBagConstraints gbc = new GridBagConstraints();
-    private static GridBagLayout gridbag = new GridBagLayout();
-    private static JLayeredPane painelEmCamadas = new JLayeredPane();
-    private static JPanel componentesMoveis = new JPanel();
+    private GridBagConstraints gbc = new GridBagConstraints();
+    private GridBagLayout gridbag = new GridBagLayout();
+    private JLayeredPane painelEmCamadas = new JLayeredPane();
+    private JPanel componentesMoveis = new JPanel();
     private JLabel lblPersonagem = new JLabel();
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
     private int janelaAtual = 0;
