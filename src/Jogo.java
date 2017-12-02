@@ -1,4 +1,5 @@
 
+import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.ImageIcon;
@@ -23,6 +24,23 @@ public class Jogo {
     JLabel asfalto1;
     JLabel asfalto2;
     JLabel asfalto3;
+    
+    private int tempo;
+    private Jogador jogador;
+
+    private Pista[] pistas = new Pista[5]; // 2 Calçadas + 3 Asfaltos = 5 Pistas
+    boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
+    
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {                                
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            jogador.moveDireita();
+        }
+    }
+    
+    public Jogador getJogador() {
+        return jogador;
+    }
 
     public void setCalcada1(JLabel calcada1) {
         this.calcada1 = calcada1;
@@ -47,10 +65,6 @@ public class Jogo {
     public void setLblJogador(JLabel lblJogador) {
         this.lblJogador = lblJogador;
     }
-    private int tempo;
-    private Jogador jogador;
-    private Pista[] pistas = new Pista[5]; // 2 Calçadas + 3 Asfaltos = 5 Pistas
-    boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
     void mostraMenu() {
         while (!podeIniciar) {
@@ -112,6 +126,11 @@ public class Jogo {
         pistas[2] = segundoAsfalto;
         pistas[1] = primeiroAsfalto;
         pistas[0] = primeiraCalcada;
+        
+        /*jogador.setVida(1);
+        while(jogador.getVida() > 0){
+            janela.atualizaJanela(); 
+        }*/
         
 
     }

@@ -36,19 +36,19 @@ public class Jogador {
         this.posicaoHorizontal = posicaoHorizontal;
     }
     
-    private void moveEsquerda(){
+    public void moveEsquerda(){
         this.posicaoHorizontal = this.posicaoHorizontal - 10;
     }
     
-    private void moveDireita(){
+    public void moveDireita(){
         this.posicaoHorizontal = this.posicaoHorizontal + 10;
     }
     
-    private void moveCima(){
+    public void moveCima(){
         this.posicaoVertical = this.posicaoVertical + 1;
     }
     
-    private void moveBaixo(){
+    public void moveBaixo(){
         this.posicaoVertical = this.posicaoVertical - 1;
     }
     

@@ -1,7 +1,7 @@
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
+import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -11,7 +11,6 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author bergmann
@@ -19,6 +18,13 @@ import javax.swing.JPanel;
 public class janela extends javax.swing.JFrame {
 
     static Jogo jogoFrogger = new Jogo();
+    //static JLabel personagem = new JLabel();
+    static GridBagConstraints gbc = new GridBagConstraints();
+    static GridBagLayout gridbag = new GridBagLayout();
+    static JLayeredPane painelEmCamadas = new JLayeredPane();
+    static JPanel componentesMoveis = new JPanel();
+    static PainelDeJogo componentesEstaticos = new PainelDeJogo();
+    static janela janela = new janela();
 
     /**
      * Creates new form janela
@@ -58,6 +64,11 @@ public class janela extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         lblTitulo.setText("Frogger");
@@ -136,10 +147,39 @@ public class janela extends javax.swing.JFrame {
         jogoFrogger.setPodeiniciar(true);
     }//GEN-LAST:event_btnStartGameActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // TODO add your handling code here:
+        if (jogoFrogger.podeIniciar == true) {
+            /*janela.getContentPane().remove(painelEmCamadas);
+            painelEmCamadas.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
+            componentesMoveis.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
+            personagem.setBounds(0, 0, 200, 100);
+            componentesEstaticos.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
+            //janela.setContentPane(painelEmCamadas);
+            janela.add(painelEmCamadas);
+            janela.validate();
+            janela.repaint();*/
+            //componentesMoveis.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
+            //personagem.setBounds(0, 0, 200, 100);
+            //personagem.setLocation(100, 200);
+            //componentesEstaticos.setPreferredSize(janela.getSize());
+            add(lblJogador, 0);
+            janela.revalidate();
+            janela.repaint();
+        }
+
+    }//GEN-LAST:event_formComponentResized
+
+    public static void atualizaJanela(){
+        int posicaoVerticalJogador;
+        posicaoVerticalJogador = jogoFrogger.getJogador().getPosicaoVertical()*lblAsfalto1.getHeight();
+        lblJogador.setLocation(jogoFrogger.getJogador().getPosicaoHorizontal(), posicaoVerticalJogador);
+        janela.repaint();
+    }
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -150,36 +190,45 @@ public class janela extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(janela.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(janela.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(janela.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(janela.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        janela janela = new janela();
-        PainelDeJogo componentesEstaticos = new PainelDeJogo(); 
+        //janela janela = new janela();
+        //PainelDeJogo componentesEstaticos = new PainelDeJogo(); 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new janela().setVisible(true);
-               janela.setVisible(true);
+                // new janela().setVisible(true);
+                janela.setVisible(true);
             }
         });
 
-        
         jogoFrogger.mostraMenu();
 
         //janela janela = new janela();
         //janela.setVisible(true);
-
-        
         // Setando os labels para os labels criados na classe Jogo.(Vinculando-os)
         jogoFrogger.setLblJogador(lblJogador);
         jogoFrogger.setCalcada1(lblCalcada1);
@@ -187,20 +236,20 @@ public class janela extends javax.swing.JFrame {
         jogoFrogger.setAsfalto1(lblAsfalto1);
         jogoFrogger.setAsfalto2(lblAsfalto2);
         jogoFrogger.setAsfalto3(lblAsfalto3);
-        
+
         jogoFrogger.setCalcada1(componentesEstaticos.getCalcada1());
         jogoFrogger.setCalcada2(componentesEstaticos.getCalcada2());
         jogoFrogger.setAsfalto1(componentesEstaticos.getAsfalto1());
         jogoFrogger.setAsfalto2(componentesEstaticos.getAsfalto2());
         jogoFrogger.setAsfalto3(componentesEstaticos.getAsfalto3());
-        
-        JLabel personagem = new JLabel();
+
+        /* JLabel personagem = new JLabel();
         GridBagConstraints gbc = new GridBagConstraints();
         jogoFrogger.setLblJogador(personagem);
         GridBagLayout gridbag = new GridBagLayout();
         JLayeredPane painelEmCamadas = new JLayeredPane();
-        JPanel componentesMoveis = new JPanel();
-        
+        JPanel componentesMoveis = new JPanel();*/
+        //jogoFrogger.setLblJogador(personagem);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada1(), gbc);
@@ -212,10 +261,11 @@ public class janela extends javax.swing.JFrame {
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto2(), gbc);
         gbc.gridy = 4;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada2(), gbc);
-        
+
+        //componentesMoveis.setLayout(null);
         componentesMoveis.setLayout(null);
-        componentesMoveis.add(personagem);
-        personagem.setBounds(100, 90, 30, 30);
+        componentesMoveis.add(lblJogador);
+        lblJogador.setBounds(100, 90, 30, 30);
         componentesEstaticos.setLayout(gridbag);
         painelEmCamadas.add(componentesEstaticos, 0);
         painelEmCamadas.add(componentesMoveis, 1);
@@ -225,19 +275,18 @@ public class janela extends javax.swing.JFrame {
         janela.getContentPane().removeAll();
         //janela.setContentPane(painelDoJogo);
         janela.setContentPane(painelEmCamadas);
+
         //painelDoJogo.setLayout(gridbag);
         //gbc.gridx = 2;
         //gbc.gridy = 1;
         //gridbag.setConstraints(personagem, gbc);
-        //personagem.setLocation(20, 30);
+        //personagem.setLocation(90, 30);
         //personagem.setLocation(gbc);
         janela.repaint();
-        
-       
+
         // Esses comandos tornam o titulo Frogger e o botao Start invisiveis.
         //lblTitulo.setVisible(false);
         //btnStartGame.setVisible(false);
-        
         jogoFrogger.iniciaJogo();
 
     }

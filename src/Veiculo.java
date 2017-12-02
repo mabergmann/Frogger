@@ -16,11 +16,15 @@ abstract class Veiculo {
     private int altura;
     //(???) imagem;
     
-    private void move(){
+    Veiculo(){
+        
+    }
+    
+    public void move(){
         System.out.println("move");
     }
     
-    private boolean estaColidindo(int x){
+    public boolean estaColidindo(int x){
         System.out.println("retorna booleano");
         return false;
     }
