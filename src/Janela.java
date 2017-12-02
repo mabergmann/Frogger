@@ -8,13 +8,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class Janela extends javax.swing.JFrame implements KeyListener {
 
-    static GridBagConstraints gbc = new GridBagConstraints();
-    static GridBagLayout gridbag = new GridBagLayout();
-    static JLayeredPane painelEmCamadas = new JLayeredPane();
-    static JPanel componentesMoveis = new JPanel();
+    private static GridBagConstraints gbc = new GridBagConstraints();
+    private static GridBagLayout gridbag = new GridBagLayout();
+    private static JLayeredPane painelEmCamadas = new JLayeredPane();
+    private static JPanel componentesMoveis = new JPanel();
+    private JLabel lblPersonagem = new JLabel();
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
     private int janelaAtual = 0;
     private int tempo;
@@ -50,13 +52,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        lblPersonagem = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
-        lblCalcada1 = new javax.swing.JLabel();
-        lblCalcada2 = new javax.swing.JLabel();
-        lblAsfalto1 = new javax.swing.JLabel();
-        lblAsfalto3 = new javax.swing.JLabel();
-        lblAsfalto2 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,8 +76,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         lblTitulo.setText("Frogger");
 
-        lblPersonagem.setText("Jogador");
-
         btnStartGame.setText("Start");
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,33 +83,12 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
         });
 
-        lblCalcada1.setText("Calcada1");
-
-        lblCalcada2.setText("Calcada2");
-
-        lblAsfalto1.setText("Asfalto1");
-
-        lblAsfalto3.setText("Asfalto3");
-
-        lblAsfalto2.setText("Asfalto2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCalcada2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCalcada1)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblPersonagem))
-                            .addComponent(lblAsfalto3)
-                            .addComponent(lblAsfalto1)
-                            .addComponent(lblAsfalto2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(lblTitulo))
@@ -127,19 +100,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCalcada2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAsfalto3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAsfalto2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAsfalto1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCalcada1)
-                    .addComponent(lblPersonagem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(128, 128, 128)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(btnStartGame)
@@ -293,12 +254,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton btnStartGame;
     private javax.swing.JPanel jPanel1;
-    private static javax.swing.JLabel lblAsfalto1;
-    private static javax.swing.JLabel lblAsfalto2;
-    private static javax.swing.JLabel lblAsfalto3;
-    private static javax.swing.JLabel lblCalcada1;
-    private static javax.swing.JLabel lblCalcada2;
-    private static javax.swing.JLabel lblPersonagem;
     public static javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 
