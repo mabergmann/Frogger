@@ -2,6 +2,7 @@
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -15,24 +16,73 @@ import javax.swing.JPanel;
  *
  * @author bergmann
  */
-public class janela extends javax.swing.JFrame {
+public class Janela extends javax.swing.JFrame {
 
-    static Jogo jogoFrogger = new Jogo();
-    //static JLabel personagem = new JLabel();
     static GridBagConstraints gbc = new GridBagConstraints();
     static GridBagLayout gridbag = new GridBagLayout();
     static JLayeredPane painelEmCamadas = new JLayeredPane();
     static JPanel componentesMoveis = new JPanel();
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
-    static janela janela = new janela();
+    static Janela janela = new Janela();
+    private final JLabel lblJogador;
+    private int janelaAtual = 0;
+    private int teclaPressionada = 0;
+    private int posixLblJogador;
+    private int posiyLblJogador;
 
     /**
      * Creates new form janela
      */
-    public janela() {
+    public Janela() {
         initComponents();
+        lblJogador = new JLabel();
+    }
+    
+    public int getPosixLblJogador() {
+        return posixLblJogador;
     }
 
+    public void setPosixLblJogador(int posixLblJogador) {
+        this.posixLblJogador = posixLblJogador;
+    }
+
+    public int getPosiyLblJogador() {
+        return posiyLblJogador;
+    }
+
+    public void setPosiyLblJogador(int posiyLblJogador) {
+        this.posiyLblJogador = posiyLblJogador;
+    }
+    
+    public void setCalcada1(ImageIcon calcada1) {
+        //this.calcada1.setIcon(calcada1);
+        componentesEstaticos.getCalcada1().setIcon(calcada1);
+    }
+
+    public void setCalcada2(ImageIcon calcada2) {
+        //this.calcada2.setIcon(calcada2);
+        componentesEstaticos.getCalcada2().setIcon(calcada2);
+    }
+
+    public void setAsfalto1(ImageIcon asfalto1) {
+        //this.asfalto1.setIcon(asfalto1);
+        componentesEstaticos.getAsfalto1().setIcon(asfalto1);
+    }
+
+    public void setAsfalto2(ImageIcon asfalto2) {
+        //this.asfalto2.setIcon(asfalto2);
+        componentesEstaticos.getAsfalto2().setIcon(asfalto2);
+    }
+
+    public void setAsfalto3(ImageIcon asfalto3) {
+        //this.asfalto3.setIcon(asfalto3);
+        componentesEstaticos.getAsfalto3().setIcon(asfalto3);
+    }
+     
+    public void setLblJogador(ImageIcon lblJogador) {
+        this.lblJogador.setIcon(lblJogador);
+    }
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +94,7 @@ public class janela extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        lblJogador = new javax.swing.JLabel();
+        lblPersonagem = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
         lblCalcada1 = new javax.swing.JLabel();
         lblCalcada2 = new javax.swing.JLabel();
@@ -73,7 +123,7 @@ public class janela extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         lblTitulo.setText("Frogger");
 
-        lblJogador.setText("Jogador");
+        lblPersonagem.setText("Jogador");
 
         btnStartGame.setText("Start");
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +155,7 @@ public class janela extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblCalcada1)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblJogador))
+                                .addComponent(lblPersonagem))
                             .addComponent(lblAsfalto3)
                             .addComponent(lblAsfalto1)
                             .addComponent(lblAsfalto2)))
@@ -131,7 +181,7 @@ public class janela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCalcada1)
-                    .addComponent(lblJogador))
+                    .addComponent(lblPersonagem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
@@ -144,153 +194,68 @@ public class janela extends javax.swing.JFrame {
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
         // TODO add your handling code here:
-        jogoFrogger.setPodeiniciar(true);
+        //jogoFrogger.setPodeiniciar(true);
+        configuraElementosEstaticos();
+        configuraElementosMoveis();
+        painelEmCamadas.add(componentesEstaticos, 0);
+        painelEmCamadas.add(componentesMoveis, 1);
+        painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
+        painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
+        
+        getContentPane().removeAll();
+        setContentPane(painelEmCamadas);
+        add(lblJogador, 0);
+        validate();
+        repaint();
+        janelaAtual = 1;
+
     }//GEN-LAST:event_btnStartGameActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
-        if (jogoFrogger.podeIniciar == true) {
-            /*janela.getContentPane().remove(painelEmCamadas);
-            painelEmCamadas.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
-            componentesMoveis.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
-            personagem.setBounds(0, 0, 200, 100);
-            componentesEstaticos.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
-            //janela.setContentPane(painelEmCamadas);
-            janela.add(painelEmCamadas);
-            janela.validate();
-            janela.repaint();*/
-            //componentesMoveis.setBounds(0, 0, janela.WIDTH, janela.HEIGHT);
-            //personagem.setBounds(0, 0, 200, 100);
-            //personagem.setLocation(100, 200);
-            //componentesEstaticos.setPreferredSize(janela.getSize());
+        if(janelaAtual == 1){
             add(lblJogador, 0);
-            janela.revalidate();
-            janela.repaint();
+            revalidate();
+            repaint();
         }
-
     }//GEN-LAST:event_formComponentResized
 
-    public static void atualizaJanela(){
-        int posicaoVerticalJogador;
-        posicaoVerticalJogador = jogoFrogger.getJogador().getPosicaoVertical()*lblAsfalto1.getHeight();
-        lblJogador.setLocation(jogoFrogger.getJogador().getPosicaoHorizontal(), posicaoVerticalJogador);
+    public void atualizaJanela(){
+        lblJogador.setLocation(posixLblJogador, posiyLblJogador);
         janela.repaint();
     }
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                
 
-}
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(janela.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
-
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(janela.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(janela.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(janela.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        //janela janela = new janela();
-        //PainelDeJogo componentesEstaticos = new PainelDeJogo(); 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                // new janela().setVisible(true);
-                janela.setVisible(true);
-            }
-        });
-
-        jogoFrogger.mostraMenu();
-
-        //janela janela = new janela();
-        //janela.setVisible(true);
-        // Setando os labels para os labels criados na classe Jogo.(Vinculando-os)
-        jogoFrogger.setLblJogador(lblJogador);
-        jogoFrogger.setCalcada1(lblCalcada1);
-        jogoFrogger.setCalcada2(lblCalcada2);
-        jogoFrogger.setAsfalto1(lblAsfalto1);
-        jogoFrogger.setAsfalto2(lblAsfalto2);
-        jogoFrogger.setAsfalto3(lblAsfalto3);
-
-        jogoFrogger.setCalcada1(componentesEstaticos.getCalcada1());
-        jogoFrogger.setCalcada2(componentesEstaticos.getCalcada2());
-        jogoFrogger.setAsfalto1(componentesEstaticos.getAsfalto1());
-        jogoFrogger.setAsfalto2(componentesEstaticos.getAsfalto2());
-        jogoFrogger.setAsfalto3(componentesEstaticos.getAsfalto3());
-
-        /* JLabel personagem = new JLabel();
-        GridBagConstraints gbc = new GridBagConstraints();
-        jogoFrogger.setLblJogador(personagem);
-        GridBagLayout gridbag = new GridBagLayout();
-        JLayeredPane painelEmCamadas = new JLayeredPane();
-        JPanel componentesMoveis = new JPanel();*/
-        //jogoFrogger.setLblJogador(personagem);
+    void configuraElementosEstaticos(){
+        //gbc.anchor  = GridBagConstraints.NORTHWEST;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada1(), gbc);
+        //gridbag.addLayoutComponent(calcada2, gbc);
         gbc.gridy = 1;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto3(), gbc);
+        //gridbag.addLayoutComponent(asfalto3, gbc);
         gbc.gridy = 2;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto1(), gbc);
+        //gridbag.addLayoutComponent(asfalto2, gbc);
         gbc.gridy = 3;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto2(), gbc);
+        //gridbag.addLayoutComponent(asfalto1, gbc);
         gbc.gridy = 4;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada2(), gbc);
-
-        //componentesMoveis.setLayout(null);
-        componentesMoveis.setLayout(null);
-        componentesMoveis.add(lblJogador);
-        lblJogador.setBounds(100, 90, 30, 30);
+        //gridbag.addLayoutComponent(calcada1, gbc);
+        //gridbag.setConstraints(this, gbc);
         componentesEstaticos.setLayout(gridbag);
-        painelEmCamadas.add(componentesEstaticos, 0);
-        painelEmCamadas.add(componentesMoveis, 1);
-        componentesEstaticos.setBounds(0, 0, janela.getWidth(), janela.getHeight());
-        componentesMoveis.setBounds(0, 0, janela.getWidth(), janela.getHeight());
-        //painelDoJogo.add(personagem, 0);
-        janela.getContentPane().removeAll();
-        //janela.setContentPane(painelDoJogo);
-        janela.setContentPane(painelEmCamadas);
-
-        //painelDoJogo.setLayout(gridbag);
-        //gbc.gridx = 2;
-        //gbc.gridy = 1;
-        //gridbag.setConstraints(personagem, gbc);
-        //personagem.setLocation(90, 30);
-        //personagem.setLocation(gbc);
-        janela.repaint();
-
-        // Esses comandos tornam o titulo Frogger e o botao Start invisiveis.
-        //lblTitulo.setVisible(false);
-        //btnStartGame.setVisible(false);
-        jogoFrogger.iniciaJogo();
+        //componentesEstaticos.setBounds(0, 0, janela.getWidth(), janela.getHeight());
+        componentesEstaticos.setBounds(0, 0, 400, 300); //posixLblJogador*2, posiyLblJogador);
 
     }
-
+        
+    void configuraElementosMoveis(){
+        componentesMoveis.setLayout(null);
+        componentesMoveis.add(lblJogador);
+        lblJogador.setBounds(posixLblJogador, posiyLblJogador, 30, 30);
+        componentesMoveis.setBounds(0, 0, getWidth(), getHeight());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton btnStartGame;
@@ -300,7 +265,8 @@ public static void main(String args[]) {
     private static javax.swing.JLabel lblAsfalto3;
     private static javax.swing.JLabel lblCalcada1;
     private static javax.swing.JLabel lblCalcada2;
-    private static javax.swing.JLabel lblJogador;
+    private static javax.swing.JLabel lblPersonagem;
     public static javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
+
 }

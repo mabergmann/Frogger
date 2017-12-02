@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 public class Jogador {
     private int vida;
     private int pontos;
-   // BufferedImage imagem = ; 
+    private BufferedImage imagem; 
     private int altura;
     private int largura;
     private int posicaoVertical;
@@ -34,6 +34,14 @@ public class Jogador {
 
     public void setPosicaoHorizontal(int posicaoHorizontal) {
         this.posicaoHorizontal = posicaoHorizontal;
+    }
+    
+    public BufferedImage getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(BufferedImage imagem) {
+        this.imagem = imagem;
     }
     
     public void moveEsquerda(){

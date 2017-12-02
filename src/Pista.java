@@ -1,3 +1,6 @@
+
+import java.awt.image.BufferedImage;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +13,7 @@
  * @author Júlia
  */
 abstract class Pista {
-    //(???) background;
+    private BufferedImage background;
     private int altura;
     private int largura;
     private int posicaoVertical;
@@ -19,5 +22,13 @@ abstract class Pista {
     private boolean estaColidindo(int x){
         System.out.println("retorna booleano");
         return false;
+    }  
+    
+    public BufferedImage getBackground() {
+        return background;
+    }
+
+    public void setBackground(BufferedImage background) {
+        this.background = background;
     }
 }

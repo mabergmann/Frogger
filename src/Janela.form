@@ -52,7 +52,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblCalcada1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblJogador" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPersonagem" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lblAsfalto3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAsfalto1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCalcada1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblJogador" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPersonagem" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
@@ -109,7 +109,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblJogador">
+    <Component class="javax.swing.JLabel" name="lblPersonagem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Jogador"/>
       </Properties>

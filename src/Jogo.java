@@ -1,9 +1,8 @@
 
-import java.awt.event.KeyEvent;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,53 +16,48 @@ import javax.swing.JLabel;
  * @author Júlia
  */
 public class Jogo {
-
-    JLabel lblJogador;
-    JLabel calcada1;
-    JLabel calcada2;
-    JLabel asfalto1;
-    JLabel asfalto2;
-    JLabel asfalto3;
-    
+   
     private int tempo;
-    private Jogador jogador;
+    private static Jogador jogador;
+    private static Janela janela;
 
     private Pista[] pistas = new Pista[5]; // 2 Calçadas + 3 Asfaltos = 5 Pistas
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
     
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {                                
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
-            jogador.moveDireita();
-        }
-    }
-    
-    public Jogador getJogador() {
-        return jogador;
-    }
+    Jogo() throws IOException{
 
-    public void setCalcada1(JLabel calcada1) {
-        this.calcada1 = calcada1;
-    }
+        pistas[4] = new Calcada();
+        pistas[3] = new Asfalto();
+        pistas[2] = new Asfalto();
+        pistas[1] = new Asfalto();
+        pistas[0] = new Calcada();
+        jogador = new Jogador();
+        janela = new Janela();
+        
+        janela.setSize(600, 400);
+        
+        jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
+        pistas[4].setBackground(ImageIO.read(new File("imagens/calcada.png")));
+        pistas[3].setBackground(ImageIO.read(new File("imagens/asfalto.png")));
+        pistas[2].setBackground(ImageIO.read(new File("imagens/asfalto.png")));
+        pistas[1].setBackground(ImageIO.read(new File("imagens/asfalto.png")));
+        pistas[0].setBackground(ImageIO.read(new File("imagens/calcada.png")));
 
-    public void setCalcada2(JLabel calcada2) {
-        this.calcada2 = calcada2;
-    }
+        janela.setCalcada2(new ImageIcon(pistas[4].getBackground()));
+        janela.setAsfalto3(new ImageIcon(pistas[3].getBackground()));
+        janela.setAsfalto2(new ImageIcon(pistas[2].getBackground()));
+        janela.setAsfalto1(new ImageIcon(pistas[1].getBackground()));
+        janela.setCalcada1(new ImageIcon(pistas[0].getBackground()));        
 
-    public void setAsfalto1(JLabel asfalto1) {
-        this.asfalto1 = asfalto1;
-    }
-
-    public void setAsfalto2(JLabel asfalto2) {
-        this.asfalto2 = asfalto2;
-    }
-
-    public void setAsfalto3(JLabel asfalto3) {
-        this.asfalto3 = asfalto3;
-    }
-     
-    public void setLblJogador(JLabel lblJogador) {
-        this.lblJogador = lblJogador;
+        jogador.setPosicaoHorizontal(janela.getWidth()/2);
+        jogador.setPosicaoVertical(janela.getHeight());
+        janela.setPosixLblJogador(40);//janela.getWidth()/2
+        janela.setPosiyLblJogador(90);//janela.getHeight()
+        janela.setLblJogador(new ImageIcon(jogador.getImagem()));
+        
+        janela.setVisible(true);
+        
+        jogador.setVida(1);
     }
 
     void mostraMenu() {
@@ -88,54 +82,20 @@ public class Jogo {
         this.tempo = tempo;
     }
 
-    void iniciaJogo() {
-        
-        
-        // Código que limpa o texto dos label e carrega as imagens.
-        
-        calcada1.setText("");
-        calcada1.setIcon(new ImageIcon("imagens/calcada.png"));
-        calcada2.setText("");
-        calcada2.setIcon(new ImageIcon("imagens/calcada.png"));
-        asfalto1.setText("");
-        asfalto1.setIcon(new ImageIcon("imagens/asfalto.png"));
-        asfalto2.setText("");
-        asfalto2.setIcon(new ImageIcon("imagens/asfalto.png"));
-        asfalto3.setText("");
-        asfalto3.setIcon(new ImageIcon("imagens/asfalto.png"));
-        lblJogador.setText("");
-        lblJogador.setIcon(new ImageIcon("imagens/jogador.png"));
-        
+    void iniciaJogo() {        
         System.out.println("Iniciou o jogo.");
-        
-        
-        //Tudo aqui pode ser substituido pelo construtor de Jogador.
-        Jogador jogadorFrogger = new Jogador();
-        jogadorFrogger.setPosicaoHorizontal(0);
-        jogadorFrogger.setPosicaoVertical(0);
-
-        // Criando as pistas e calçadas, também vamos utilizar o construtor das mesmas.
-        Calcada primeiraCalcada = new Calcada();
-        Asfalto primeiroAsfalto = new Asfalto();
-        Asfalto segundoAsfalto = new Asfalto();
-        Asfalto terceiroAsfalto = new Asfalto();
-        Calcada segundaCalcada = new Calcada();
-
-        pistas[4] = segundaCalcada;
-        pistas[3] = terceiroAsfalto;
-        pistas[2] = segundoAsfalto;
-        pistas[1] = primeiroAsfalto;
-        pistas[0] = primeiraCalcada;
-        
-        /*jogador.setVida(1);
-        while(jogador.getVida() > 0){
-            janela.atualizaJanela(); 
-        }*/
-        
-
     }
 
     void mostraMenuPosJogo() {
         System.out.println("mostra menu");
     }
+    
+    public static void main(String args[]) throws IOException{
+        Jogo jogo = new Jogo();
+        //while(jogador.getVida() > 0){
+          //  janela.atualizaJanela();
+        //}
+
+    }
 }
+
