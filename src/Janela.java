@@ -1,11 +1,14 @@
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -21,7 +24,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private int janelaAtual = 0;
     private int tempo;
     private Jogador jogador = new Jogador();
-    private Pista[] pistas = new Pista[5]; // 2 Calçadas + 3 Asfaltos = 5 Pistas
+    private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
     public static void main(String args[]) throws IOException {
@@ -110,36 +113,63 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inicializaPistas() throws IOException {
-        pistas[4] = new Calcada();
-        pistas[4].setLabel(componentesEstaticos.getCalcada1());
+        int index = 0;
+        pistas[5] = new Calcada();
+        pistas[5].setLabel(componentesEstaticos.getCalcada1());
+        
+        pistas[4] = new Asfalto();
+        pistas[4].setLabel(componentesEstaticos.getAsfalto1());
 
         pistas[3] = new Asfalto();
-        pistas[3].setLabel(componentesEstaticos.getAsfalto1());
+        pistas[3].setLabel(componentesEstaticos.getAsfalto2());
 
         pistas[2] = new Asfalto();
-        pistas[2].setLabel(componentesEstaticos.getAsfalto2());
+        pistas[2].setLabel(componentesEstaticos.getAsfalto3());
 
         pistas[1] = new Asfalto();
-        pistas[1].setLabel(componentesEstaticos.getAsfalto3());
+        pistas[1].setLabel(componentesEstaticos.getAsfalto4());
 
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
-
+        
+        /*double pesos[][] = gridbag.getLayoutWeights();
+        for(index = 1; index < pesos[index].length; index++){
+            pesos[index][0] = 0;
+        }*/
+        
+        
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
-                pista.setBackground(ImageIO.read(new File("imagens/asfalto.png")));
+                if(index == 1){
+                    pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaSuperior.png")));
+                } else {
+                    if(index == (pistas.length - 2)){
+                        pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaInferior.png")));
+                    } else {
+                        pista.setBackground(ImageIO.read(new File("imagens/AsfaltoFaixaFaixa2.png")));
+                    }
+                }
             } else {
-                pista.setBackground(ImageIO.read(new File("imagens/calcada.png")));
+                pista.setBackground(ImageIO.read(new File("imagens/calcadaTeste.png")));
             }
+            index++;
+            
         }
     }
 
     private void inicializaJogador() throws IOException {
+        BufferedImage imagem = ImageIO.read(new File("imagens/Sapo1.png"));
         jogador = new Jogador();
         jogador.setPosicao(200, 0);
         jogador.setTamanho(50, 50);
         jogador.setLabel(lblPersonagem);
-        jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
+        //jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+    }
+    
+     private void inicializaBarraDeInformacao() {
+        componentesEstaticos.setIconeBarraInferior(new ImageIcon("imagens/Barra2.png"));
+        componentesEstaticos.setIconeBarraSuperior(new ImageIcon("imagens/Barra2.png"));
     }
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed

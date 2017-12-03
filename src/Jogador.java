@@ -1,4 +1,5 @@
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -53,7 +54,8 @@ public class Jogador {
         this.label = label;
     }
 
-    public void setImagem(BufferedImage imagem) {
+   // public void setImagem(BufferedImage imagem) {
+    public void setImagem(Image imagem) {
         ImageIcon imageIcon = new ImageIcon(imagem);
         this.imagem = imageIcon;
         label.setIcon(this.imagem);
