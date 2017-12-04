@@ -47,7 +47,7 @@ public class Jogador {
     }
 
     public int getY() {
-        return 250-y*50;
+        return 400-y*75;
     }
 
     public void setLabel(JLabel label) {
@@ -62,12 +62,12 @@ public class Jogador {
     }
     
     public void moveEsquerda(){
-        this.x -= 10;
+        this.x -= 20;
         atualizaPosicao();
     }
     
     public void moveDireita(){
-        this.x += 10;
+        this.x += 20;
         atualizaPosicao();
     }
     

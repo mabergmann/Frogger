@@ -141,10 +141,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
                 if(index == 1){
-                    pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaSuperior.png")));
+                    pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaInferior.png")));
                 } else {
                     if(index == (pistas.length - 2)){
-                        pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaInferior.png")));
+                        pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaSuperior.png")));
                     } else {
                         pista.setBackground(ImageIO.read(new File("imagens/AsfaltoFaixaFaixa2.png")));
                     }
@@ -160,7 +160,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private void inicializaJogador() throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/Sapo1.png"));
         jogador = new Jogador();
-        jogador.setPosicao(200, 0);
+        jogador.setPosicao(300, 0);
         jogador.setTamanho(50, 50);
         jogador.setLabel(lblPersonagem);
         //jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
@@ -236,27 +236,28 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void configuraElementosEstaticos() {
-        //gbc.anchor  = GridBagConstraints.NORTHWEST;
+        gbc.gridwidth=0;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada1(), gbc);
-        //gridbag.addLayoutComponent(calcada2, gbc);
+        
         gbc.gridy = 1;
-        gridbag.addLayoutComponent(componentesEstaticos.getAsfalto3(), gbc);
-        //gridbag.addLayoutComponent(asfalto3, gbc);
-        gbc.gridy = 2;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto1(), gbc);
-        //gridbag.addLayoutComponent(asfalto2, gbc);
-        gbc.gridy = 3;
+        
+        gbc.gridy = 2;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto2(), gbc);
-        //gridbag.addLayoutComponent(asfalto1, gbc);
+        
+        gbc.gridy = 3;
+        gridbag.addLayoutComponent(componentesEstaticos.getAsfalto3(), gbc);
+        
         gbc.gridy = 4;
+        gridbag.addLayoutComponent(componentesEstaticos.getAsfalto4(), gbc);
+        
+        gbc.gridy = 5;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada2(), gbc);
-        //gridbag.addLayoutComponent(calcada1, gbc);
-        //gridbag.setConstraints(this, gbc);
+        
         componentesEstaticos.setLayout(gridbag);
-        //componentesEstaticos.setBounds(0, 0, janela.getWidth(), janela.getHeight());
-        componentesEstaticos.setBounds(0, 0, 400, 300); //posixLblJogador*2, posiyLblJogador);
+        componentesEstaticos.setBounds(0, 0, 640, 480);
 
     }
 
