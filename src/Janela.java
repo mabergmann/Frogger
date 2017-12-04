@@ -146,7 +146,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                     if(index == (pistas.length - 2)){
                         pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaSuperior.png")));
                     } else {
-                        pista.setBackground(ImageIO.read(new File("imagens/AsfaltoFaixaFaixa2.png")));
+                        pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaPista.png")));
                     }
                 }
             } else {
