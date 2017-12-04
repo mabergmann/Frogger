@@ -7,6 +7,9 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
@@ -158,18 +161,44 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     private void inicializaJogador() throws IOException {
-        BufferedImage imagem = ImageIO.read(new File("imagens/Sapo1.png"));
+        BufferedImage imagem;
         jogador = new Jogador();
         jogador.setPosicao(200, 0);
         jogador.setTamanho(50, 50);
-        jogador.setLabel(lblPersonagem);
+        //jogador.setLabel(lblPersonagem);
         //jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
-        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        imagem = ImageIO.read(new File("imagens/Sapo1.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 0);
+        imagem = ImageIO.read(new File("imagens/Sapo2.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 1);
+        imagem = ImageIO.read(new File("imagens/Sapo3.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 2);
+        imagem = ImageIO.read(new File("imagens/Sapo4.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 3);
+        imagem = ImageIO.read(new File("imagens/Sapo5.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 4);
+        imagem = ImageIO.read(new File("imagens/Sapo6.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 5);
+        imagem = ImageIO.read(new File("imagens/Sapo7.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 6);
+        imagem = ImageIO.read(new File("imagens/Sapo8.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 7);
+        imagem = ImageIO.read(new File("imagens/Sapo9.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 8);
+        imagem = ImageIO.read(new File("imagens/Sapo10.png"));
+        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH), 9);  
+        jogador.setLabel(jogador.getImagem(0));
+        lblPersonagem = jogador.getLabel();
     }
     
      private void inicializaBarraDeInformacao() {
         componentesEstaticos.setIconeBarraInferior(new ImageIcon("imagens/Barra2.png"));
         componentesEstaticos.setIconeBarraSuperior(new ImageIcon("imagens/Barra2.png"));
+    }
+     
+    private void mudaSprite(int indiceDoSprite){
+        jogador.setLabel(jogador.getImagem(indiceDoSprite));
+        lblPersonagem = jogador.getLabel();
     }
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
@@ -274,19 +303,27 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
+                mudaSprite(1);
                 jogador.moveCima();
+                mudaSprite(0);
                 break;
 
             case KeyEvent.VK_DOWN:
+                mudaSprite(2);
                 jogador.moveBaixo();
+                mudaSprite(3);
                 break;
 
             case KeyEvent.VK_LEFT:
+                mudaSprite(8);
                 jogador.moveEsquerda();
+                mudaSprite(7);
                 break;
 
             case KeyEvent.VK_RIGHT:
+                mudaSprite(5);
                 jogador.moveDireita();
+                mudaSprite(4);
                 break;
 
         }

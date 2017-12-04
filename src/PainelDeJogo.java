@@ -87,7 +87,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(640, 480));
         setLayout(new java.awt.GridBagLayout());
 
-        barraSuperior.setIcon(new javax.swing.ImageIcon("C:\\Users\\Júlia\\Pictures\\Barra.png")); // NOI18N
         barraSuperior.setText("barraSuperior");
         barraSuperior.setMaximumSize(new java.awt.Dimension(680, 75));
         barraSuperior.setMinimumSize(new java.awt.Dimension(600, 14));
@@ -107,6 +106,9 @@ public class PainelDeJogo extends javax.swing.JPanel {
         calcada2.setToolTipText("");
         calcada2.setAlignmentY(0.0F);
         calcada2.setAutoscrolls(true);
+        calcada2.setMaximumSize(new java.awt.Dimension(1000, 100));
+        calcada2.setMinimumSize(new java.awt.Dimension(640, 75));
+        calcada2.setPreferredSize(new java.awt.Dimension(640, 75));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -130,6 +132,7 @@ public class PainelDeJogo extends javax.swing.JPanel {
 
         asfalto3.setText("asfalto3");
         asfalto3.setMaximumSize(new java.awt.Dimension(680, 75));
+        asfalto3.setPreferredSize(new java.awt.Dimension(640, 75));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -169,7 +172,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
         gridBagConstraints.ipady = 75;
         add(calcada1, gridBagConstraints);
 
-        barraInferior.setIcon(new javax.swing.ImageIcon("C:\\Users\\Júlia\\Pictures\\Barra.png")); // NOI18N
         barraInferior.setText("barraInferior");
         barraInferior.setPreferredSize(new java.awt.Dimension(640, 15));
         gridBagConstraints = new java.awt.GridBagConstraints();

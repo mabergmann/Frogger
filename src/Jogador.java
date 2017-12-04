@@ -17,18 +17,37 @@ import javax.swing.JLabel;
 public class Jogador {
     private int vida;
     private int pontos;
-    private ImageIcon imagem; 
+    //private ImageIcon imagem;
+    private final ImageIcon[] imagem; 
     private int altura;
     private int largura;
     private int x;
     private int y;
-    private JLabel label;
+    private int spriteAtual;
+
+    public int getSpriteAtual() {
+        return spriteAtual;
+    }
+
+    public void setSpriteAtual(int spriteAtual) {
+        this.spriteAtual = spriteAtual;
+    }
+    private final JLabel label;
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public Jogador() {
+        this.label = new JLabel();
+        this.imagem = new ImageIcon[10];
+    }
 
     public void setTamanho(int largura, int altura) {
         this.largura = largura;
         this.altura = altura;
     }
-    
+
     public void setPosicao(int x, int y) {
         this.x = x;
         this.y = y;
@@ -50,15 +69,20 @@ public class Jogador {
         return 250-y*50;
     }
 
-    public void setLabel(JLabel label) {
-        this.label = label;
+    public void setLabel(ImageIcon imagem) {
+        //this.label = label;
+        label.setIcon(imagem);
     }
 
    // public void setImagem(BufferedImage imagem) {
-    public void setImagem(Image imagem) {
+    public void setImagem(Image imagem, int indice) {
         ImageIcon imageIcon = new ImageIcon(imagem);
-        this.imagem = imageIcon;
-        label.setIcon(this.imagem);
+        this.imagem[indice] = imageIcon;
+        //label.setIcon(this.imagem[indice]);
+    }
+
+    public ImageIcon getImagem(int indice) {
+        return imagem[indice];
     }
     
     public void moveEsquerda(){
