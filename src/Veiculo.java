@@ -1,5 +1,6 @@
 
 import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,14 +18,11 @@ abstract class Veiculo {
     private int posicaoHorizontal;
     private int direcao;
     private int altura;
-    private BufferedImage imagem;
-
-    public BufferedImage getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(BufferedImage imagem) {
-        this.imagem = imagem;
+    private ImageIcon imagem;   
+    
+    public void setPosicao(int x, int y) {
+        this.posicaoHorizontal = x;
+        this.posicaoVertical = y;
     }
     
     public void move(){

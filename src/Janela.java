@@ -41,7 +41,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         
         jogador = new Jogador(lblPersonagem);
 
-        jogador.setVida(1);
+        mostraMenu();
+        
+        iniciaJogo();
+        
+        mostraMenuPosJogo();
     }
 
     /**
@@ -165,7 +169,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
         // TODO add your handling code here:
-        //jogoFrogger.setPodeiniciar(true);
+        podeIniciar = true;
         configuraElementosEstaticos();
         configuraElementosMoveis();
         painelEmCamadas.add(componentesEstaticos, 0);
@@ -219,11 +223,17 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void iniciaJogo() {
-        System.out.println("Iniciou o jogo.");
+        
+        while(jogador.getPosicaoVertical()!=5){
+        
+            System.out.println("Jogando...");
+        }
+        
+        System.out.println("Fim de Jogo - Você chegou ao final.");
     }
 
     void mostraMenuPosJogo() {
-        System.out.println("mostra menu");
+        System.out.println("Mostra seu pontos.");
     }
 
     void configuraElementosEstaticos() {
