@@ -23,8 +23,8 @@ public class Jogador {
     private ImageIcon imagem; 
     private int altura;
     private int largura;
-    private int x;
-    private int y;
+    private int posicaoHorizontal;
+    private int posicaoVertical;
     private JLabel label;
 
     
@@ -42,8 +42,8 @@ public class Jogador {
     }
     
     public void setPosicao(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.posicaoHorizontal = x;
+        this.posicaoVertical = y;
     }
     
     public int getAltura() {
@@ -54,12 +54,12 @@ public class Jogador {
         return largura;
     }
 
-    public int getX() {
-        return x;
+    public int getPosicaoHorizontal() {
+        return posicaoHorizontal;
     }
 
-    public int getY() {
-        return 400-y*75;
+    public int getPosicaoVertical() {
+        return posicaoVertical;
     }
 
     private void setLabel(JLabel label) {
@@ -74,22 +74,22 @@ public class Jogador {
     }
     
     public void moveEsquerda(){
-        this.x -= 20;
+        this.posicaoHorizontal -= 20;
         atualizaPosicao();
     }
     
     public void moveDireita(){
-        this.x += 20;
+        this.posicaoHorizontal += 20;
         atualizaPosicao();
     }
     
     public void moveCima(){
-        this.y++;
+        this.posicaoVertical++;
         atualizaPosicao();
     }
     
     public void moveBaixo(){
-        this.y--;
+        this.posicaoVertical--;
         atualizaPosicao();
     }
     
@@ -128,6 +128,6 @@ public class Jogador {
     }  
     
     public void atualizaPosicao(){
-        label.setBounds(getX(), getY(), getAltura(), getLargura());
+        label.setBounds(getPosicaoHorizontal(), 400-getPosicaoVertical()*75, getAltura(), getLargura());
     }
 }
