@@ -1,6 +1,9 @@
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -24,6 +27,15 @@ public class Jogador {
     private int y;
     private JLabel label;
 
+    
+    public Jogador(JLabel label) throws IOException {
+        BufferedImage imagem = ImageIO.read(new File("imagens/Sapo1.png"));
+        this.setPosicao(300, 0);
+        this.setTamanho(50, 50);
+        this.setLabel(label);
+        this.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+    }
+    
     public void setTamanho(int largura, int altura) {
         this.largura = largura;
         this.altura = altura;
@@ -50,7 +62,7 @@ public class Jogador {
         return 400-y*75;
     }
 
-    public void setLabel(JLabel label) {
+    private void setLabel(JLabel label) {
         this.label = label;
     }
 
