@@ -21,7 +21,7 @@ abstract class Pista {
     private int largura;
     private int posicaoVertical;
     private int posicaoHorizontal;
-    private JLabel label;
+    JLabel label;
 
     public void setLabel(JLabel label) {
         this.label = label;
