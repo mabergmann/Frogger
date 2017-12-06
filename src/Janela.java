@@ -23,7 +23,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
     private int janelaAtual = 0;
     private int tempo;
-    private Jogador jogador = new Jogador();
+    private Jogador jogador;
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
@@ -38,7 +38,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.setVisible(true);
 
         inicializaPistas();
-        inicializaJogador();
+        
+        jogador = new Jogador(lblPersonagem);
 
         jogador.setVida(1);
     }
@@ -113,7 +114,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inicializaPistas() throws IOException {
-        int index = 0;
+        
         pistas[5] = new Calcada();
         pistas[5].setLabel(componentesEstaticos.getCalcada1());
         
@@ -137,7 +138,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             pesos[index][0] = 0;
         }*/
         
-        
+        int index = 0;
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
                 if(index == 1){
@@ -157,16 +158,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         }
     }
 
-    private void inicializaJogador() throws IOException {
-        BufferedImage imagem = ImageIO.read(new File("imagens/Sapo1.png"));
-        jogador = new Jogador();
-        jogador.setPosicao(300, 0);
-        jogador.setTamanho(50, 50);
-        jogador.setLabel(lblPersonagem);
-        //jogador.setImagem(ImageIO.read(new File("imagens/jogador.png")));
-        jogador.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-    }
-    
      private void inicializaBarraDeInformacao() {
         componentesEstaticos.setIconeBarraInferior(new ImageIcon("imagens/Barra2.png"));
         componentesEstaticos.setIconeBarraSuperior(new ImageIcon("imagens/Barra2.png"));
