@@ -29,7 +29,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private int tempo;
 
     private Jogador jogador;
-    private Veiculo carro;
+    
+    private Veiculo[] veiculos = new Veiculo[8];
 
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
 
@@ -49,8 +50,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         
         jogador = new Jogador(lblPersonagem);
-
-        carro = new Carro(lblCarro);
         
         mostraMenu();
 
@@ -243,11 +242,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         
         
 
-        while (jogador.getPosicaoVertical() != 5) {
+        while (jogador.getPosicaoVertical() != 5 && jogador.vivo()) {
+            System.out.println("Jogando...");
             
-         // >>> Estou tentando mover o carro.   
+            // Aqui estava tentando chamar a estaColidindo para se sim, sair do laço matando o jogador.
+        /*if(estaColidindo(jogador.getPosicaoHorizontal(), veiculos) {
             
-          carro.move();
+        }
+        */    
         }
 
         System.out.println("Fim de Jogo - Você chegou ao final.");
@@ -287,10 +289,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         componentesMoveis.setLayout(null);
         componentesMoveis.add(lblPersonagem);
         jogador.atualizaPosicao();
-        
-        
-        //>> Não sei se é necessário atualizar a posição aqui.
-        carro.atualizaPosicao();
         componentesMoveis.setBounds(0, 0, getWidth(), getHeight());
     }
 

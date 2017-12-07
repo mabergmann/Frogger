@@ -10,12 +10,12 @@ import javax.swing.JLabel;
  * and open the template in the editor.
  */
 //package frogger;
-
 /**
  *
  * @author Júlia
  */
 abstract class Pista {
+
     private ImageIcon background;
     private int altura;
     private int largura;
@@ -27,10 +27,20 @@ abstract class Pista {
         this.label = label;
     }
     
-    private boolean estaColidindo(int x){
-        System.out.println("retorna booleano");
+/* Comecei a estaColidindo mas não estou chamando ela corretamente na janela.
+    
+    private boolean estaColidindo(int posicaoHorizontalJogador, Veiculo[] veiculos) {
+
+        for (Veiculo veiculo : veiculos) {
+            // 50 usado no if abaixo, refere-se a largura do personagem.
+            if ((veiculo.getPosicaoHorizontal() <= posicaoHorizontalJogador && veiculo.getPosicaoHorizontal() + veiculo.getLargura() >= posicaoHorizontalJogador) || (veiculo.getPosicaoHorizontal() <= posicaoHorizontalJogador + 50 && veiculo.getPosicaoHorizontal() + veiculo.getLargura() >= posicaoHorizontalJogador + 50)) {
+               return true;
+            }
+        }
         return false;
-    }  
+    }
+*/
+    
     
     public ImageIcon getBackground() {
         return background;

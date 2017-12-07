@@ -27,6 +27,7 @@ public class Jogador {
     private int posicaoHorizontal;
     private int posicaoVertical;
     private JLabel label;
+    private boolean vivo;
 
     public Jogador(JLabel label) throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/Sapo1.png"));
@@ -34,6 +35,7 @@ public class Jogador {
         this.setTamanho(50, 50);
         this.setLabel(label);
         this.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        this.vivo = true;
     }
 
     public void setTamanho(int largura, int altura) {
@@ -134,9 +136,8 @@ public class Jogador {
         return 0;
     }
 
-    private boolean vivo() {
-        System.out.println("retorna booleano");
-        return true;
+    public boolean vivo() {
+        return this.vivo;
     }
 
     public void atualizaPosicao() {

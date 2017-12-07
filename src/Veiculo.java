@@ -27,8 +27,6 @@ abstract class Veiculo {
     private ImageIcon imagem;
     private JLabel label;
 
-    
-    
     public void setPosicao(int x, int y) {
         this.posicaoHorizontal = x;
         this.posicaoVertical = y;
