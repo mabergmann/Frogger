@@ -74,31 +74,45 @@ public class Jogador {
     }
     
     public void moveEsquerda(){
+<<<<<<< HEAD
         if(this.posicaoHorizontal != 0){
+=======
+>>>>>>> 6e2fd4bab19ccac30d497d34d03d51bd7af2b8c5
         this.posicaoHorizontal -= 20;
         atualizaPosicao();
         }
     }
     
     public void moveDireita(){
+<<<<<<< HEAD
         if(this.posicaoHorizontal!=580){
+=======
+>>>>>>> 6e2fd4bab19ccac30d497d34d03d51bd7af2b8c5
         this.posicaoHorizontal += 20;
         atualizaPosicao();
         }
     }
     
     public void moveCima(){
+<<<<<<< HEAD
         if(this.posicaoVertical!=5){
+=======
+>>>>>>> 6e2fd4bab19ccac30d497d34d03d51bd7af2b8c5
         this.posicaoVertical++;
         atualizaPosicao();
         }
     }
     
     public void moveBaixo(){
+<<<<<<< HEAD
         if(this.posicaoVertical != 0){
             this.posicaoVertical--;
             atualizaPosicao();
         }
+=======
+        this.posicaoVertical--;
+        atualizaPosicao();
+>>>>>>> 6e2fd4bab19ccac30d497d34d03d51bd7af2b8c5
     }
     private void resetVida(){
         this.setVida(3);

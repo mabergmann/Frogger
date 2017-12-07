@@ -25,9 +25,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     
     private int janelaAtual = 0;
     private int tempo;
+
     
     private Jogador jogador;
-    
+   
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
     
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
@@ -231,7 +232,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         
         while(jogador.getPosicaoVertical()!=5){
         
+
             //System.out.println("Jogando...");
+
+            System.out.println("Jogando...");
+
         }
         
         System.out.println("Fim de Jogo - Você chegou ao final.");
