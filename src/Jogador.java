@@ -84,15 +84,18 @@ public class Jogador {
     }
     
     public void moveCima(){
+        if(this.posicaoVertical!=5){
         this.posicaoVertical++;
         atualizaPosicao();
+        }
     }
     
     public void moveBaixo(){
-        this.posicaoVertical--;
-        atualizaPosicao();
+        if(this.posicaoVertical != 0){
+            this.posicaoVertical--;
+            atualizaPosicao();
+        }
     }
-    
     private void resetVida(){
         this.setVida(3);
     }
