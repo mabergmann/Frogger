@@ -74,13 +74,17 @@ public class Jogador {
     }
     
     public void moveEsquerda(){
+        if(this.posicaoHorizontal != 0){
         this.posicaoHorizontal -= 20;
         atualizaPosicao();
+        }
     }
     
     public void moveDireita(){
+        if(this.posicaoHorizontal!=580){
         this.posicaoHorizontal += 20;
         atualizaPosicao();
+        }
     }
     
     public void moveCima(){

@@ -231,7 +231,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         
         while(jogador.getPosicaoVertical()!=5){
         
-            System.out.println("Jogando...");
+            //System.out.println("Jogando...");
         }
         
         System.out.println("Fim de Jogo - Você chegou ao final.");
