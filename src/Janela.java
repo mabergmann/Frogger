@@ -19,18 +19,20 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private GridBagLayout gridbag = new GridBagLayout();
     private JLayeredPane painelEmCamadas = new JLayeredPane();
     private JPanel componentesMoveis = new JPanel();
-    
+
     private JLabel lblPersonagem = new JLabel();
+    private JLabel lblCarro = new JLabel();
+
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
-    
+
     private int janelaAtual = 0;
     private int tempo;
 
-    
     private Jogador jogador;
-   
+    private Veiculo carro;
+
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
-    
+
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
     public static void main(String args[]) throws IOException {
@@ -44,13 +46,16 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.setVisible(true);
 
         inicializaPistas();
+
         
         jogador = new Jogador(lblPersonagem);
 
+        carro = new Carro(lblCarro);
+        
         mostraMenu();
-        
+
         iniciaJogo();
-        
+
         mostraMenuPosJogo();
     }
 
@@ -124,10 +129,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inicializaPistas() throws IOException {
-        
+
         pistas[5] = new Calcada();
         pistas[5].setLabel(componentesEstaticos.getCalcada1());
-        
+
         pistas[4] = new Asfalto();
         pistas[4].setLabel(componentesEstaticos.getAsfalto1());
 
@@ -142,7 +147,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
-        
+
         /*double pesos[][] = gridbag.getLayoutWeights();
         for(index = 1; index < pesos[index].length; index++){
             pesos[index][0] = 0;
@@ -151,10 +156,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         int index = 0;
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
-                if(index == 1){
+                if (index == 1) {
                     pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaInferior.png")));
                 } else {
-                    if(index == (pistas.length - 2)){
+                    if (index == (pistas.length - 2)) {
                         pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaBordaSuperior.png")));
                     } else {
                         pista.setBackground(ImageIO.read(new File("imagens/AsfaltoPistaPista.png")));
@@ -164,11 +169,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 pista.setBackground(ImageIO.read(new File("imagens/calcadaTeste.png")));
             }
             index++;
-            
+
         }
     }
 
-     private void inicializaBarraDeInformacao() {
+    private void inicializaBarraDeInformacao() {
         componentesEstaticos.setIconeBarraInferior(new ImageIcon("imagens/Barra2.png"));
         componentesEstaticos.setIconeBarraSuperior(new ImageIcon("imagens/Barra2.png"));
     }
@@ -228,17 +233,17 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.tempo = tempo;
     }
 
-    void iniciaJogo() {
+    void iniciaJogo() throws IOException {
         
-        while(jogador.getPosicaoVertical()!=5){
         
 
-            //System.out.println("Jogando...");
-
-            System.out.println("Jogando...");
-
+        while (jogador.getPosicaoVertical() != 5) {
+            
+         // >>> Estou tentando mover o carro.   
+            
+          carro.move();
         }
-        
+
         System.out.println("Fim de Jogo - Você chegou ao final.");
     }
 
@@ -247,26 +252,26 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void configuraElementosEstaticos() {
-        gbc.gridwidth=0;
+        gbc.gridwidth = 0;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada1(), gbc);
-        
+
         gbc.gridy = 1;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto1(), gbc);
-        
+
         gbc.gridy = 2;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto2(), gbc);
-        
+
         gbc.gridy = 3;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto3(), gbc);
-        
+
         gbc.gridy = 4;
         gridbag.addLayoutComponent(componentesEstaticos.getAsfalto4(), gbc);
-        
+
         gbc.gridy = 5;
         gridbag.addLayoutComponent(componentesEstaticos.getCalcada2(), gbc);
-        
+
         componentesEstaticos.setLayout(gridbag);
         componentesEstaticos.setBounds(0, 0, 640, 480);
 
@@ -276,6 +281,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         componentesMoveis.setLayout(null);
         componentesMoveis.add(lblPersonagem);
         jogador.atualizaPosicao();
+        
+        
+        //>> Não sei se é necessário atualizar a posição aqui.
+        carro.atualizaPosicao();
         componentesMoveis.setBounds(0, 0, getWidth(), getHeight());
     }
 
