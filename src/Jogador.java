@@ -103,9 +103,6 @@ public class Jogador {
             this.posicaoVertical--;
             atualizaPosicao();
         }
-
-        this.posicaoVertical--;
-        atualizaPosicao();
     }
 
     private void resetVida() {
