@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 public class Moto extends Veiculo{
     
     public Moto(JLabel label) throws IOException {
-        BufferedImage imagem = ImageIO.read(new File("imagens/carro.png"));
+        BufferedImage imagem = ImageIO.read(new File("imagens/moto.png"));
         this.setPosicao(0, 0);
         this.setTamanho(50, 50);
         this.setLabel(label);
