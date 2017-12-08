@@ -23,7 +23,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private JLayeredPane painelEmCamadas = new JLayeredPane();
 
     private JLabel lblPersonagem = new JLabel();
-    private JLabel carro = new JLabel();
+    private JLabel carro1 = new JLabel();
+    private JLabel carro2 = new JLabel();
+    private JLabel carro3 = new JLabel();
+    private JLabel carro4 = new JLabel();
+    private JLabel moto1 = new JLabel();
+    private JLabel moto2 = new JLabel();
+    private JLabel caminhao1 = new JLabel();
+    private JLabel caminhao2 = new JLabel();
 
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
 
@@ -31,7 +38,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private int tempo;
 
     private Jogador jogador;
-    
+
     private Veiculo[] veiculos = new Veiculo[8];
 
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
@@ -50,9 +57,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         inicializaPistas();
 
-        
         jogador = new Jogador(lblPersonagem);
-        
+
         mostraMenu();
 
         iniciaJogo();
@@ -162,7 +168,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         for(index = 1; index < pesos[index].length; index++){
             pesos[index][0] = 0;
         }*/
-        
         int index = 0;
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
@@ -191,30 +196,34 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
         podeIniciar = true;
         configuraElementosEstaticos();
-        
+
         painelEmCamadas.add(componentesEstaticos, 0);
         painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
         painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
 
         getContentPane().removeAll();
         setContentPane(painelEmCamadas);
-        
+
         add(lblPersonagem, 0);
-        add(carro, 0);
+        add(carro1, 0);
+        add(carro2, 0);
+        add(carro3, 0);
+        add(carro4, 0);
+        add(moto1, 0);
+        add(moto2, 0);
+        add(caminhao1, 0);
+        add(caminhao2, 0);
+
         janelaAtual = 1;
         this.requestFocus();
-        // TODO: Mover isso daqui para o inicializador de carro
-        carro.setBounds(50, 50, 50, 50);
-        Image icone;
+
         try {
-            icone = ImageIO.read(new File("imagens/carro.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-            ImageIcon imageIcon = new ImageIcon(icone);
-            carro.setIcon(imageIcon);
+            veiculos[0] = new Carro(carro1);
+            veiculos[5] = new Moto(moto1);
+            veiculos[6] = new Caminhao(caminhao1);
         } catch (IOException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }
-        carro.setVisible(true);
-
     }//GEN-LAST:event_btnStartGameActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
@@ -253,17 +262,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void iniciaJogo() throws IOException {
-        
-        
 
         while (jogador.getPosicaoVertical() != 5 && jogador.vivo()) {
-            System.out.println("Jogando...");
-            
-            // Aqui estava tentando chamar a estaColidindo para se sim, sair do laço matando o jogador.
-        /*if(estaColidindo(jogador.getPosicaoHorizontal(), veiculos) {
-            
-        }
-        */    
+            //System.out.println("Jogando...");
+           veiculos[0].move();
         }
 
         System.out.println("Fim de Jogo - Você chegou ao final.");

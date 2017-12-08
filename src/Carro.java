@@ -19,15 +19,15 @@ import javax.swing.JLabel;
  */
 public class Carro extends Veiculo {
 
-    private JLabel label;
     
     public Carro(JLabel label) throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/carro.png"));
-        this.setPosicao(0, 0);
+        this.setPosicao(1, 1);
         this.setTamanho(50, 50);
         this.setLabel(label);
         this.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-    
+        label.setVisible(true);
+        atualizaPosicao();
     }
 
 }

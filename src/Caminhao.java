@@ -21,10 +21,11 @@ public class Caminhao extends Veiculo{
     
     public Caminhao(JLabel label) throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/caminhao.png"));
-        this.setPosicao(0, 0);
-        this.setTamanho(50, 50);
+        this.setPosicao(1, 2);
+        this.setTamanho(50, 100);
         this.setLabel(label);
-        this.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-    
+        this.setImagem(imagem.getScaledInstance(100, 60, Image.SCALE_SMOOTH));
+        label.setVisible(true);
+        atualizaPosicao();
     }
 }

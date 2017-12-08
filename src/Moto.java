@@ -21,10 +21,11 @@ public class Moto extends Veiculo{
     
     public Moto(JLabel label) throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/moto.png"));
-        this.setPosicao(0, 0);
-        this.setTamanho(50, 50);
+        this.setPosicao(1, 3);
+        this.setTamanho(50, 45);
         this.setLabel(label);
-        this.setImagem(imagem.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-    
+        this.setImagem(imagem.getScaledInstance(30, 45, Image.SCALE_SMOOTH));
+        label.setVisible(true);
+        atualizaPosicao();
     }
 }
