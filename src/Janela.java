@@ -45,21 +45,25 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws IOException, InterruptedException {
         new Janela();
     }
 
-    public Janela() throws IOException {
+    public Janela() throws IOException, InterruptedException {
         initComponents();
         this.addKeyListener(this);
         this.setSize(640, 480);
         this.setVisible(true);
 
+        mostraMenu();
+        
         inicializaPistas();
+        
+        inicializaElementos();
 
         jogador = new Jogador(lblPersonagem);
 
-        mostraMenu();
+        
 
         iniciaJogo();
 
@@ -195,35 +199,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
         podeIniciar = true;
-        configuraElementosEstaticos();
-
-        painelEmCamadas.add(componentesEstaticos, 0);
-        painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
-        painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
-
-        getContentPane().removeAll();
-        setContentPane(painelEmCamadas);
-
-        add(lblPersonagem, 0);
-        add(carro1, 0);
-        add(carro2, 0);
-        add(carro3, 0);
-        add(carro4, 0);
-        add(moto1, 0);
-        add(moto2, 0);
-        add(caminhao1, 0);
-        add(caminhao2, 0);
-
-        janelaAtual = 1;
-        this.requestFocus();
-
-        try {
-            veiculos[0] = new Carro(carro1);
-            veiculos[5] = new Moto(moto1);
-            veiculos[6] = new Caminhao(caminhao1);
-        } catch (IOException ex) {
-            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_btnStartGameActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
@@ -261,11 +236,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.tempo = tempo;
     }
 
-    void iniciaJogo() throws IOException {
+    void iniciaJogo() throws IOException, InterruptedException {
 
         while (jogador.getPosicaoVertical() != 5 && jogador.vivo()) {
             //System.out.println("Jogando...");
-           veiculos[0].move();
+           
+           movimentaVeiculos();
+           
+          Thread.sleep(500);
         }
 
         System.out.println("Fim de Jogo - Você chegou ao final.");
@@ -338,5 +316,52 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
+
+    private void inicializaElementos() {
+        
+         configuraElementosEstaticos();
+
+        painelEmCamadas.add(componentesEstaticos, 0);
+        painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
+        painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
+
+        getContentPane().removeAll();
+        setContentPane(painelEmCamadas);
+
+        add(lblPersonagem, 0);
+        add(carro1, 0);
+        add(carro2, 0);
+        add(carro3, 0);
+        add(carro4, 0);
+        add(moto1, 0);
+        add(moto2, 0);
+        add(caminhao1, 0);
+        add(caminhao2, 0);
+
+        janelaAtual = 1;
+        this.requestFocus();
+
+        try {
+            veiculos[0] = new Carro(carro1);
+            veiculos[4] = new Moto(moto1);
+            veiculos[6] = new Caminhao(caminhao1);
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    private void movimentaVeiculos() {
+           
+           veiculos[0].move();
+           veiculos[1].move();
+           veiculos[2].move();
+           veiculos[3].move();
+           veiculos[4].move();
+           veiculos[5].move();
+           veiculos[6].move();
+           veiculos[7].move();
+           
+    }
 
 }
