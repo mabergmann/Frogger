@@ -59,7 +59,7 @@ public class Jogador {
         this.setPosicao(300, 400);
         this.setTamanho(50, 50);
         this.setLabel(label);
-        this.setImagem(frente1.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        this.setImagem(frente1);
         this.vivo = true;
     }
 
@@ -100,7 +100,7 @@ public class Jogador {
         label.setIcon(this.imagem);
     }
 
-    public void moveEsquerda() throws InterruptedException {
+    public void moveEsquerda() {
         if (this.posicaoHorizontal > 40 && !this.movendo) {
             this.movendo = true;
 
@@ -122,11 +122,10 @@ public class Jogador {
                         }
                     }
                     setImagem(esquerda1);
+                    movendo = false;
                 }
             });
             thread.start();
-
-            this.movendo = false;
         }
 
     }
@@ -153,11 +152,10 @@ public class Jogador {
                         }
                     }
                     setImagem(direita1);
+                    movendo = false;
                 }
             });
             thread.start();
-
-            this.movendo = false;
         }
     }
 
@@ -180,11 +178,10 @@ public class Jogador {
                         }
                     }
                     setImagem(frente1);
+                    movendo = false;
                 }
             });
             thread.start();
-
-            this.movendo = false;
         }
     }
 
@@ -207,11 +204,10 @@ public class Jogador {
                         }
                     }
                     setImagem(baixo1);
+                    movendo = false;
                 }
             });
             thread.start();
-
-            this.movendo = false;
         }
     }
 
