@@ -14,15 +14,15 @@ import javax.swing.JLabel;
  * and open the template in the editor.
  */
 //package frogger;
-
 /**
  *
  * @author Júlia
  */
 abstract class Veiculo {
+
     private int posicaoVertical;
     private int posicaoHorizontal;
-    private int direcao = 1; // Direcao = 1 para testar. (Sentido esquerda -> direita)
+    private int direcao; // Direcao = 1 para testar. (Sentido esquerda -> direita)
     private int largura;
     private int altura;
     private ImageIcon imagem;
@@ -32,30 +32,51 @@ abstract class Veiculo {
         this.posicaoHorizontal = x;
         this.posicaoVertical = y;
     }
-    
-    public void move(){
-        if(this.foraDosLimites()){
-        Random random1 = new Random();
-        int posHor = random1.nextInt(10);
-        
-        Random random2 = new Random();
-        int faixa = 1+random2.nextInt(3);
-        
-        this.setPosicao(posHor, faixa);
-        
+
+    public void setDirecao(int direcao) {
+        this.direcao = direcao;
+    }
+
+    public int getDirecao() {
+        return direcao;
+    }
+
+    public void move() {
+        if (this.foraDosLimites()) {
+
+            Random random2 = new Random();
+            int faixa = 1 + random2.nextInt(4);
+
+            if (faixa == 3 || faixa == 4) {
+                this.setDirecao(-1);
+            } else {
+                this.setDirecao(1);
+            }
+
+            if (this.getDirecao() == 1) {
+                this.setPosicao(0, faixa);
+            } else {
+                this.setPosicao(580, faixa);
+            }
+
+        } else // Esse trecho movimenta os veiculos, caso esteja na pista 2 ou 3, o movimento é maior.
+        if ((this.getPosicaoVertical() == 2 || this.getPosicaoVertical() == 3)) {
+            this.setPosicao(this.posicaoHorizontal + (this.direcao * 30), this.posicaoVertical);
+        } else {
+            this.setPosicao(this.posicaoHorizontal + (this.direcao * 20), this.posicaoVertical);
         }
-        this.setPosicao(this.posicaoHorizontal+(this.direcao * 20), this.posicaoVertical);
+
         atualizaPosicao();
     }
-    
-    public boolean foraDosLimites(){
-        if(this.posicaoHorizontal > 580 || this.posicaoHorizontal<0){
-        return true;
+
+    public boolean foraDosLimites() {
+        if (this.posicaoHorizontal > 580 || this.posicaoHorizontal < 0) {
+            return true;
         }
         return false;
     }
-    
-    public boolean estaColidindo(int x){
+
+    public boolean estaColidindo(int x) {
         System.out.println("retorna booleano");
         return false;
     }
@@ -67,8 +88,8 @@ abstract class Veiculo {
     public int getPosicaoHorizontal() {
         return posicaoHorizontal;
     }
-    
-     public void setImagem(Image imagem) {
+
+    public void setImagem(Image imagem) {
         ImageIcon imageIcon = new ImageIcon(imagem);
         this.imagem = imageIcon;
         label.setIcon(this.imagem);
@@ -91,8 +112,8 @@ abstract class Veiculo {
         return altura;
     }
 
-     public void atualizaPosicao() {
+    public void atualizaPosicao() {
         label.setBounds(getPosicaoHorizontal(), 400 - getPosicaoVertical() * 75, getAltura(), getLargura());
     }
-    
+
 }

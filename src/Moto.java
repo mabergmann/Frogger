@@ -21,14 +21,25 @@ import javax.swing.JLabel;
 public class Moto extends Veiculo{
     
     public Moto(JLabel label) throws IOException {
-        BufferedImage imagem = ImageIO.read(new File("imagens/moto.png"));
-         Random random1 = new Random();
-        int posHor = random1.nextInt(500);
-        
+        BufferedImage imagem;
+         
         Random random2 = new Random();
-        int faixa = 1+random2.nextInt(3);
+        int faixa = 1+random2.nextInt(4);
+   
+        if(faixa==3 || faixa ==4){
+            this.setDirecao(-1);
+        }else{
+            this.setDirecao(1);
+        }
         
-        this.setPosicao(posHor, faixa);
+        if(this.getDirecao()==1) {
+            imagem  = ImageIO.read(new File("imagens/moto.png"));
+            this.setPosicao(0, faixa);
+        }else{
+            imagem  = ImageIO.read(new File("imagens/motoDE.png"));
+            this.setPosicao(580, faixa);
+        }
+        
         this.setTamanho(50, 45);
         this.setLabel(label);
         this.setImagem(imagem.getScaledInstance(30, 45, Image.SCALE_SMOOTH));
