@@ -108,6 +108,7 @@ public class Jogador {
                 @Override
                 public void run() {
                     setImagem(esquerda2);
+                    posicaoVertical -=10;
                     for (int i = 0; i < 40; i++) {
                         if (i == 20) {
                             setImagem(esquerda3);
@@ -122,6 +123,8 @@ public class Jogador {
                         }
                     }
                     setImagem(esquerda1);
+                    posicaoVertical+=10;
+                    atualizaPosicao();
                     movendo = false;
                 }
             });
@@ -139,6 +142,7 @@ public class Jogador {
                 @Override
                 public void run() {
                     setImagem(direita2);
+                    posicaoVertical -=10;
                     for (int i = 0; i < 40; i++) {
                         if (i == 20) {
                             setImagem(direita3);
@@ -152,6 +156,8 @@ public class Jogador {
                         }
                     }
                     setImagem(direita1);
+                    posicaoVertical+=10;
+                    atualizaPosicao();
                     movendo = false;
                 }
             });
