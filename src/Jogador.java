@@ -60,6 +60,7 @@ public class Jogador {
         this.setTamanho(50, 50);
         this.setLabel(label);
         this.setImagem(frente1);
+        this.atualizaPosicao();
         this.vivo = true;
     }
 

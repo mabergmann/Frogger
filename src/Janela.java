@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -7,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
@@ -18,10 +21,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private GridBagConstraints gbc = new GridBagConstraints();
     private GridBagLayout gridbag = new GridBagLayout();
     private JLayeredPane painelEmCamadas = new JLayeredPane();
-    private JPanel componentesMoveis = new JPanel();
 
     private JLabel lblPersonagem = new JLabel();
-    private JLabel lblCarro = new JLabel();
+    private JLabel carro = new JLabel();
 
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
 
@@ -68,6 +70,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
         btnRanking = new javax.swing.JButton();
@@ -82,6 +85,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Frogger");
@@ -111,7 +116,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 .addGap(179, 179, 179)
                 .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addComponent(btnStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
@@ -184,22 +189,31 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
-        // TODO add your handling code here:
         podeIniciar = true;
         configuraElementosEstaticos();
-        configuraElementosMoveis();
+        
         painelEmCamadas.add(componentesEstaticos, 0);
-        painelEmCamadas.add(componentesMoveis, 1);
         painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
         painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
 
         getContentPane().removeAll();
         setContentPane(painelEmCamadas);
+        
         add(lblPersonagem, 0);
-        validate();
-        repaint();
+        add(carro, 0);
         janelaAtual = 1;
         this.requestFocus();
+        // TODO: Mover isso daqui para o inicializador de carro
+        carro.setBounds(50, 50, 50, 50);
+        Image icone;
+        try {
+            icone = ImageIO.read(new File("imagens/carro.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(icone);
+            carro.setIcon(imageIcon);
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        carro.setVisible(true);
 
     }//GEN-LAST:event_btnStartGameActionPerformed
 
@@ -285,13 +299,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     }
 
-    void configuraElementosMoveis() {
-        componentesMoveis.setLayout(null);
-        componentesMoveis.add(lblPersonagem);
-        jogador.atualizaPosicao();
-        componentesMoveis.setBounds(0, 0, getWidth(), getHeight());
-    }
-
     public void keyTyped(KeyEvent e) {
 
     }
@@ -325,6 +332,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRanking;
     private static javax.swing.JButton btnStartGame;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
