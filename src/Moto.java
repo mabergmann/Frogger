@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
@@ -21,7 +22,13 @@ public class Moto extends Veiculo{
     
     public Moto(JLabel label) throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/moto.png"));
-        this.setPosicao(1, 3);
+         Random random1 = new Random();
+        int posHor = random1.nextInt(500);
+        
+        Random random2 = new Random();
+        int faixa = 1+random2.nextInt(3);
+        
+        this.setPosicao(posHor, faixa);
         this.setTamanho(50, 45);
         this.setLabel(label);
         this.setImagem(imagem.getScaledInstance(30, 45, Image.SCALE_SMOOTH));

@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
@@ -21,7 +22,14 @@ public class Caminhao extends Veiculo{
     
     public Caminhao(JLabel label) throws IOException {
         BufferedImage imagem = ImageIO.read(new File("imagens/caminhao.png"));
-        this.setPosicao(1, 2);
+         Random random1 = new Random();
+        int posHor = random1.nextInt(500);
+        
+        Random random2 = new Random();
+        int faixa = 1+random2.nextInt(3);
+        
+        this.setPosicao(posHor, faixa);
+        
         this.setTamanho(50, 100);
         this.setLabel(label);
         this.setImagem(imagem.getScaledInstance(100, 60, Image.SCALE_SMOOTH));

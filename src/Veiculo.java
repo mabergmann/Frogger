@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -33,8 +34,25 @@ abstract class Veiculo {
     }
     
     public void move(){
+        if(this.foraDosLimites()){
+        Random random1 = new Random();
+        int posHor = random1.nextInt(10);
+        
+        Random random2 = new Random();
+        int faixa = 1+random2.nextInt(3);
+        
+        this.setPosicao(posHor, faixa);
+        
+        }
         this.setPosicao(this.posicaoHorizontal+(this.direcao * 20), this.posicaoVertical);
         atualizaPosicao();
+    }
+    
+    public boolean foraDosLimites(){
+        if(this.posicaoHorizontal > 580 || this.posicaoHorizontal<0){
+        return true;
+        }
+        return false;
     }
     
     public boolean estaColidindo(int x){
