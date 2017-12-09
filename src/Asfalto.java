@@ -43,6 +43,18 @@ public class Asfalto extends Pista{
     private void setVelocidade(int velocidade) {
         this.velocidade=velocidade;
     }
+    
+    public void excluiVeiculosAntigos(){
+        int i=0;
+        while(i<veiculos.size()){
+            if(veiculos.get(i).foraDosLimites()){
+                veiculos.get(i).destruir();
+                veiculos.remove(i);
+            }else{
+                i++;
+            }
+        }
+    }
 }
 
 

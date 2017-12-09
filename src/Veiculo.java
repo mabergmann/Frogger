@@ -1,4 +1,5 @@
 
+import java.awt.Container;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -125,5 +126,13 @@ abstract class Veiculo {
 
     public void atualizaPosicao() {
         label.setBounds(getPosicaoHorizontal(), 400 - getPosicaoVertical() * 75, getLargura(), getAltura());
+    }
+    
+    public void destruir(){
+        Container parent = this.label.getParent();
+        this.label.setVisible(false);
+        parent.remove(this.label);
+        parent.validate();
+        parent.repaint();
     }
 }

@@ -269,7 +269,13 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void loopDeJogo() throws IOException, InterruptedException {
-        while(jogador.vivo()){   
+        while(jogador.vivo()){
+            for(Pista pista : pistas){
+                if(pista instanceof Asfalto){
+                    Asfalto asfalto = (Asfalto) pista;
+                    asfalto.excluiVeiculosAntigos();
+                }
+            }
         }
         System.out.println("Fim de Jogo - Você chegou ao final.");
     }
