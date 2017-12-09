@@ -23,11 +23,10 @@ public class Carro extends Veiculo {
     public Carro(JLabel label, int faixa, int direcao, int velocidade) throws IOException {
         BufferedImage imagem;
 
-
         this.setDirecao(direcao);
 
         if (this.getDirecao() == 1) {
-            imagem  = ImageIO.read(new File("imagens/carro.png"));
+            imagem = ImageIO.read(new File("imagens/carro.png"));
             this.setPosicao(-50, faixa);
         } else {
             imagem = ImageIO.read(new File("imagens/carroDE.png"));

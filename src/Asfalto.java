@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JLabel;
 
 /*
@@ -29,11 +30,32 @@ public class Asfalto extends Pista{
         this.setVelocidade(velocidade);
     }
     
-    public void inserirVeiculo(JLabel label) throws IOException{
-        Veiculo veiculo = new Carro(label, this.faixa, this.direcao, this.velocidade);
+     public void inserirVeiculo(JLabel label) throws IOException{
+        
+        Random random = new Random();
+        
+        int tipo = (random.nextInt(3));
+        
+        Veiculo veiculo = null;
+        
+        switch(tipo){
+            case 0 :
+                veiculo = new Carro(label, this.faixa, this.direcao, this.velocidade);
+                break;
+            case 1:
+                veiculo = new Moto(label, this.faixa, this.direcao, this.velocidade);
+                break;
+            case 2:
+                veiculo = new Caminhao(label, this.faixa, this.direcao, this.velocidade);
+                break;
+        }
+        
         veiculos.add(veiculo);
         veiculo.setDirecao(this.direcao);
     }
+    
+    
+    
     public void setDirecao(int direcao){
         if(direcao==DIREITA || direcao==ESQUERDA){
             this.direcao = direcao;
