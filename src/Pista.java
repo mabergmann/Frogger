@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -17,14 +18,15 @@ import javax.swing.JLabel;
 abstract class Pista {
 
     private ImageIcon background;
-    private int altura;
-    private int largura;
-    private int posicaoVertical;
-    private int posicaoHorizontal;
+    int pista;
     JLabel label;
 
     public void setLabel(JLabel label) {
         this.label = label;
+    }
+    
+    public void setPista(int pista){
+        this.pista = pista;
     }
     
 /* Comecei a estaColidindo mas não estou chamando ela corretamente na janela.

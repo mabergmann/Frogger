@@ -1,36 +1,34 @@
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 public class Janela extends javax.swing.JFrame implements KeyListener {
 
-    private GridBagConstraints gbc = new GridBagConstraints();
-    private GridBagLayout gridbag = new GridBagLayout();
-    private JLayeredPane painelEmCamadas = new JLayeredPane();
+    private final GridBagConstraints gbc = new GridBagConstraints();
+    private final GridBagLayout gridbag = new GridBagLayout();
+    private final JLayeredPane painelEmCamadas = new JLayeredPane();
 
-    private JLabel lblPersonagem = new JLabel();
-    private JLabel carro1 = new JLabel();
-    private JLabel carro2 = new JLabel();
-    private JLabel carro3 = new JLabel();
-    private JLabel carro4 = new JLabel();
-    private JLabel moto1 = new JLabel();
-    private JLabel moto2 = new JLabel();
-    private JLabel caminhao1 = new JLabel();
-    private JLabel caminhao2 = new JLabel();
+    private final JLabel lblPersonagem = new JLabel();
+    //private JLabel carro1 = new JLabel();
+    //private JLabel carro2 = new JLabel();
+    //private JLabel carro3 = new JLabel();
+    //private JLabel carro4 = new JLabel();
+    //private JLabel moto1 = new JLabel();
+    //private JLabel moto2 = new JLabel();
+    //private JLabel caminhao1 = new JLabel();
+    //private JLabel caminhao2 = new JLabel();
     
     private ImageIcon titulo = new ImageIcon(ImageIO.read(new File("imagens/titulo.png")).getScaledInstance(400, 160, Image.SCALE_SMOOTH));
 
@@ -43,12 +41,12 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private Jogador jogador;
 
-    private Veiculo[] veiculos = new Veiculo[8];
-
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
 
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
-
+    
+    
+    
     public static void main(String args[]) throws IOException, InterruptedException {
         new Janela();
     }
@@ -68,8 +66,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         inicializaElementos();
 
         jogador = new Jogador(lblPersonagem);
+        
+        gerarVeiculos();
 
-        iniciaJogo();
+        loopDeJogo();
 
         mostraMenuPosJogo();
     }
@@ -173,18 +173,18 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         pistas[5] = new Calcada();
         pistas[5].setLabel(componentesEstaticos.getCalcada1());
 
-        pistas[4] = new Asfalto();
+        pistas[4] = new Asfalto(4, Asfalto.DIREITA,2);
         pistas[4].setLabel(componentesEstaticos.getAsfalto1());
 
-        pistas[3] = new Asfalto();
+        pistas[3] = new Asfalto(3, Asfalto.DIREITA,2);
         pistas[3].setLabel(componentesEstaticos.getAsfalto2());
-
-        pistas[2] = new Asfalto();
+        
+        pistas[2] = new Asfalto(2, Asfalto.ESQUERDA,3);
         pistas[2].setLabel(componentesEstaticos.getAsfalto3());
-
-        pistas[1] = new Asfalto();
+        
+        pistas[1] = new Asfalto(1, Asfalto.ESQUERDA,1);
         pistas[1].setLabel(componentesEstaticos.getAsfalto4());
-
+        
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
 
@@ -268,15 +268,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.tempo = tempo;
     }
 
-    void iniciaJogo() throws IOException, InterruptedException {
-
-        while (jogador.getPosicaoVertical() != 25 && jogador.vivo()) {
-
-            movimentaVeiculos();
-
-            Thread.sleep(300);
+    void loopDeJogo() throws IOException, InterruptedException {
+        while(jogador.vivo()){   
         }
-
         System.out.println("Fim de Jogo - Você chegou ao final.");
     }
 
@@ -361,45 +355,35 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         setContentPane(painelEmCamadas);
 
         add(lblPersonagem, 0);
-        add(carro1, 0);
-        add(carro2, 0);
-        add(carro3, 0);
-        add(carro4, 0);
-        add(moto1, 0);
-        add(moto2, 0);
-        add(caminhao1, 0);
-        add(caminhao2, 0);
-
         janelaAtual = 1;
         this.requestFocus();
 
-        try {
-            veiculos[0] = new Carro(carro1);
-            veiculos[1] = new Carro(carro2);
-            veiculos[2] = new Carro(carro3);
-            veiculos[3] = new Carro(carro4);
-            veiculos[4] = new Moto(moto1);
-            veiculos[5] = new Moto(moto2);
-            veiculos[6] = new Caminhao(caminhao1);
-            veiculos[7] = new Caminhao(caminhao2);
-
-        } catch (IOException ex) {
-            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
-
-    private void movimentaVeiculos() {
-
-        veiculos[0].move();
-        veiculos[1].move();
-        veiculos[2].move();
-        veiculos[3].move();
-        veiculos[4].move();
-        veiculos[5].move();
-        veiculos[6].move();
-        veiculos[7].move();
-
+    
+    private void gerarVeiculos(){
+        Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Random random = new Random();
+                    while (jogador.vivo()) {
+                        int faixa = 1+(random.nextInt(4));
+                        Asfalto asfalto = (Asfalto) pistas[faixa];
+                        JLabel label = new JLabel();
+                        add(label,0);
+                        try {
+                            asfalto.inserirVeiculo(label);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            });
+            thread.start();
     }
 
 }

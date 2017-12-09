@@ -31,7 +31,6 @@ public class Jogador {
     private int posicaoHorizontal;
     private int posicaoVertical;
     private JLabel label;
-    private boolean vivo;
     private boolean movendo = false;
     private final Image frente1;
     private final Image frente2;
@@ -61,7 +60,7 @@ public class Jogador {
         this.setLabel(label);
         this.setImagem(frente1);
         this.atualizaPosicao();
-        this.vivo = true;
+        this.resetVida();
     }
 
     public void setTamanho(int largura, int altura) {
@@ -238,7 +237,7 @@ public class Jogador {
         this.pontos = pontos;
     }
 
-    private void reduzVida() {
+    public void reduzVida() {
         this.setVida(this.getVida() - 1);
     }
 
@@ -248,11 +247,13 @@ public class Jogador {
     }
 
     public boolean vivo() {
-        return this.vivo;
+        if(vida>0)
+            return true;
+        return false;
     }
 
     public void atualizaPosicao() {
-        label.setBounds(getPosicaoHorizontal(), getPosicaoVertical(), getAltura(), getLargura());
+        label.setBounds(getPosicaoHorizontal(), getPosicaoVertical(), getLargura(), getAltura());
         label.setVisible(true);
     }
 }

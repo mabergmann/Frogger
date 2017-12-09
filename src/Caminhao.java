@@ -40,7 +40,7 @@ public class Caminhao extends Veiculo{
             this.setPosicao(580, faixa);
         }
         
-        this.setTamanho(50, 100);
+        this.setTamanho(100, 50);
         this.setLabel(label);
         this.setImagem(imagem.getScaledInstance(100, 60, Image.SCALE_SMOOTH));
         label.setVisible(true);
