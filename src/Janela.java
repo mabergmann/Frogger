@@ -31,8 +31,12 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private JLabel moto2 = new JLabel();
     private JLabel caminhao1 = new JLabel();
     private JLabel caminhao2 = new JLabel();
+    
+    private ImageIcon titulo = new ImageIcon(ImageIO.read(new File("imagens/titulo.png")).getScaledInstance(400, 160, Image.SCALE_SMOOTH));
 
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
+    
+    private Tutorial janelaTutorial = new Tutorial();
 
     private int janelaAtual = 0;
     private int tempo;
@@ -54,6 +58,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.addKeyListener(this);
         this.setSize(640, 480);
         this.setVisible(true);
+        
+        lblTitulo.setIcon(titulo);
 
         mostraMenu();
 
@@ -82,6 +88,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         lblTitulo = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
         btnRanking = new javax.swing.JButton();
+        btnTutorial = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,7 +112,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         });
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        lblTitulo.setText("Frogger");
+        lblTitulo.setPreferredSize(new java.awt.Dimension(400, 160));
 
         btnStartGame.setText("Start");
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
@@ -115,31 +122,46 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         });
 
         btnRanking.setText("Ranking");
+        btnRanking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRankingActionPerformed(evt);
+            }
+        });
+
+        btnTutorial.setText("Tutorial");
+        btnTutorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTutorialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(lblTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(btnStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addComponent(btnRanking)
-                .addGap(123, 123, 123))
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(btnTutorial, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(btnRanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(164, 164, 164)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(lblTitulo)
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnStartGame)
-                    .addComponent(btnRanking))
+                .addGap(40, 40, 40)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(btnStartGame)
+                .addGap(35, 35, 35)
+                .addComponent(btnRanking)
+                .addGap(35, 35, 35)
+                .addComponent(btnTutorial)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
@@ -207,6 +229,18 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         }
     }//GEN-LAST:event_formComponentResized
 
+    private void btnTutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutorialActionPerformed
+        // TODO add your handling code here:
+        getContentPane().removeAll();
+        setContentPane(janelaTutorial);
+        revalidate();
+        repaint();
+    }//GEN-LAST:event_btnTutorialActionPerformed
+
+    private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRankingActionPerformed
+
     public void atualizaJanela() {
         lblPersonagem.setLocation(0, 0);
         this.repaint();
@@ -247,7 +281,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
-        System.out.println("Mostra seu pontos.");
+        System.out.println("Mostra seus pontos.");
     }
 
     void configuraElementosEstaticos() {
@@ -309,6 +343,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRanking;
     private static javax.swing.JButton btnStartGame;
+    private static javax.swing.JButton btnTutorial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
