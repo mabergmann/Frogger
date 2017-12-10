@@ -10,17 +10,17 @@ import javax.swing.JLabel;
  * and open the template in the editor.
  */
 //package frogger;
-
 /**
  *
  * @author Júlia
  */
-public class Asfalto extends Pista{
+public class Asfalto extends Pista {
+
     private int velocidade;
     private int faixa;
-    private int direcao=DIREITA;
+    private int direcao = DIREITA;
     private ArrayList<Veiculo> veiculos = new ArrayList();
-    
+
     public final static int DIREITA = Veiculo.DIREITA;
     public final static int ESQUERDA = Veiculo.ESQUERDA;
 
@@ -29,17 +29,17 @@ public class Asfalto extends Pista{
         this.setDirecao(direcao);
         this.setVelocidade(velocidade);
     }
-    
-     public void inserirVeiculo(JLabel label) throws IOException{
-        
+
+    public void inserirVeiculo(JLabel label) throws IOException {
+
         Random random = new Random();
-        
+
         int tipo = (random.nextInt(3));
-        
+
         Veiculo veiculo;
-        
-        switch(tipo){
-            case 0 :
+
+        switch (tipo) {
+            case 0:
                 veiculo = new Carro(label, this.faixa, this.direcao, this.velocidade);
                 break;
             case 1:
@@ -49,45 +49,52 @@ public class Asfalto extends Pista{
                 veiculo = new Caminhao(label, this.faixa, this.direcao, this.velocidade);
                 break;
         }
-        
+
         veiculos.add(veiculo);
         veiculo.setDirecao(this.direcao);
     }
-    
-    
-    
-    public void setDirecao(int direcao){
-        if(direcao==DIREITA || direcao==ESQUERDA){
+
+    public void setDirecao(int direcao) {
+        if (direcao == DIREITA || direcao == ESQUERDA) {
             this.direcao = direcao;
         }
     }
 
     private void setVelocidade(int velocidade) {
-        this.velocidade=velocidade;
+        this.velocidade = velocidade;
     }
-    
-    public void excluiVeiculosAntigos(){
-        int i=0;
-        while(i<veiculos.size()){
+
+    public void excluiVeiculosAntigos() {
+        int i = 0;
+        while (i < veiculos.size()) {
             Veiculo veiculo = veiculos.get(i);
-            if(veiculo.foraDosLimites()){
+            if (veiculo.foraDosLimites()) {
                 veiculo.destruir();
                 veiculos.remove(i);
-            }else{
+            } else {
                 i++;
             }
         }
     }
-    
+
     @Override
     public boolean estaColidindo(int posicaoHorizontal, int largura) {
 
         for (Veiculo veiculo : veiculos) {
-            if(veiculo.estaColidindo(posicaoHorizontal, largura))
+            if (veiculo.estaColidindo(posicaoHorizontal, largura)) {
                 return true;
+            }
         }
         return false;
     }
+
+    boolean podeAdicionarVeiculo() {
+        if (this.direcao == DIREITA && estaColidindo(-100, 100)) {
+            return false;
+        } else if (this.direcao == ESQUERDA && estaColidindo(640, 100)) {
+            return false;
+        }
+        return true;
+        
+    }
 }
-
-

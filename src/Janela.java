@@ -246,9 +246,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         setContentPane(janelaTutorial);
         revalidate();
         repaint();
-       // while(!janelaTutorial.getVoltar()){
-            //esperando botão "voltar" ser pressionado 
-            //System.out.println("Esperando o botão voltar ser apertado...");
+        // while(!janelaTutorial.getVoltar()){
+        //esperando botão "voltar" ser pressionado 
+        //System.out.println("Esperando o botão voltar ser apertado...");
         //}
         //mostraMenu();
     }//GEN-LAST:event_btnTutorialActionPerformed
@@ -404,12 +404,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         Random random = new Random();
         int faixa = 1 + (random.nextInt(4));
         Asfalto asfalto = (Asfalto) pistas[faixa];
-        JLabel label = new JLabel();
-        add(label, 0);
-        try {
-            asfalto.inserirVeiculo(label);
-        } catch (IOException ex) {
-            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        if (asfalto.podeAdicionarVeiculo()) {
+            JLabel label = new JLabel();
+            add(label, 0);
+            try {
+                asfalto.inserirVeiculo(label);
+            } catch (IOException ex) {
+                Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
