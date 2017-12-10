@@ -181,6 +181,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         loopDeJogo();
     }
+    
+    public Ranking getPainelRanking() {
+        return painelRanking;
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
 
     private void inicializaPistas() throws IOException {
 
@@ -298,11 +306,20 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
-        try {
+        if(painelRanking.entrouNoRanking(jogador.getPontos())){
+            painelMenuFinal.getBoxNome().setVisible(true);
+            painelMenuFinal.getLblAvisoRanking().setVisible(true);
+            painelMenuFinal.getBtnRegistrar().setVisible(true);
+        } else {
+            painelMenuFinal.getBoxNome().setVisible(false);
+            painelMenuFinal.getLblAvisoRanking().setVisible(false);
+            painelMenuFinal.getBtnRegistrar().setVisible(false);
+        }
+        /*try {
             this.painelRanking.adicionarRecorde("Nome", jogador.getPontos());
         } catch (IOException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         setContentPane(painelMenuFinal);
         revalidate();
         repaint();
