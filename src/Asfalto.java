@@ -36,7 +36,7 @@ public class Asfalto extends Pista{
         
         int tipo = (random.nextInt(3));
         
-        Veiculo veiculo = null;
+        Veiculo veiculo;
         
         switch(tipo){
             case 0 :
@@ -45,7 +45,7 @@ public class Asfalto extends Pista{
             case 1:
                 veiculo = new Moto(label, this.faixa, this.direcao, this.velocidade);
                 break;
-            case 2:
+            default:
                 veiculo = new Caminhao(label, this.faixa, this.direcao, this.velocidade);
                 break;
         }
@@ -69,13 +69,24 @@ public class Asfalto extends Pista{
     public void excluiVeiculosAntigos(){
         int i=0;
         while(i<veiculos.size()){
-            if(veiculos.get(i).foraDosLimites()){
-                veiculos.get(i).destruir();
+            Veiculo veiculo = veiculos.get(i);
+            if(veiculo.foraDosLimites()){
+                veiculo.destruir();
                 veiculos.remove(i);
             }else{
                 i++;
             }
         }
+    }
+    
+    @Override
+    public boolean estaColidindo(int posicaoHorizontal, int largura) {
+
+        for (Veiculo veiculo : veiculos) {
+            if(veiculo.estaColidindo(posicaoHorizontal, largura))
+                return true;
+        }
+        return false;
     }
 }
 

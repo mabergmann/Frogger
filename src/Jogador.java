@@ -30,6 +30,7 @@ public class Jogador {
     private int largura;
     private int posicaoHorizontal;
     private int posicaoVertical;
+    private int pista;
     private JLabel label;
     private boolean movendo = false;
     private final Image frente1;
@@ -57,6 +58,7 @@ public class Jogador {
         
         this.setPosicao(300, 400);
         this.setTamanho(50, 50);
+        this.setPista(0);
         this.setLabel(label);
         this.setImagem(frente1);
         this.atualizaPosicao();
@@ -87,6 +89,10 @@ public class Jogador {
 
     public int getPosicaoVertical() {
         return posicaoVertical;
+    }
+    
+    public int getPista() {
+        return this.pista;
     }
 
     private void setLabel(JLabel label) {
@@ -183,6 +189,7 @@ public class Jogador {
                             Logger.getLogger(Jogador.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+                    pista++;
                     setImagem(frente1);
                     movendo = false;
                 }
@@ -209,6 +216,7 @@ public class Jogador {
                             Logger.getLogger(Jogador.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+                    pista--;
                     setImagem(baixo1);
                     movendo = false;
                 }
@@ -255,5 +263,16 @@ public class Jogador {
     public void atualizaPosicao() {
         label.setBounds(getPosicaoHorizontal(), getPosicaoVertical(), getLargura(), getAltura());
         label.setVisible(true);
+    }
+    
+    public void matar(){
+        this.reduzVida();
+        this.setPosicao(300, 400);
+        this.setPista(0);
+        this.atualizaPosicao();
+    }
+
+    private void setPista(int pista) {
+        this.pista=pista;
     }
 }

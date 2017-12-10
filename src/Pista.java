@@ -29,20 +29,7 @@ abstract class Pista {
         this.pista = pista;
     }
     
-/* Comecei a estaColidindo mas não estou chamando ela corretamente na janela.
-    
-    private boolean estaColidindo(int posicaoHorizontalJogador, Veiculo[] veiculos) {
-
-        for (Veiculo veiculo : veiculos) {
-            // 50 usado no if abaixo, refere-se a largura do personagem.
-            if ((veiculo.getPosicaoHorizontal() <= posicaoHorizontalJogador && veiculo.getPosicaoHorizontal() + veiculo.getLargura() >= posicaoHorizontalJogador) || (veiculo.getPosicaoHorizontal() <= posicaoHorizontalJogador + 50 && veiculo.getPosicaoHorizontal() + veiculo.getLargura() >= posicaoHorizontalJogador + 50)) {
-               return true;
-            }
-        }
-        return false;
-    }
-*/
-    
+    abstract public boolean estaColidindo(int posicaoHorizontalJogador, int largura);
     
     public ImageIcon getBackground() {
         return background;

@@ -29,11 +29,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     //private JLabel moto2 = new JLabel();
     //private JLabel caminhao1 = new JLabel();
     //private JLabel caminhao2 = new JLabel();
-    
+
     private ImageIcon titulo = new ImageIcon(ImageIO.read(new File("imagens/titulo.png")).getScaledInstance(400, 160, Image.SCALE_SMOOTH));
 
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
-    
+
     private Tutorial janelaTutorial = new Tutorial();
 
     private int janelaAtual = 0;
@@ -44,9 +44,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
 
     boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
-    
-    
-    
+
     public static void main(String args[]) throws IOException, InterruptedException {
         new Janela();
     }
@@ -56,7 +54,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.addKeyListener(this);
         this.setSize(640, 480);
         this.setVisible(true);
-        
+
         lblTitulo.setIcon(titulo);
 
         mostraMenu();
@@ -66,7 +64,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         inicializaElementos();
 
         jogador = new Jogador(lblPersonagem);
-        
+
         gerarVeiculos();
 
         loopDeJogo();
@@ -173,18 +171,18 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         pistas[5] = new Calcada();
         pistas[5].setLabel(componentesEstaticos.getCalcada1());
 
-        pistas[4] = new Asfalto(4, Asfalto.DIREITA,2);
+        pistas[4] = new Asfalto(4, Asfalto.DIREITA, 2);
         pistas[4].setLabel(componentesEstaticos.getAsfalto1());
 
-        pistas[3] = new Asfalto(3, Asfalto.DIREITA,2);
+        pistas[3] = new Asfalto(3, Asfalto.DIREITA, 2);
         pistas[3].setLabel(componentesEstaticos.getAsfalto2());
-        
-        pistas[2] = new Asfalto(2, Asfalto.ESQUERDA,3);
+
+        pistas[2] = new Asfalto(2, Asfalto.ESQUERDA, 3);
         pistas[2].setLabel(componentesEstaticos.getAsfalto3());
-        
-        pistas[1] = new Asfalto(1, Asfalto.ESQUERDA,1);
+
+        pistas[1] = new Asfalto(1, Asfalto.ESQUERDA, 1);
         pistas[1].setLabel(componentesEstaticos.getAsfalto4());
-        
+
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
 
@@ -269,13 +267,24 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void loopDeJogo() throws IOException, InterruptedException {
-        while(jogador.vivo()){
-            for(Pista pista : pistas){
-                if(pista instanceof Asfalto){
+        while (jogador.vivo()) {
+            for (Pista pista : pistas) {
+                if (pista instanceof Asfalto) {
                     Asfalto asfalto = (Asfalto) pista;
                     asfalto.excluiVeiculosAntigos();
                 }
             }
+            int pista = jogador.getPista();
+            if (pista < 0) // Caso tenha matado a sapo no meio do movimento
+            {
+                pista = 0;
+            }
+            Pista pistaAtual = pistas[pista];
+            if (pistaAtual.estaColidindo(jogador.getPosicaoHorizontal(), jogador.getLargura())) {
+                jogador.matar();
+            }
+            gerarVeiculos();
+            Thread.sleep(50);
         }
         System.out.println("Fim de Jogo - Você chegou ao final.");
     }
@@ -365,31 +374,20 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.requestFocus();
 
     }
-    
-    private void gerarVeiculos(){
-        Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Random random = new Random();
-                    while (jogador.vivo()) {
-                        int faixa = 1+(random.nextInt(4));
-                        Asfalto asfalto = (Asfalto) pistas[faixa];
-                        JLabel label = new JLabel();
-                        add(label,0);
-                        try {
-                            asfalto.inserirVeiculo(label);
-                        } catch (IOException ex) {
-                            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
-            });
-            thread.start();
+
+    private void gerarVeiculos() {
+
+        Random random = new Random();
+        int faixa = 1 + (random.nextInt(4));
+        Asfalto asfalto = (Asfalto) pistas[faixa];
+        JLabel label = new JLabel();
+        add(label, 0);
+        try {
+            asfalto.inserirVeiculo(label);
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
