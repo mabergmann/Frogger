@@ -285,6 +285,10 @@ public class Ranking extends javax.swing.JPanel {
         Collections.reverse(pontuacoes);
     }
     
+    public boolean entrouNoRanking(int pontos){
+        return pontos > pontuacoes.get(9).getPontos();       
+    }
+    
     public void imprimirRecordes(){
         lblNomePrimeiro.setText(pontuacoes.get(0).toString());
         lblNomeSegundo.setText(pontuacoes.get(1).toString());
