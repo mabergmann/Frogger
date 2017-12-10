@@ -146,4 +146,11 @@ public class Asfalto extends Pista {
         return true;
         
     }
+    
+    public void aumentarVelocidade(){
+        velocidade*=1.5;
+        for(Veiculo veiculo : veiculos){
+            veiculo.setVelocidade(velocidade);
+        }
+    }
 }

@@ -41,8 +41,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private Ranking painelRanking = new Ranking(this);
 
     private int tempo;
-    
-    private int nivel =0;
+
+    private int nivel = 0;
 
     private Jogador jogador;
 
@@ -183,7 +183,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         loopDeJogo();
     }
-    
+
     public Ranking getPainelRanking() {
         return painelRanking;
     }
@@ -197,25 +197,21 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         pistas[5] = new Calcada();
         pistas[5].setLabel(componentesEstaticos.getCalcada1());
 
-        pistas[4] = new Asfalto(4, Asfalto.DIREITA, 2);
+        pistas[4] = new Asfalto(4, Asfalto.DIREITA, 20);
         pistas[4].setLabel(componentesEstaticos.getAsfalto1());
 
-        pistas[3] = new Asfalto(3, Asfalto.DIREITA, 2);
+        pistas[3] = new Asfalto(3, Asfalto.DIREITA, 20);
         pistas[3].setLabel(componentesEstaticos.getAsfalto2());
 
-        pistas[2] = new Asfalto(2, Asfalto.ESQUERDA, 3);
+        pistas[2] = new Asfalto(2, Asfalto.ESQUERDA, 30);
         pistas[2].setLabel(componentesEstaticos.getAsfalto3());
 
-        pistas[1] = new Asfalto(1, Asfalto.ESQUERDA, 1);
+        pistas[1] = new Asfalto(1, Asfalto.ESQUERDA, 10);
         pistas[1].setLabel(componentesEstaticos.getAsfalto4());
 
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
 
-        /*double pesos[][] = gridbag.getLayoutWeights();
-        for(index = 1; index < pesos[index].length; index++){
-            pesos[index][0] = 0;
-        }*/
         int index = 0;
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
@@ -253,11 +249,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         setContentPane(janelaTutorial);
         revalidate();
         repaint();
-        // while(!janelaTutorial.getVoltar()){
-        //esperando botão "voltar" ser pressionado 
-        //System.out.println("Esperando o botão voltar ser apertado...");
-        //}
-        //mostraMenu();
     }//GEN-LAST:event_btnTutorialActionPerformed
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
@@ -283,17 +274,18 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     void loopDeJogo() throws IOException, InterruptedException {
         while (jogador.vivo()) {
-            
-            if(jogador.chegouAoFim()){
-                   jogador.somaPontos(nivel);
-                   nivel++;
-                   jogador.setTempoInicio(System.currentTimeMillis());
-                   jogador.setPosicao(300,400);
-                   jogador.setVida(3);
-                   jogador.setPista(0);
-                   jogador.atualizaPosicao();
+
+            if (jogador.chegouAoFim()) {
+                jogador.somaPontos(nivel);
+                nivel++;
+                jogador.setTempoInicio(System.currentTimeMillis());
+                jogador.setPosicao(300, 400);
+                jogador.setVida(3);
+                jogador.setPista(0);
+                jogador.atualizaPosicao();
+                aumentaVelocidadeDasFaixas();
             }
-           
+
             for (Pista pista : pistas) {
                 if (pista instanceof Asfalto) {
                     Asfalto asfalto = (Asfalto) pista;
@@ -320,7 +312,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
-        if(painelRanking.entrouNoRanking(jogador.getPontuacao())){
+        if (painelRanking.entrouNoRanking(jogador.getPontuacao())) {
             painelMenuFinal.getBoxNome().setVisible(true);
             painelMenuFinal.getLblAvisoRanking().setVisible(true);
             painelMenuFinal.getBtnRegistrar().setVisible(true);
@@ -445,7 +437,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         int novaFaixa;
 
         int probabilidade = random.nextInt(10);
-        
+
         if (probabilidade == 0) {
 
             int faixa = 1 + (random.nextInt(4));
@@ -453,7 +445,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 case 1:
                     origem = (Asfalto) pistas[1];
                     destino = (Asfalto) pistas[2];
-                    
+
                     novaFaixa = 2;
 
                     break;
@@ -474,9 +466,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                     break;
             }
 
-            if(origem.temVeiculoNaPista()){
+            if (origem.temVeiculoNaPista()) {
                 veiculo = origem.EscolheUmVeiculo();
-                if(!destino.estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())){
+                if (!destino.estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())) {
                     origem.removeVeiculo(veiculo);
                     veiculo.iniciaTrocaDePista(novaFaixa);
                     destino.insereEsseVeiculo(veiculo);
@@ -497,6 +489,15 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
         });
         thread.start();
+    }
+
+    private void aumentaVelocidadeDasFaixas() {
+        for (Pista pista : pistas) {
+            if (pista instanceof Asfalto) {
+                Asfalto asfalto = (Asfalto) pista;
+                asfalto.aumentarVelocidade();
+            }
+        }
     }
 
 }

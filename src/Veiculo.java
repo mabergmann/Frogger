@@ -76,7 +76,7 @@ abstract class Veiculo {
                         posicaoHorizontal += getDirecao();
                         atualizaPosicao();
                         try {
-                            Thread.sleep(20/velocidade);
+                            Thread.sleep(800/velocidade);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(Veiculo.class.getName()).log(Level.SEVERE, null, ex);
                         }
