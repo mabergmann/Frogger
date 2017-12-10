@@ -303,6 +303,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             if (pistaAtual.estaColidindo(jogador.getPosicaoHorizontal(), jogador.getLargura())) {
                 jogador.matar();
             }
+            
+            veiculosTrocaPista();
+            
             gerarVeiculos();
             Thread.sleep(50);
         }
@@ -411,6 +414,42 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
         }
 
+    }
+    
+    private void veiculosTrocaPista() {
+
+        Random random = new Random();
+        Veiculo veiculo = null;
+
+        int probabilidade = random.nextInt(10);
+        boolean trocou = true;
+
+        if (probabilidade == 0) {
+
+            int faixa = 1 + (random.nextInt(4));
+            switch (faixa) {
+                case 1:
+                    veiculo = pistas[1].veiculoTrocaPista();
+                    trocou = pistas[2].veiculoTrocou(veiculo);
+                    break;
+                case 2:
+                    veiculo = pistas[2].veiculoTrocaPista();
+                    trocou = pistas[1].veiculoTrocou(veiculo);
+                    break;
+                case 3:
+                    veiculo = pistas[3].veiculoTrocaPista();
+                    trocou = pistas[4].veiculoTrocou(veiculo);
+                    break;
+                case 4:
+                    veiculo = pistas[4].veiculoTrocaPista();
+                    trocou = pistas[3].veiculoTrocou(veiculo);
+                    break;
+            }
+
+            if (!trocou) {
+                pistas[faixa].insereEsseVeiculo(veiculo);
+            }
+        }
     }
 
 }

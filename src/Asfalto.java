@@ -53,6 +53,37 @@ public class Asfalto extends Pista {
         veiculos.add(veiculo);
         veiculo.setDirecao(this.direcao);
     }
+    
+    public Veiculo veiculoTrocaPista(){
+        
+        Random random = new Random();
+        
+        int i = random.nextInt(veiculos.size());
+        
+        Veiculo veiculo = veiculos.get(i);
+        
+        veiculos.remove(i);
+        
+        return veiculo;
+        
+    }
+    
+    @Override
+    public boolean veiculoTrocou(Veiculo veiculo){
+        if(!estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())){
+            veiculo.setVelocidade(velocidade);
+            veiculos.add(veiculo);
+            veiculo.setPosicao(veiculo.getPosicaoHorizontal(), this.faixa);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public void insereEsseVeiculo(Veiculo veiculo){  
+        veiculo.setVelocidade(velocidade);
+        veiculos.add(veiculo);
+    }
 
     public void setDirecao(int direcao) {
         if (direcao == DIREITA || direcao == ESQUERDA) {

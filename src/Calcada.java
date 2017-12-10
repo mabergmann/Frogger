@@ -14,4 +14,19 @@ public class Calcada extends Pista{
     public boolean estaColidindo(int posicaoHorizontalJogador, int largura){
         return false;
     }
+
+    @Override
+    public Veiculo veiculoTrocaPista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    boolean veiculoTrocou(Veiculo veiculoTrocaPista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void insereEsseVeiculo(Veiculo veiculo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

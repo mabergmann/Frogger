@@ -40,4 +40,10 @@ abstract class Pista {
         this.background = backgroundIcon;
         label.setIcon(this.background);
     }
+    
+    abstract public Veiculo veiculoTrocaPista();
+
+    abstract boolean veiculoTrocou(Veiculo veiculoTrocaPista);
+
+    abstract void insereEsseVeiculo(Veiculo veiculo);
 }
