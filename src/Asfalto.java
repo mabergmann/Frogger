@@ -74,7 +74,6 @@ public class Asfalto extends Pista {
         
     }
     
-    @Override
     public boolean veiculoTrocou(Veiculo veiculo){
         if(!estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())){
             veiculo.setVelocidade(velocidade);
@@ -86,7 +85,21 @@ public class Asfalto extends Pista {
         return false;
     }
     
-    public void insereEsseVeiculo(Veiculo veiculo){  
+    public Veiculo EscolheUmVeiculo(){
+        Random random = new Random();
+        
+        int i = random.nextInt(veiculos.size());
+        Veiculo veiculo = veiculos.get(i);
+        
+        return veiculo;
+    }
+    
+    public void removeVeiculo(Veiculo veiculo){
+        veiculos.remove(veiculo);
+    }
+    
+    public void insereEsseVeiculo(Veiculo veiculo){
+        veiculo.setVelocidade(velocidade);
         veiculos.add(veiculo);
     }
 

@@ -411,6 +411,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         Veiculo veiculo = null;
         Asfalto origem;
         Asfalto destino;
+        int novaFaixa;
 
         int probabilidade = random.nextInt(10);
         boolean trocou = true;
@@ -422,27 +423,32 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 case 1:
                     origem = (Asfalto) pistas[1];
                     destino = (Asfalto) pistas[2];
+                    
+                    novaFaixa = 2;
 
                     break;
                 case 2:
                     origem = (Asfalto) pistas[2];
                     destino = (Asfalto) pistas[1];
+                    novaFaixa = 1;
                     break;
                 case 3:
                     origem = (Asfalto) pistas[3];
                     destino = (Asfalto) pistas[4];
+                    novaFaixa = 4;
                     break;
                 default:
                     origem = (Asfalto) pistas[4];
                     destino = (Asfalto) pistas[3];
+                    novaFaixa = 3;
                     break;
             }
 
-            if (origem.temVeiculoNaPista()) {
-                veiculo = origem.veiculoTrocaPista();
-                trocou = destino.veiculoTrocou(veiculo);
-
-                if (!trocou) {
+            if(origem.temVeiculoNaPista()){
+                veiculo = origem.EscolheUmVeiculo();
+                if(!destino.estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())){
+                    origem.removeVeiculo(veiculo);
+                    veiculo.iniciaTrocaDePista(novaFaixa);
                     destino.insereEsseVeiculo(veiculo);
                 }
             }
