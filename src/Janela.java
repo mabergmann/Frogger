@@ -35,6 +35,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
 
     private Tutorial janelaTutorial = new Tutorial(this);
+    
+    private MenuFimDeJogo painelMenuFinal = new MenuFimDeJogo(this);
 
     private int tempo;
 
@@ -309,6 +311,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     void mostraMenuPosJogo() {
         System.out.println("Mostra seus pontos.");
+        setContentPane(painelMenuFinal);
+        revalidate();
+        repaint();
     }
 
     void configuraElementosEstaticos() {
