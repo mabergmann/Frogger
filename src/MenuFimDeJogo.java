@@ -114,11 +114,10 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
     }
     
     private void btnJogarNovamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJogarNovamenteActionPerformed
-        // TODO add your handling code here:
+        parent.novoJogo();
     }//GEN-LAST:event_btnJogarNovamenteActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
         parent.mostraMenu();
     }//GEN-LAST:event_btnVoltarActionPerformed
 

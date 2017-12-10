@@ -46,8 +46,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
 
-    boolean podeIniciar = false; // Serve para verificar se já devemos começar o jogo, se torna true ao clicar no botão start.
-
     public static void main(String args[]) throws IOException, InterruptedException {
         new Janela();
     }
@@ -235,17 +233,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
 
-        Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        inicializaJogo();
-                    } catch (IOException | InterruptedException ex) {
-                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-            thread.start();
+        novoJogo();
     }//GEN-LAST:event_btnStartGameActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
@@ -273,14 +261,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         setContentPane(painelDoMenuInicial);
         revalidate();
         repaint();
-    }
-
-    public boolean getPodeiniciar() {
-        return podeIniciar;
-    }
-
-    public void setPodeiniciar(boolean podeiniciar) {
-        this.podeIniciar = podeiniciar;
     }
 
     public int getTempo() {
@@ -455,6 +435,20 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 pistas[faixa].insereEsseVeiculo(veiculo);
             }
         }
+    }
+
+    public void novoJogo() {
+        Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        inicializaJogo();
+                    } catch (IOException | InterruptedException ex) {
+                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            thread.start();
     }
 
 }
