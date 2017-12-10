@@ -17,97 +17,119 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="lblNono" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblOitavo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblSetimo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblSexto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblQuinto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblQuarto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblTerceiro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblPrimeiro" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="lblSegundo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblDecimo" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblDecimo" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="lblSegundo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblPrimeiro" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblTerceiro" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblQuarto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblQuinto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblSexto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblSetimo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblOitavo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblNomeQuarto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomeQuinto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomeSexto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomeSetimo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomeOitavo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomeNono" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomeDecimo" alignment="0" pref="473" max="32767" attributes="0"/>
+                          <Component id="lblNomeTerceiro" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="lblNono" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblNomeSegundo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNomePrimeiro" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblRanking" min="-2" pref="196" max="-2" attributes="0"/>
-                  <Component id="lblNomePrimeiro" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeSegundo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeTerceiro" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeQuarto" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeQuinto" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeSexto" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeSetimo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeOitavo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeNono" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNomeDecimo" alignment="0" pref="257" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="193" max="32767" attributes="0"/>
+              <Component id="lblRanking" min="-2" pref="260" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="21" max="32767" attributes="0"/>
-              <Component id="lblRanking" min="-2" pref="86" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPrimeiro" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="lblNomePrimeiro" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="lblRanking" min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lblNomePrimeiro" max="32767" attributes="0"/>
+                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblPrimeiro" min="-2" pref="27" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeSegundo" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblSegundo" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblSegundo" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeTerceiro" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTerceiro" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblTerceiro" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeQuarto" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblQuarto" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblQuarto" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeQuinto" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblQuinto" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblQuinto" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeSexto" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblSexto" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblSexto" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeSetimo" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblSetimo" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblSetimo" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeOitavo" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblOitavo" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblOitavo" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNomeNono" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNono" pref="21" max="32767" attributes="0"/>
+                  <Component id="lblNono" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblNomeDecimo" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblDecimo" pref="21" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblNomeDecimo" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDecimo" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,54 +145,24 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPrimeiro">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSegundo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTerceiro">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblQuarto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblQuinto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSexto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSetimo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblOitavo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNono">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDecimo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="primeiro"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNomePrimeiro">
       <Properties>
@@ -221,6 +213,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Jogador10 - xxxxxxx"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVoltar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Voltar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVoltarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

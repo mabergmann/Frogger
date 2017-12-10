@@ -37,6 +37,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private Tutorial janelaTutorial = new Tutorial(this);
     
     private MenuFimDeJogo painelMenuFinal = new MenuFimDeJogo(this);
+    
+    private Ranking painelRanking = new Ranking(this);
 
     private int tempo;
 
@@ -262,6 +264,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
         // TODO add your handling code here:
+        setContentPane(painelRanking);
+        revalidate();
+        repaint();
     }//GEN-LAST:event_btnRankingActionPerformed
 
     void mostraMenu() {
