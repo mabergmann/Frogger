@@ -34,9 +34,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
 
-    private Tutorial janelaTutorial = new Tutorial();
+    private Tutorial janelaTutorial = new Tutorial(this);
 
-    private int janelaAtual = 0;
     private int tempo;
 
     private Jogador jogador;
@@ -59,17 +58,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         mostraMenu();
 
-        inicializaPistas();
-
-        inicializaElementos();
-
-        jogador = new Jogador(lblPersonagem);
-
-        gerarVeiculos();
-
-        loopDeJogo();
-
-        mostraMenuPosJogo();
     }
 
     /**
@@ -83,7 +71,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        painelDoMeneInicial = new javax.swing.JPanel();
+        painelDoMenuInicial = new javax.swing.JPanel();
         btnStartGame = new javax.swing.JButton();
         btnRanking = new javax.swing.JButton();
         btnTutorial = new javax.swing.JButton();
@@ -134,26 +122,26 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         lblTitulo.setPreferredSize(new java.awt.Dimension(400, 160));
 
-        javax.swing.GroupLayout painelDoMeneInicialLayout = new javax.swing.GroupLayout(painelDoMeneInicial);
-        painelDoMeneInicial.setLayout(painelDoMeneInicialLayout);
-        painelDoMeneInicialLayout.setHorizontalGroup(
-            painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelDoMeneInicialLayout.createSequentialGroup()
-                .addGroup(painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelDoMeneInicialLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelDoMenuInicialLayout = new javax.swing.GroupLayout(painelDoMenuInicial);
+        painelDoMenuInicial.setLayout(painelDoMenuInicialLayout);
+        painelDoMenuInicialLayout.setHorizontalGroup(
+            painelDoMenuInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDoMenuInicialLayout.createSequentialGroup()
+                .addGroup(painelDoMenuInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelDoMenuInicialLayout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelDoMeneInicialLayout.createSequentialGroup()
+                    .addGroup(painelDoMenuInicialLayout.createSequentialGroup()
                         .addGap(255, 255, 255)
-                        .addGroup(painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelDoMenuInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTutorial, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
-        painelDoMeneInicialLayout.setVerticalGroup(
-            painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDoMeneInicialLayout.createSequentialGroup()
+        painelDoMenuInicialLayout.setVerticalGroup(
+            painelDoMenuInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDoMenuInicialLayout.createSequentialGroup()
                 .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
@@ -169,15 +157,28 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelDoMeneInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelDoMenuInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelDoMeneInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelDoMenuInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void inicializaJogo() throws IOException, InterruptedException {
+        inicializaPistas();
+
+        inicializaElementos();
+
+        jogador = new Jogador(lblPersonagem);
+
+        validate();
+        repaint();
+        
+        loopDeJogo();
+    }
 
     private void inicializaPistas() throws IOException {
 
@@ -229,20 +230,26 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
-        podeIniciar = true;
+
+        Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        inicializaJogo();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            thread.start();
     }//GEN-LAST:event_btnStartGameActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        if (janelaAtual == 1) {
-            add(lblPersonagem, 0);
-            revalidate();
-            repaint();
-        }
     }//GEN-LAST:event_formComponentResized
 
     private void btnTutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutorialActionPerformed
-        // TODO add your handling code here:
-        getContentPane().removeAll();
         setContentPane(janelaTutorial);
         revalidate();
         repaint();
@@ -257,20 +264,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRankingActionPerformed
 
-    public void atualizaJanela() {
-        lblPersonagem.setLocation(0, 0);
-        this.repaint();
-    }
-
     void mostraMenu() {
-        getContentPane().removeAll();
-        setContentPane(painelDoMeneInicial);
+        setContentPane(painelDoMenuInicial);
         revalidate();
         repaint();
-
-        while (!podeIniciar) {
-            System.out.println("Esperando o botão start ser apertado...");
-        }
     }
 
     public boolean getPodeiniciar() {
@@ -309,7 +306,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             gerarVeiculos();
             Thread.sleep(50);
         }
-        System.out.println("Fim de Jogo - Você chegou ao final.");
+        mostraMenuPosJogo();
     }
 
     void mostraMenuPosJogo() {
@@ -379,7 +376,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel painelDoMeneInicial;
+    private javax.swing.JPanel painelDoMenuInicial;
     // End of variables declaration//GEN-END:variables
 
     private void inicializaElementos() {
@@ -389,12 +386,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         painelEmCamadas.add(componentesEstaticos, 0);
         painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
         painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
-
-        getContentPane().removeAll();
         setContentPane(painelEmCamadas);
 
         add(lblPersonagem, 0);
-        janelaAtual = 1;
         this.requestFocus();
 
     }
