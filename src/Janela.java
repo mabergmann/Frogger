@@ -41,6 +41,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private Ranking painelRanking = new Ranking(this);
 
     private int tempo;
+    
+    private int nivel;
 
     private Jogador jogador;
 
@@ -306,7 +308,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
-        if(painelRanking.entrouNoRanking(jogador.getPontos())){
+        if(painelRanking.entrouNoRanking(jogador.getPontuacao())){
             painelMenuFinal.getBoxNome().setVisible(true);
             painelMenuFinal.getLblAvisoRanking().setVisible(true);
             painelMenuFinal.getBtnRegistrar().setVisible(true);

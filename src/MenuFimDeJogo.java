@@ -188,7 +188,7 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         }
         btnRegistrar.setEnabled(false);
         try {
-            parent.getPainelRanking().adicionarRecorde(nome, parent.getJogador().getPontos());
+            parent.getPainelRanking().adicionarRecorde(nome, parent.getJogador().getPontuacao());
         } catch (IOException ex) {
             Logger.getLogger(MenuFimDeJogo.class.getName()).log(Level.SEVERE, null, ex);
         }
