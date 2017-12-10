@@ -41,6 +41,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private Ranking painelRanking = new Ranking(this);
 
     private int tempo;
+    
+    private int nivel =0;
 
     private Jogador jogador;
 
@@ -181,6 +183,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         loopDeJogo();
     }
+    
+    public Ranking getPainelRanking() {
+        return painelRanking;
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
 
     private void inicializaPistas() throws IOException {
 
@@ -273,6 +283,17 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     void loopDeJogo() throws IOException, InterruptedException {
         while (jogador.vivo()) {
+            
+            if(jogador.chegouAoFim()){
+                   jogador.somaPontos(nivel);
+                   nivel++;
+                   jogador.setTempoInicio(System.currentTimeMillis());
+                   jogador.setPosicao(300,400);
+                   jogador.setVida(3);
+                   jogador.setPista(0);
+                   jogador.atualizaPosicao();
+            }
+           
             for (Pista pista : pistas) {
                 if (pista instanceof Asfalto) {
                     Asfalto asfalto = (Asfalto) pista;
@@ -294,15 +315,25 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             gerarVeiculos();
             Thread.sleep(50);
         }
+        System.out.println(jogador.getPontuacao());
         mostraMenuPosJogo();
     }
 
     void mostraMenuPosJogo() {
-        try {
+        if(painelRanking.entrouNoRanking(jogador.getPontuacao())){
+            painelMenuFinal.getBoxNome().setVisible(true);
+            painelMenuFinal.getLblAvisoRanking().setVisible(true);
+            painelMenuFinal.getBtnRegistrar().setVisible(true);
+        } else {
+            painelMenuFinal.getBoxNome().setVisible(false);
+            painelMenuFinal.getLblAvisoRanking().setVisible(false);
+            painelMenuFinal.getBtnRegistrar().setVisible(false);
+        }
+        /*try {
             this.painelRanking.adicionarRecorde("Nome", jogador.getPontos());
         } catch (IOException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         setContentPane(painelMenuFinal);
         revalidate();
         repaint();

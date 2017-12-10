@@ -1,9 +1,15 @@
 
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +25,21 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
 
     private final ImageIcon enterro;
     private Janela parent;
-    
+    private String nome;
+
+    public JTextField getBoxNome() {
+        return boxNome;
+    }
+
+    public JButton getBtnRegistrar() {
+        return btnRegistrar;
+    }
+
+    public JLabel getLblAvisoRanking() {
+        return lblAvisoRanking;
+    }
+
+
     /**
      * Creates new form MenuFimDeJogo
      * @throws java.io.IOException
@@ -32,7 +52,11 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         
         this.setParent(janela);
     }
-
+    
+    public String getNome() {
+        return nome;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +72,9 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         lblPontuacao = new javax.swing.JLabel();
         btnJogarNovamente = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        boxNome = new javax.swing.JTextField();
+        btnRegistrar = new javax.swing.JButton();
+        lblAvisoRanking = new javax.swing.JLabel();
 
         lblFimDeJogo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblFimDeJogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -71,6 +98,24 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
             }
         });
 
+        boxNome.setForeground(new java.awt.Color(204, 204, 204));
+        boxNome.setText("Insira seu nome aqui");
+        boxNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boxNomeMouseClicked(evt);
+            }
+        });
+
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        lblAvisoRanking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvisoRanking.setText("E entrou para o Ranking!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,26 +131,40 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
                             .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnJogarNovamente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFimDeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(173, Short.MAX_VALUE))
+                        .addGap(214, 214, 214)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblAvisoRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFimDeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(204, Short.MAX_VALUE)
+                .addComponent(boxNome, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegistrar)
+                .addGap(196, 196, 196))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(lblEnterro, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFimDeJogo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPontuacao)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAvisoRanking)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnJogarNovamente)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnVoltar)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,10 +180,33 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         parent.mostraMenu();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        nome = boxNome.getText();
+        if(nome.isEmpty()){
+            nome = "Desconhecido";
+        }
+        btnRegistrar.setEnabled(false);
+        try {
+            parent.getPainelRanking().adicionarRecorde(nome, parent.getJogador().getPontuacao());
+        } catch (IOException ex) {
+            Logger.getLogger(MenuFimDeJogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void boxNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxNomeMouseClicked
+        // TODO add your handling code here:
+        boxNome.setText("");
+        boxNome.setForeground(Color.black);
+    }//GEN-LAST:event_boxNomeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField boxNome;
     private javax.swing.JButton btnJogarNovamente;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel lblAvisoRanking;
     private javax.swing.JLabel lblEnterro;
     private javax.swing.JLabel lblFimDeJogo;
     private javax.swing.JLabel lblPontuacao;

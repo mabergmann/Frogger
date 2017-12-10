@@ -30,6 +30,7 @@ public class Jogador {
     private int posicaoHorizontal;
     private int posicaoVertical;
     private int pista;
+    private int pontuacao;
     private long tempoInicio;
     private long tempoFim;
     private JLabel label;
@@ -87,6 +88,10 @@ public class Jogador {
 
     public int getPosicaoHorizontal() {
         return posicaoHorizontal;
+    }
+
+    public void setTempoInicio(long tempoInicio) {
+        this.tempoInicio = tempoInicio;
     }
 
     public int getPosicaoVertical() {
@@ -239,7 +244,7 @@ public class Jogador {
         this.vida = vida;
     }
 
-    public int getPontos() {
+    public int getTempoDemorado() {
         return (int) (this.tempoFim - this.tempoInicio)/1000;
     }
 
@@ -247,9 +252,17 @@ public class Jogador {
         this.setVida(this.getVida() - 1);
     }
 
-    private int somaPontos(int pontos) {
-        System.out.println("soma pontos");
-        return 0;
+    public void somaPontos(int nivel) {
+        this.setPontuacao(this.getPontuacao() + (150 - (10*(this.getTempoDemorado()/1000))) + (nivel*10)); 
+    }
+    
+    public boolean chegouAoFim(){
+        
+        if(this.getPosicaoVertical() == 25){
+            return true;
+        }
+    
+        return false;
     }
 
     public boolean vivo() {
@@ -275,7 +288,7 @@ public class Jogador {
         }
     }
 
-    private void setPista(int pista) {
+    void setPista(int pista) {
         this.pista = pista;
     }
     
@@ -283,4 +296,14 @@ public class Jogador {
         long tempo = System.currentTimeMillis() - tempoInicio;
         return (int) (tempo/1000);
     }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+
 }
