@@ -236,9 +236,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 public void run() {
                     try {
                         inicializaJogo();
-                    } catch (IOException ex) {
-                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InterruptedException ex) {
+                    } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
