@@ -83,10 +83,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblTitulo = new javax.swing.JLabel();
+        painelDoMeneInicial = new javax.swing.JPanel();
         btnStartGame = new javax.swing.JButton();
         btnRanking = new javax.swing.JButton();
         btnTutorial = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,9 +110,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
         });
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        lblTitulo.setPreferredSize(new java.awt.Dimension(400, 160));
-
         btnStartGame.setText("Start");
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,34 +131,49 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
         });
 
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblTitulo.setPreferredSize(new java.awt.Dimension(400, 160));
+
+        javax.swing.GroupLayout painelDoMeneInicialLayout = new javax.swing.GroupLayout(painelDoMeneInicial);
+        painelDoMeneInicial.setLayout(painelDoMeneInicialLayout);
+        painelDoMeneInicialLayout.setHorizontalGroup(
+            painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDoMeneInicialLayout.createSequentialGroup()
+                .addGroup(painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelDoMeneInicialLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelDoMeneInicialLayout.createSequentialGroup()
+                        .addGap(255, 255, 255)
+                        .addGroup(painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTutorial, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(126, Short.MAX_VALUE))
+        );
+        painelDoMeneInicialLayout.setVerticalGroup(
+            painelDoMeneInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDoMeneInicialLayout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(btnStartGame)
+                .addGap(29, 29, 29)
+                .addComponent(btnRanking)
+                .addGap(27, 27, 27)
+                .addComponent(btnTutorial)
+                .addGap(47, 47, 47))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(btnTutorial, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(btnRanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(164, 164, 164)))
-                .addContainerGap(118, Short.MAX_VALUE))
+            .addComponent(painelDoMeneInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(btnStartGame)
-                .addGap(35, 35, 35)
-                .addComponent(btnRanking)
-                .addGap(35, 35, 35)
-                .addComponent(btnTutorial)
-                .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(painelDoMeneInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -233,6 +246,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         setContentPane(janelaTutorial);
         revalidate();
         repaint();
+       // while(!janelaTutorial.getVoltar()){
+            //esperando botão "voltar" ser pressionado 
+            //System.out.println("Esperando o botão voltar ser apertado...");
+        //}
+        //mostraMenu();
     }//GEN-LAST:event_btnTutorialActionPerformed
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
@@ -245,6 +263,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenu() {
+        getContentPane().removeAll();
+        setContentPane(painelDoMeneInicial);
+        revalidate();
+        repaint();
+
         while (!podeIniciar) {
             System.out.println("Esperando o botão start ser apertado...");
         }
@@ -356,6 +379,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel painelDoMeneInicial;
     // End of variables declaration//GEN-END:variables
 
     private void inicializaElementos() {
