@@ -1,7 +1,7 @@
+Nome	128
 Nome	36
 Nome	16
 Nome	11
-jogador	0
 jogador	0
 jogador	0
 jogador	0

@@ -125,9 +125,9 @@ public class Asfalto extends Pista {
     }
 
     boolean podeAdicionarVeiculo() {
-        if (this.direcao == DIREITA && estaColidindo(-100, 100)) {
+        if (this.direcao == DIREITA && estaColidindo(-100, 200)) {
             return false;
-        } else if (this.direcao == ESQUERDA && estaColidindo(640, 100)) {
+        } else if (this.direcao == ESQUERDA && estaColidindo(540, 200)) {
             return false;
         }
         return true;
