@@ -35,9 +35,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     static PainelDeJogo componentesEstaticos = new PainelDeJogo();
 
     private Tutorial janelaTutorial = new Tutorial(this);
-    
+
     private MenuFimDeJogo painelMenuFinal = new MenuFimDeJogo(this);
-    
+
     private Ranking painelRanking = new Ranking(this);
 
     private int tempo;
@@ -178,7 +178,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         validate();
         repaint();
-        
+
         loopDeJogo();
     }
 
@@ -288,9 +288,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             if (pistaAtual.estaColidindo(jogador.getPosicaoHorizontal(), jogador.getLargura())) {
                 jogador.matar();
             }
-            
+
             veiculosTrocaPista();
-            
+
             gerarVeiculos();
             Thread.sleep(50);
         }
@@ -298,7 +298,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
-        this.painelRanking.adicionarRecorde("Nome", jogador.getPontos());
+        try {
+            this.painelRanking.adicionarRecorde("Nome", jogador.getPontos());
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setContentPane(painelMenuFinal);
         revalidate();
         repaint();
@@ -400,11 +404,13 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         }
 
     }
-    
+
     private void veiculosTrocaPista() {
 
         Random random = new Random();
-        Veiculo veiculo;
+        Veiculo veiculo = null;
+        Asfalto origem;
+        Asfalto destino;
 
         int probabilidade = random.nextInt(10);
         boolean trocou = true;
@@ -414,41 +420,47 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             int faixa = 1 + (random.nextInt(4));
             switch (faixa) {
                 case 1:
-                    veiculo = pistas[1].veiculoTrocaPista();
-                    trocou = pistas[2].veiculoTrocou(veiculo);
+                    origem = (Asfalto) pistas[1];
+                    destino = (Asfalto) pistas[2];
+
                     break;
                 case 2:
-                    veiculo = pistas[2].veiculoTrocaPista();
-                    trocou = pistas[1].veiculoTrocou(veiculo);
+                    origem = (Asfalto) pistas[2];
+                    destino = (Asfalto) pistas[1];
                     break;
                 case 3:
-                    veiculo = pistas[3].veiculoTrocaPista();
-                    trocou = pistas[4].veiculoTrocou(veiculo);
+                    origem = (Asfalto) pistas[3];
+                    destino = (Asfalto) pistas[4];
                     break;
                 default:
-                    veiculo = pistas[4].veiculoTrocaPista();
-                    trocou = pistas[3].veiculoTrocou(veiculo);
+                    origem = (Asfalto) pistas[4];
+                    destino = (Asfalto) pistas[3];
                     break;
             }
 
-            if (!trocou) {
-                pistas[faixa].insereEsseVeiculo(veiculo);
+            if (origem.temVeiculoNaPista()) {
+                veiculo = origem.veiculoTrocaPista();
+                trocou = destino.veiculoTrocou(veiculo);
+
+                if (!trocou) {
+                    destino.insereEsseVeiculo(veiculo);
+                }
             }
         }
     }
 
     public void novoJogo() {
         Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        inicializaJogo();
-                    } catch (IOException | InterruptedException ex) {
-                        Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            @Override
+            public void run() {
+                try {
+                    inicializaJogo();
+                } catch (IOException | InterruptedException ex) {
+                    Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            });
-            thread.start();
+            }
+        });
+        thread.start();
     }
 
 }

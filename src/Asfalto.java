@@ -54,6 +54,12 @@ public class Asfalto extends Pista {
         veiculo.setDirecao(this.direcao);
     }
     
+    public boolean temVeiculoNaPista(){
+        if(veiculos.size()>0)
+            return true;
+        return false;
+    }
+    
     public Veiculo veiculoTrocaPista(){
         
         Random random = new Random();

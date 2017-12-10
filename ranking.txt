@@ -1,5 +1,5 @@
-jogador	0
-jogador	0
+Nome	16
+Nome	11
 jogador	0
 jogador	0
 jogador	0
