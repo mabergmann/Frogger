@@ -25,6 +25,7 @@ abstract class Veiculo {
 
     private int posicaoVertical;
     private int posicaoHorizontal;
+    private int faixa;
     private int direcao; // Direcao = 1 para testar. (Sentido esquerda -> direita)
     private int largura;
     private int altura;
@@ -35,11 +36,21 @@ abstract class Veiculo {
     public final static int DIREITA = 1;
     public final static int ESQUERDA = -1;
 
-    public void setPosicao(int x, int y) {
+    public void setPosicao(int x, int faixa) {
         this.posicaoHorizontal = x;
-        this.posicaoVertical = y;
+        this.posicaoVertical = 400 - faixa * 75;
+        this.faixa = faixa;
     }
 
+    
+    private void setFaixa(int faixa){
+        this.faixa = faixa;
+    }
+    
+    public int getFaixa(){
+        return this.faixa;
+    }
+    
     public void setDirecao(int direcao) {
         this.direcao = direcao;
     }
@@ -71,6 +82,7 @@ abstract class Veiculo {
                         }
                     }
                     atualizaPosicao();
+                    setFaixa(faixa);
                 }
             });
             thread.start();
@@ -125,7 +137,7 @@ abstract class Veiculo {
     }
 
     public void atualizaPosicao() {
-        label.setBounds(getPosicaoHorizontal(), 400 - getPosicaoVertical() * 75, getLargura(), getAltura());
+        label.setBounds(getPosicaoHorizontal(), getPosicaoVertical(), getLargura(), getAltura());
     }
     
     public void destruir(){
@@ -134,5 +146,28 @@ abstract class Veiculo {
         parent.remove(this.label);
         parent.validate();
         parent.repaint();
+    }
+
+    void iniciaTrocaDePista(int faixa) {
+        Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for(int i=0; i<75;i++){
+                        if(getFaixa()<faixa){
+                            posicaoVertical--;
+                        }else{
+                            posicaoVertical++;
+                        }
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Veiculo.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    setPosicao(getPosicaoHorizontal(), faixa);
+                    atualizaPosicao();
+                }
+            });
+            thread.start();
     }
 }

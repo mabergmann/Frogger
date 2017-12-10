@@ -424,7 +424,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private void veiculosTrocaPista() {
 
         Random random = new Random();
-        Veiculo veiculo = null;
+        Veiculo veiculo;
 
         int probabilidade = random.nextInt(10);
         boolean trocou = true;
@@ -445,7 +445,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                     veiculo = pistas[3].veiculoTrocaPista();
                     trocou = pistas[4].veiculoTrocou(veiculo);
                     break;
-                case 4:
+                default:
                     veiculo = pistas[4].veiculoTrocaPista();
                     trocou = pistas[3].veiculoTrocou(veiculo);
                     break;

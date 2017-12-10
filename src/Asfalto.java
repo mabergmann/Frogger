@@ -73,7 +73,7 @@ public class Asfalto extends Pista {
         if(!estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())){
             veiculo.setVelocidade(velocidade);
             veiculos.add(veiculo);
-            veiculo.setPosicao(veiculo.getPosicaoHorizontal(), this.faixa);
+            veiculo.iniciaTrocaDePista(this.faixa);
             return true;
         }
         
