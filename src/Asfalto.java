@@ -87,7 +87,6 @@ public class Asfalto extends Pista {
     }
     
     public void insereEsseVeiculo(Veiculo veiculo){  
-        veiculo.setVelocidade(velocidade);
         veiculos.add(veiculo);
     }
 
