@@ -1,20 +1,10 @@
-Nome	535
-Nome	128
-Nome	36
-Nome	30
-Ganheiiiiiii	28
-Nome	23
-Nome	22
-Nome	19
-Nome	17
-Nome	17
-Nome	16
-<<<<<<< HEAD
-Nome	11
 jogador	0
 jogador	0
 jogador	0
 jogador	0
 jogador	0
-=======
->>>>>>> 614f47dda6367d705d05c1dcf2323b5d87f545bb
+jogador	0
+jogador	0
+jogador	0
+jogador	0
+jogador	0

@@ -445,8 +445,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         int novaFaixa;
 
         int probabilidade = random.nextInt(10);
-        boolean trocou = true;
-
+        
         if (probabilidade == 0) {
 
             int faixa = 1 + (random.nextInt(4));
