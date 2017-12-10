@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblDecimo" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="lblSegundo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblPrimeiro" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblTerceiro" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblQuarto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblQuinto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblSexto" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblSetimo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblOitavo" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lblNono" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblRanking" min="-2" pref="196" max="-2" attributes="0"/>
+                  <Component id="lblNomePrimeiro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeSegundo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeTerceiro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeQuarto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeQuinto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeSexto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeSetimo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeOitavo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeNono" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNomeDecimo" alignment="0" pref="257" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="175" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <Component id="lblRanking" min="-2" pref="86" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPrimeiro" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="lblNomePrimeiro" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeSegundo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSegundo" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeTerceiro" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTerceiro" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeQuarto" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblQuarto" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeQuinto" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblQuinto" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeSexto" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSexto" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeSetimo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSetimo" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeOitavo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblOitavo" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeNono" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNono" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblNomeDecimo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDecimo" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblRanking">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial Black" size="36" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Ranking"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPrimeiro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSegundo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTerceiro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblQuarto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblQuinto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSetimo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOitavo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNono">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDecimo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="primeiro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomePrimeiro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador1 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeSegundo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador2 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeTerceiro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador3 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeQuarto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador4 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeQuinto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador5 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeSexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador6 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeSetimo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador7 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeOitavo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador8 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeNono">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador9 - xxxxxxx"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNomeDecimo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jogador10 - xxxxxxx"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
