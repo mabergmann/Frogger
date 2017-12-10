@@ -90,6 +90,10 @@ public class Jogador {
         return posicaoHorizontal;
     }
 
+    public void setTempoInicio(long tempoInicio) {
+        this.tempoInicio = tempoInicio;
+    }
+
     public int getPosicaoVertical() {
         return posicaoVertical;
     }
@@ -249,9 +253,17 @@ public class Jogador {
     }
 
     public void somaPontos(int nivel) {
-        this.setPontuacao(this.getPontuacao() + (150 - (10*this.getTempoDemorado())) + (nivel*10)); 
+        this.setPontuacao(this.getPontuacao() + (150 - (10*(this.getTempoDemorado()/1000))) + (nivel*10)); 
     }
     
+    public boolean chegouAoFim(){
+        
+        if(this.getPosicaoVertical() == 25){
+            return true;
+        }
+    
+        return false;
+    }
 
     public boolean vivo() {
         if (vida > 0) {
@@ -276,7 +288,7 @@ public class Jogador {
         }
     }
 
-    private void setPista(int pista) {
+    void setPista(int pista) {
         this.pista = pista;
     }
     

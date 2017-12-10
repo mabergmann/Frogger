@@ -42,7 +42,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private int tempo;
     
-    private int nivel;
+    private int nivel =0;
 
     private Jogador jogador;
 
@@ -283,6 +283,17 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     void loopDeJogo() throws IOException, InterruptedException {
         while (jogador.vivo()) {
+            
+            if(jogador.chegouAoFim()){
+                   jogador.somaPontos(nivel);
+                   nivel++;
+                   jogador.setTempoInicio(System.currentTimeMillis());
+                   jogador.setPosicao(300,400);
+                   jogador.setVida(3);
+                   jogador.setPista(1);
+                   jogador.atualizaPosicao();
+            }
+           
             for (Pista pista : pistas) {
                 if (pista instanceof Asfalto) {
                     Asfalto asfalto = (Asfalto) pista;
@@ -304,6 +315,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             gerarVeiculos();
             Thread.sleep(50);
         }
+        System.out.println(jogador.getPontuacao());
         mostraMenuPosJogo();
     }
 
