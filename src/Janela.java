@@ -298,7 +298,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
-        System.out.println("Mostra seus pontos.");
+        this.painelRanking.adicionarRecorde("Nome", jogador.getPontos());
         setContentPane(painelMenuFinal);
         revalidate();
         repaint();

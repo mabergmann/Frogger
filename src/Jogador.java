@@ -24,7 +24,6 @@ import javax.swing.SwingUtilities;
 public class Jogador {
 
     private int vida;
-    private int pontos;
     private ImageIcon imagem;
     private int altura;
     private int largura;
@@ -241,11 +240,7 @@ public class Jogador {
     }
 
     public int getPontos() {
-        return pontos;
-    }
-
-    public void setPontos(int pontos) {
-        this.pontos = pontos;
+        return (int) (this.tempoFim - this.tempoInicio)/1000;
     }
 
     public void reduzVida() {

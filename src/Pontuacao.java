@@ -28,6 +28,6 @@ public class Pontuacao implements Comparable<Pontuacao> {
     
     @Override
     public String toString(){
-        return nome + "\t - \t" + Integer.toString(pontos);
+        return nome + " - " + Integer.toString(pontos);
     }
 }
