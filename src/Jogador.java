@@ -31,6 +31,8 @@ public class Jogador {
     private int posicaoHorizontal;
     private int posicaoVertical;
     private int pista;
+    private long tempoInicio;
+    private long tempoFim;
     private JLabel label;
     private boolean movendo = false;
     private final Image frente1;
@@ -55,7 +57,7 @@ public class Jogador {
         this.direita1 = ImageIO.read(new File("imagens/sapoDireita1.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         this.direita2 = ImageIO.read(new File("imagens/sapoDireita2.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         this.direita3 = ImageIO.read(new File("imagens/sapoDireita3.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-        
+
         this.setPosicao(300, 400);
         this.setTamanho(50, 50);
         this.setPista(0);
@@ -63,6 +65,7 @@ public class Jogador {
         this.setImagem(frente1);
         this.atualizaPosicao();
         this.resetVida();
+        this.tempoInicio = System.currentTimeMillis();
     }
 
     public void setTamanho(int largura, int altura) {
@@ -90,7 +93,7 @@ public class Jogador {
     public int getPosicaoVertical() {
         return posicaoVertical;
     }
-    
+
     public int getPista() {
         return this.pista;
     }
@@ -114,7 +117,7 @@ public class Jogador {
                 @Override
                 public void run() {
                     setImagem(esquerda2);
-                    posicaoVertical -=10;
+                    posicaoVertical -= 10;
                     for (int i = 0; i < 40; i++) {
                         if (i == 20) {
                             setImagem(esquerda3);
@@ -129,7 +132,7 @@ public class Jogador {
                         }
                     }
                     setImagem(esquerda1);
-                    posicaoVertical+=10;
+                    posicaoVertical += 10;
                     atualizaPosicao();
                     movendo = false;
                 }
@@ -148,7 +151,7 @@ public class Jogador {
                 @Override
                 public void run() {
                     setImagem(direita2);
-                    posicaoVertical -=10;
+                    posicaoVertical -= 10;
                     for (int i = 0; i < 40; i++) {
                         if (i == 20) {
                             setImagem(direita3);
@@ -162,7 +165,7 @@ public class Jogador {
                         }
                     }
                     setImagem(direita1);
-                    posicaoVertical+=10;
+                    posicaoVertical += 10;
                     atualizaPosicao();
                     movendo = false;
                 }
@@ -255,8 +258,9 @@ public class Jogador {
     }
 
     public boolean vivo() {
-        if(vida>0)
+        if (vida > 0) {
             return true;
+        }
         return false;
     }
 
@@ -264,15 +268,24 @@ public class Jogador {
         label.setBounds(getPosicaoHorizontal(), getPosicaoVertical(), getLargura(), getAltura());
         label.setVisible(true);
     }
-    
-    public void matar(){
+
+    public void matar() {
         this.reduzVida();
-        this.setPosicao(300, 400);
-        this.setPista(0);
-        this.atualizaPosicao();
+        if (getVida() == 0) {
+            tempoFim = System.currentTimeMillis();
+        } else {
+            this.setPosicao(300, 400);
+            this.setPista(0);
+            this.atualizaPosicao();
+        }
     }
 
     private void setPista(int pista) {
-        this.pista=pista;
+        this.pista = pista;
+    }
+    
+    public int getTempoEmSegundos(){
+        long tempo = System.currentTimeMillis() - tempoInicio;
+        return (int) (tempo/1000);
     }
 }
