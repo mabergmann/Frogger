@@ -251,7 +251,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }//GEN-LAST:event_btnTutorialActionPerformed
 
     private void btnRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRankingActionPerformed
-        // TODO add your handling code here:
+        painelRanking.imprimirRecordes();
         setContentPane(painelRanking);
         revalidate();
         repaint();
