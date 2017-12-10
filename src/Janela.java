@@ -290,7 +290,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                    jogador.setTempoInicio(System.currentTimeMillis());
                    jogador.setPosicao(300,400);
                    jogador.setVida(3);
-                   jogador.setPista(1);
+                   jogador.setPista(0);
                    jogador.atualizaPosicao();
             }
            
