@@ -262,7 +262,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
             barraDeTempo.setValue((int) calculaValorDaBarra(jogador, barraDeTempo));
 
-            verificaCoracoes(jogador);
+            verificaCoracoes();
 
             for (Pista pista : pistas) {
                 if (pista instanceof Asfalto) {
@@ -298,7 +298,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     private void proximoNivel() {
-        jogador.proximaFase(nivel);
+        getJogador().proximaFase(nivel);
         setNivel(getNivel() + 1);
         aumentaVelocidadeDasFaixas();
         lblNivel.setText("Nível " + Integer.toString(nivel));
@@ -322,9 +322,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         return retorno;
     }
 
-    void verificaCoracoes(Jogador jogador) {
+    void verificaCoracoes() {
 
-        switch (jogador.getVida()) {
+        switch (this.getJogador().getVida()) {
             case 3:
                 coracao1.setVisible(true);
                 coracao2.setVisible(true);
