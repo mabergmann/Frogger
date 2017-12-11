@@ -3,15 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Asfalto.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Pista.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Moto.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Veiculo.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Jogador.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Caminhao.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Janela.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Calcada.java</file>
-            <file>file:/C:/Users/mathe/Documents/GitHub/Frogger/src/Carro.java</file>
+            <file>file:/C:/github/Frogger/src/PainelDeJogo.java</file>
+            <file>file:/C:/github/Frogger/src/Jogador.java</file>
+            <file>file:/C:/github/Frogger/src/Tutorial.java</file>
+            <file>file:/C:/github/Frogger/src/Pontuacao.java</file>
+            <file>file:/C:/github/Frogger/src/MenuFimDeJogo.java</file>
+            <file>file:/C:/github/Frogger/src/Janela.java</file>
+            <file>file:/C:/github/Frogger/src/Ranking.java</file>
         </group>
     </open-files>
 </project-private>

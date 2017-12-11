@@ -298,8 +298,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 jogador.setPista(0);
                 jogador.atualizaPosicao();
                 aumentaVelocidadeDasFaixas();
-                lblNivel.setText("Nível" + Integer.toString(nivel));
-                lblPontos.setText("Pontuação:" + Integer.toString(jogador.getPontuacao()));
+                lblNivel.setText("Nível " + Integer.toString(nivel));
+                lblPontos.setText("Pontuação: " + Integer.toString(jogador.getPontuacao()));
             }
             
             barraDeTempo.setValue((int)calculaValorDaBarra(jogador,barraDeTempo));
