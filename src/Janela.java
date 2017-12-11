@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -176,6 +177,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         inicializaPistas();
 
         inicializaElementos();
+        
+        inicializaBarras();
         
         //inicializaBarraDeInformacao();
 
@@ -503,6 +506,18 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 asfalto.aumentarVelocidade();
             }
         }
+    }
+
+    private void inicializaBarras() {
+        JLabel barraTopo = new JLabel();
+        add(barraTopo, 0);
+        barraTopo.setBounds(0, 0, 640, 50);
+        try {
+            barraTopo.setIcon(new ImageIcon(ImageIO.read(new File("imagens/sapoFrente1.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }
