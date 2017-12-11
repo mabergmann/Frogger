@@ -1,5 +1,8 @@
+
 public class Pontuacao implements Comparable<Pontuacao> {
+
     private int pontos;
+
     private String nome;
 
     public Pontuacao(int pontos, String nome) {
@@ -14,20 +17,20 @@ public class Pontuacao implements Comparable<Pontuacao> {
     public String getNome() {
         return nome;
     }
-    
+
     @Override
     public int compareTo(Pontuacao outraPontuacao) {
-        if (this.pontos < outraPontuacao.pontos) {
+        if (this.getPontos() < outraPontuacao.getPontos()) {
             return -1;
         }
-        if (this.pontos > outraPontuacao.pontos) {
+        if (this.getPontos() > outraPontuacao.getPontos()) {
             return 1;
         }
         return 0;
     }
-    
+
     @Override
-    public String toString(){
-        return nome + " - " + Integer.toString(pontos);
+    public String toString() {
+        return this.getNome() + " - " + Integer.toString(this.getPontos());
     }
 }

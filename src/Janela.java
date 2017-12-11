@@ -36,7 +36,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private final Ranking painelRanking = new Ranking(this);
     private final MenuFimDeJogo painelMenuFinal = new MenuFimDeJogo(this);
 
-    //private int tempo;
     private int nivel = 0;
 
     JLabel lblNivel = new JLabel();
@@ -166,6 +165,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inicializaJogo() throws IOException, InterruptedException {
+        
         inicializaPistas();
 
         inicializaElementos();
@@ -234,14 +234,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         revalidate();
         repaint();
     }
-
-    /*public int getTempo() {
-        return tempo;
-    }
-
-    public void setTempo(int tempo) {
-        this.tempo = tempo;
-    }*/
 
     public int getNivel() {
         return nivel;

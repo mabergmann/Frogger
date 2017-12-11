@@ -25,14 +25,9 @@ public class Ranking extends javax.swing.JPanel {
     private final ImageIcon nove;
     private final ImageIcon dez;
     private ArrayList<Pontuacao> pontuacoes = new ArrayList();
-            
+
     private Janela parent;
 
-    /**
-     * Creates new form Ranking
-     *
-     * @throws java.io.IOException
-     */
     public Ranking(Janela janela) throws IOException {
         initComponents();
         this.um = new ImageIcon(ImageIO.read(new File("imagens/primeiro.png")).getScaledInstance(30, 30, Image.SCALE_SMOOTH));
@@ -263,33 +258,33 @@ public class Ranking extends javax.swing.JPanel {
         arquivo.close();
         ordenar();
     }
-    
+
     private void escreverRanking() throws FileNotFoundException, IOException {
         BufferedWriter arquivo = new BufferedWriter(new FileWriter("ranking.txt"));
         arquivo.flush();
-        for(int i=0;i<10;i++) {
-            String linha = pontuacoes.get(i).getNome() + "\t"+ Integer.toString(pontuacoes.get(i).getPontos())+"\n";
+        for (int i = 0; i < 10; i++) {
+            String linha = pontuacoes.get(i).getNome() + "\t" + Integer.toString(pontuacoes.get(i).getPontos()) + "\n";
             arquivo.write(linha);
         }
         arquivo.close();
     }
-    
-    public void adicionarRecorde(String nome, int pontos) throws IOException{
+
+    public void adicionarRecorde(String nome, int pontos) throws IOException {
         pontuacoes.add(new Pontuacao(pontos, nome));
         ordenar();
         escreverRanking();
     }
-    
-    private void ordenar(){
+
+    private void ordenar() {
         Collections.sort(pontuacoes);
         Collections.reverse(pontuacoes);
     }
-    
-    public boolean entrouNoRanking(int pontos){
-        return pontos > pontuacoes.get(9).getPontos();       
+
+    public boolean entrouNoRanking(int pontos) {
+        return pontos > pontuacoes.get(9).getPontos();
     }
-    
-    public void imprimirRecordes(){
+
+    public void imprimirRecordes() {
         lblNomePrimeiro.setText(pontuacoes.get(0).toString());
         lblNomeSegundo.setText(pontuacoes.get(1).toString());
         lblNomeTerceiro.setText(pontuacoes.get(2).toString());
