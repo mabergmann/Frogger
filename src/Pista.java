@@ -1,7 +1,5 @@
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -17,6 +15,14 @@ abstract class Pista {
 
     public void setPista(int pista) {
         this.pista = pista;
+    }
+
+    public int getPista() {
+        return pista;
+    }
+
+    public JLabel getLabel() {
+        return label;
     }
 
     abstract public boolean estaColidindo(int posicaoHorizontalJogador, int largura);

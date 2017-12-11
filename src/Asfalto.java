@@ -20,6 +20,10 @@ public class Asfalto extends Pista {
         this.setVelocidade(velocidade);
     }
 
+    public ArrayList<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
     public int getVelocidade() {
         return velocidade;
     }
@@ -42,42 +46,40 @@ public class Asfalto extends Pista {
 
         switch (tipo) {
             case 0:
-                veiculo = new Carro(label, this.faixa, this.direcao, this.velocidade);
+                veiculo = new Carro(label, this.getFaixa(), this.getDirecao(), this.getVelocidade());
                 break;
             case 1:
-                veiculo = new Moto(label, this.faixa, this.direcao, this.velocidade);
+                veiculo = new Moto(label, this.getFaixa(), this.getDirecao(), this.getVelocidade());
                 break;
             default:
-                veiculo = new Caminhao(label, this.faixa, this.direcao, this.velocidade);
+                veiculo = new Caminhao(label, this.getFaixa(), this.getDirecao(), this.getVelocidade());
                 break;
         }
 
-        veiculos.add(veiculo);
-        veiculo.setDirecao(this.direcao);
+        this.getVeiculos().add(veiculo);
+        veiculo.setDirecao(this.getDirecao());
     }
-    
-    public boolean temVeiculoNaPista(){
-        if(veiculos.size()>0)
-            return true;
-        return false;
+
+    public boolean temVeiculoNaPista() {
+        return this.getVeiculos().size() > 0;
     }
-    
-    public Veiculo EscolheUmVeiculo(){
+
+    public Veiculo EscolheUmVeiculo() {
         Random random = new Random();
-        
-        int i = random.nextInt(veiculos.size());
-        Veiculo veiculo = veiculos.get(i);
-        
+
+        int i = random.nextInt(this.getVeiculos().size());
+        Veiculo veiculo = this.getVeiculos().get(i);
+
         return veiculo;
     }
-    
-    public void removeVeiculo(Veiculo veiculo){
-        veiculos.remove(veiculo);
+
+    public void removeVeiculo(Veiculo veiculo) {
+        this.getVeiculos().remove(veiculo);
     }
-    
-    public void insereEsseVeiculo(Veiculo veiculo){
-        veiculo.setVelocidade(velocidade);
-        veiculos.add(veiculo);
+
+    public void insereEsseVeiculo(Veiculo veiculo) {
+        veiculo.setVelocidade(this.getVelocidade());
+        this.getVeiculos().add(veiculo);
     }
 
     public void setDirecao(int direcao) {
@@ -96,21 +98,25 @@ public class Asfalto extends Pista {
 
     public void excluiVeiculosAntigos() {
         int i = 0;
-        while (i < veiculos.size()) {
-            Veiculo veiculo = veiculos.get(i);
+        while (i < getVeiculos().size()) {
+            Veiculo veiculo = getVeiculos().get(i);
             if (veiculo.foraDosLimites()) {
                 veiculo.destruir();
-                veiculos.remove(i);
+                removerVeiculo(i);
             } else {
                 i++;
             }
         }
     }
 
+    private void removerVeiculo(int i) {
+        getVeiculos().remove(i);
+    }
+
     @Override
     public boolean estaColidindo(int posicaoHorizontal, int largura) {
 
-        for (Veiculo veiculo : veiculos) {
+        for (Veiculo veiculo : this.getVeiculos()) {
             if (veiculo.estaColidindo(posicaoHorizontal, largura)) {
                 return true;
             }
@@ -125,13 +131,13 @@ public class Asfalto extends Pista {
             return false;
         }
         return true;
-        
+
     }
-    
-    public void aumentarVelocidade(){
-        velocidade*=1.3;
-        for(Veiculo veiculo : veiculos){
-            veiculo.setVelocidade(velocidade);
+
+    public void aumentarVelocidade() {
+        this.setVelocidade((int) (this.getVelocidade() * 1.3));
+        for (Veiculo veiculo : this.getVeiculos()) {
+            veiculo.setVelocidade(this.getVelocidade());
         }
     }
 }

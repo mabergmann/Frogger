@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 public class MenuFimDeJogo extends javax.swing.JPanel {
 
     private final ImageIcon enterro;
-    private Janela parent;
+    private Janela janelaPai;
     private String nome;
 
     public JTextField getBoxNome() {
@@ -29,8 +29,8 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         return lblAvisoRanking;
     }
 
-    public Janela getParent() {
-        return parent;
+    public Janela getJanelaPai() {
+        return this.janelaPai;
     }
     
     
@@ -41,7 +41,7 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
 
         lblEnterro.setIcon(enterro);
 
-        this.setParent(janela);
+        this.janelaPai = janela;
     }
 
     public JLabel getLblPontuacao() {
@@ -161,8 +161,8 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setParent(Janela parent) {
-        this.parent = parent;
+    public void setJanelaPai(Janela parent) {
+        this.janelaPai = parent;
     }
 
     public void setNome(String nome) {
@@ -170,11 +170,11 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
     }
 
     private void btnJogarNovamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJogarNovamenteActionPerformed
-        this.getParent().novoJogo();
+        getJanelaPai().novoJogo();
     }//GEN-LAST:event_btnJogarNovamenteActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        parent.mostraMenu();
+        getJanelaPai().mostraMenu();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -184,7 +184,7 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         }
         btnRegistrar.setEnabled(false);
         try {
-            this.getParent().getPainelRanking().adicionarRecorde(this.getNome(), this.getParent().getJogador().getPontuacao());
+            this.getJanelaPai().getPainelRanking().adicionarRecorde(this.getNome(), this.getJanelaPai().getJogador().getPontuacao());
         } catch (IOException ex) {
             Logger.getLogger(MenuFimDeJogo.class.getName()).log(Level.SEVERE, null, ex);
         }

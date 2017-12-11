@@ -15,7 +15,7 @@ public class Tutorial extends javax.swing.JPanel {
     private final ImageIcon teclas;
     private final ImageIcon coracao;
     private final ImageIcon barraTempo;
-    private Janela parent;
+    private Janela janelaPai;
 
     public Tutorial(Janela janela) throws IOException {
         this.sapo = new ImageIcon(ImageIO.read(new File("imagens/sapoTras1.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH));
@@ -43,11 +43,15 @@ public class Tutorial extends javax.swing.JPanel {
         textoVidas2.setText("<html>Concluir uma fase sem perder nenhuma vida lhe dará pontos extras!</html)");
         textoTempo.setText("<html>Cuidado: você tem apenas XXXX segundos para completar cada nível. Fique de olho na barra de tempo!<br>Quanto mais rapido você completar, maior será sua pontuação.</html>");
         textoNivel.setText("<html>A cada nível, a velocidade dos veículos aumenta. Níveis maiores rendem mais pontos.</html>");
-        this.setParent(janela);
+        this.setJanelaPai(janela);
     }
 
-    public void setParent(Janela parent) {
-        this.parent = parent;
+    public void setJanelaPai(Janela janelaPai) {
+        this.janelaPai = janelaPai;
+    }
+
+    public Janela getJanelaPai() {
+        return janelaPai;
     }
 
     @SuppressWarnings("unchecked")
@@ -215,7 +219,7 @@ public class Tutorial extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        parent.mostraMenu();
+        getJanelaPai().mostraMenu();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
 

@@ -95,7 +95,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
         });
 
-        btnStartGame.setText("Start");
+        btnStartGame.setText("Jogar");
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartGameActionPerformed(evt);
@@ -288,6 +288,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         if (pista < 0) // Caso tenha matado a sapo no meio do movimento
         {
             pista = 0;
+        }
+        if(pista>5){
+            pista=5;
         }
         return pista;
     }

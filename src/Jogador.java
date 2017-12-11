@@ -52,7 +52,15 @@ public class Jogador {
         this.setImagem(frente1);
         this.atualizaPosicao();
         this.resetVida();
-        this.tempoInicio = System.currentTimeMillis();
+        this.setTempoInicio(System.currentTimeMillis());
+    }
+
+    public long getTempoInicio() {
+        return tempoInicio;
+    }
+
+    public JLabel getLabel() {
+        return label;
     }
 
     public boolean isMovendo() {
@@ -157,10 +165,7 @@ public class Jogador {
     }
 
     public boolean vivo() {
-        if (getVida() > 0) {
-            return true;
-        }
-        return false;
+        return getVida() > 0;
     }
 
     public void atualizaPosicao() {
