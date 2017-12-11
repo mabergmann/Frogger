@@ -36,12 +36,12 @@ public class Tutorial extends javax.swing.JPanel {
         lblCoracao.setIcon(coracao);
         lblTempo.setIcon(barraTempo);
 
-        textoSapo.setText("<html>O seu objetivo é fazer com que o sapo atravesse a rua em segurança</html)");
-        textoTeclas.setText("<html>Utilize as setas do teclado para se movimentar pelas pistas</html)");
+        textoSapo.setText("<html>O seu objetivo é fazer com que o sapo atravesse a rua em segurança.</html)");
+        textoTeclas.setText("<html>Utilize as setas do teclado para se movimentar pelas pistas.</html)");
         textoVeiculos.setText("<html>Há três tipos de veículos andando sobre as pistas: carros, motos e caminhões.<br>Evite ser atropelado por eles!</html)");
-        textoVidas1.setText("<html>Você inicia cada fase tendo 3 vidas</html>");
+        textoVidas1.setText("<html>Você inicia cada fase tendo 3 vidas...</html>");
         textoVidas2.setText("<html>Concluir uma fase sem perder nenhuma vida lhe dará pontos extras!</html)");
-        textoTempo.setText("<html>Cuidado: você tem apenas XXXX segundos para completar cada nível. Fique de olho na barra de tempo!<br>Quanto mais rapido você completar, maior será sua pontuação.</html>");
+        textoTempo.setText("<html>Cuidado: você tem apenas 15 segundos para completar cada nível. Fique de olho na barra de tempo!<br>Quanto mais rapido você completar, maior será sua pontuação.</html>");
         textoNivel.setText("<html>A cada nível, a velocidade dos veículos aumenta. Níveis maiores rendem mais pontos.</html>");
         this.setJanelaPai(janela);
     }
