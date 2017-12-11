@@ -169,10 +169,12 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         inicializaPistas();
 
         inicializaElementos();
+        
+        jogador = new Jogador(lblPersonagem);
+        
+        setNivel(1);
 
         inicializaBarras();
-
-        jogador = new Jogador(lblPersonagem);
 
         validate();
         repaint();
