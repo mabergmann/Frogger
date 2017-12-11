@@ -18,10 +18,10 @@ public class Moto extends Veiculo {
 
         if (this.getDirecao() == DIREITA) {
             imagem = ImageIO.read(new File("imagens/moto.png"));
-            this.setPosicao(-this.getLargura(), this.getFaixa());
+            this.setPosicao(-this.getLargura(), faixa);
         } else {
             imagem = ImageIO.read(new File("imagens/motoDE.png"));
-            this.setPosicao(640, this.getFaixa());
+            this.setPosicao(640, faixa);
         }
 
         this.setLabel(label);

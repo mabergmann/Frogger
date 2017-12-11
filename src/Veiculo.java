@@ -73,7 +73,7 @@ abstract class Veiculo {
     public boolean foraDosLimites() {
         if(this.direcao == DIREITA && getPosicaoHorizontal() >= 640)
             return true;
-        if(this.direcao == ESQUERDA && getPosicaoHorizontal()<=-getLargura())
+        if(this.direcao == ESQUERDA && getPosicaoHorizontal()<=-this.getLargura())
             return true;
         return false;
     }
