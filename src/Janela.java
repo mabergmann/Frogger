@@ -513,6 +513,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         JLabel coracao2 = new JLabel();
         JLabel coracao3 = new JLabel();
         JLabel lblRotuloTempo = new JLabel();
+        JLabel lblNivel = new JLabel();
+        JLabel lblPontos = new JLabel();
+        JLabel lblTitulo = new JLabel();
         JProgressBar barraDeTempo = new JProgressBar();
         add(barraTopo, 0);
         add(barraBase, 0);
@@ -520,6 +523,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         add(coracao2, 0);
         add(coracao3, 0);
         add(lblRotuloTempo, 0);
+        add(lblNivel, 0);
+        add(lblPontos, 0);
+        add(lblTitulo, 0);
         add(barraDeTempo, 0);
         barraTopo.setBounds(0, 0, 640, 20);
         barraBase.setBounds(0, 430, 640, 20);
@@ -529,7 +535,15 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         lblRotuloTempo.setText("Tempo");
         lblRotuloTempo.setBounds(220, 432, 50, 15);
-        //lblRotuloTempo.setLocation(210, 430);
+        
+        lblNivel.setBounds(15, 2, 100, 15);
+        lblPontos.setBounds(400, 2, 240, 15);
+        lblTitulo.setBounds(270, 2, 100, 15);
+        
+        lblNivel.setText("Nível 1");
+        lblPontos.setText("Pontuação: 0");
+        lblTitulo.setText("FROGGER");
+        
         barraDeTempo.setBounds(270, 432, 300, 15);
         barraDeTempo.setForeground(Color.green);
         barraDeTempo.setValue(100);
