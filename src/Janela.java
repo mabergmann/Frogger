@@ -21,6 +21,12 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private final GridBagConstraints gbc = new GridBagConstraints();
     private final GridBagLayout gridbag = new GridBagLayout();
     private final JLayeredPane painelEmCamadas = new JLayeredPane();
+    
+    JLabel coracao1;
+    JLabel coracao2;
+    JLabel coracao3;
+    
+    JProgressBar barraDeTempo;
 
     private final JLabel lblPersonagem = new JLabel();
     //private JLabel carro1 = new JLabel();
@@ -276,6 +282,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void loopDeJogo() throws IOException, InterruptedException {
+               
         while (jogador.vivo()) {
 
             if (jogador.chegouAoFim()) {
@@ -288,6 +295,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 jogador.atualizaPosicao();
                 aumentaVelocidadeDasFaixas();
             }
+            
+            barraDeTempo.setValue((int)calculaValorDaBarra(jogador,barraDeTempo));
+            
+            verificaCoracoes(jogador);
 
             for (Pista pista : pistas) {
                 if (pista instanceof Asfalto) {
@@ -302,6 +313,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
             Pista pistaAtual = pistas[pista];
             if (pistaAtual.estaColidindo(jogador.getPosicaoHorizontal(), jogador.getLargura())) {
+                jogador.setTempoInicio(System.currentTimeMillis());
                 jogador.matar();
             }
 
@@ -313,6 +325,98 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         System.out.println(jogador.getPontuacao());
         mostraMenuPosJogo();
     }
+    
+
+
+
+
+
+    float calculaValorDaBarra(Jogador jogador, JProgressBar barra){
+        float retorno = 0;
+        switch(15 - jogador.getTempoEmSegundos()){
+            case 15:
+                retorno= 100;
+                break;
+            case 14:
+                retorno = (float) 94.4;
+                break;
+            case 13:
+                retorno = (float) 87.8;
+                break;
+            case 12:
+                retorno = (float) 81.2;
+                break;
+            case 11:
+                retorno = (float) 74.6;
+                break;
+            case 10:
+                retorno = 68;
+                break;
+            case 9:
+                retorno = (float) 61.4;
+                break;
+            case 8:
+                retorno = (float) 54.8;
+                break;
+            case 7:
+                retorno = (float) 48.2;
+                break;
+            case 6:
+                retorno = (float) 41.6;
+                break;
+            case 5:
+                retorno = 35;
+                break;
+            case 4:
+                retorno = (float) 28.4;
+                break;
+            case 3:
+                retorno = (float) 21.8;
+                break;
+            case 2:
+                retorno = (float) 15.2;
+                break;
+            case 1:
+                retorno = (float) 8.6;
+                break;
+            case 0:
+                retorno = 0;
+                break;
+        }
+        
+        if(retorno <= 35)
+            barra.setForeground(Color.red);
+        else
+            barra.setForeground(Color.green);
+        
+        return retorno;
+    }
+
+
+
+
+
+    void verificaCoracoes(Jogador jogador){
+    
+        switch(jogador.getVida()){
+            case 3:
+                coracao1.setVisible(true);
+                coracao2.setVisible(true);
+                coracao3.setVisible(true);
+                break;
+            case 2:
+                coracao1.setVisible(true);
+                coracao2.setVisible(true);
+                coracao3.setVisible(false);
+                break;
+            case 1:
+                coracao1.setVisible(true);
+                coracao2.setVisible(false);
+                coracao3.setVisible(false);
+                break;
+        }
+    }
+
 
     void mostraMenuPosJogo() {
         painelMenuFinal.getLblPontuacao().setText("Você fez " + Integer.toString(jogador.getPontuacao()) + " pontos!");
@@ -509,14 +613,14 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private void inicializaBarras() {
         JLabel barraTopo = new JLabel();
         JLabel barraBase = new JLabel();
-        JLabel coracao1 = new JLabel();
-        JLabel coracao2 = new JLabel();
-        JLabel coracao3 = new JLabel();
+        coracao1 = new JLabel();
+        coracao2 = new JLabel();
+        coracao3 = new JLabel();
         JLabel lblRotuloTempo = new JLabel();
         JLabel lblNivel = new JLabel();
         JLabel lblPontos = new JLabel();
         JLabel lblTitulo = new JLabel();
-        JProgressBar barraDeTempo = new JProgressBar();
+        barraDeTempo = new JProgressBar();
         add(barraTopo, 0);
         add(barraBase, 0);
         add(coracao1, 0);
