@@ -52,6 +52,10 @@ public class MenuFimDeJogo extends javax.swing.JPanel {
         
         this.setParent(janela);
     }
+
+    public JLabel getLblPontuacao() {
+        return lblPontuacao;
+    }
     
     public String getNome() {
         return nome;

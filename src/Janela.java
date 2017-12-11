@@ -38,8 +38,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private Tutorial janelaTutorial = new Tutorial(this);
 
-    private MenuFimDeJogo painelMenuFinal = new MenuFimDeJogo(this);
-
     private Ranking painelRanking = new Ranking(this);
 
     private int tempo;
@@ -47,6 +45,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private int nivel = 0;
 
     private Jogador jogador;
+    
+    private MenuFimDeJogo painelMenuFinal = new MenuFimDeJogo(this);
 
     private Pista[] pistas = new Pista[6]; // 2 Calçadas + 4 Asfaltos = 6 Pistas
 
@@ -315,6 +315,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     }
 
     void mostraMenuPosJogo() {
+        painelMenuFinal.getLblPontuacao().setText("Você fez " + Integer.toString(jogador.getPontuacao()) + " pontos!");
         if (painelRanking.entrouNoRanking(jogador.getPontuacao())) {
             painelMenuFinal.getBoxNome().setVisible(true);
             painelMenuFinal.getLblAvisoRanking().setVisible(true);
