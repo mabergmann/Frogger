@@ -1,26 +1,11 @@
 
 import java.awt.Container;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package frogger;
-/**
- *
- * @author Júlia
- */
 abstract class Veiculo {
 
     private int posicaoVertical;
@@ -41,11 +26,6 @@ abstract class Veiculo {
         this.posicaoVertical = 400 - faixa * 75;
         this.faixa = faixa;
     }
-
-    
-    private void setFaixa(int faixa){
-        this.faixa = faixa;
-    }
     
     public int getFaixa(){
         return this.faixa;
@@ -60,29 +40,30 @@ abstract class Veiculo {
             this.velocidade=velocidade;
         }
     }
+    
+    public int getVelocidade(){
+        return this.velocidade;
+    }
 
     public int getDirecao() {
         return direcao;
     }
 
     protected void move() {
-        if (this.foraDosLimites()) {
-
-        }else{
+        if (!this.foraDosLimites()){
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (!foraDosLimites()) {
-                        posicaoHorizontal += getDirecao();
+                        setPosicaoHorizontal(getPosicaoHorizontal() + getDirecao());
                         atualizaPosicao();
                         try {
-                            Thread.sleep(800/velocidade);
+                            Thread.sleep(800/getVelocidade());
                         } catch (InterruptedException ex) {
                             Logger.getLogger(Veiculo.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     atualizaPosicao();
-                    setFaixa(faixa);
                 }
             });
             thread.start();
@@ -139,6 +120,14 @@ abstract class Veiculo {
     public void atualizaPosicao() {
         label.setBounds(getPosicaoHorizontal(), getPosicaoVertical(), getLargura(), getAltura());
     }
+
+    private void setPosicaoVertical(int posicaoVertical) {
+        this.posicaoVertical = posicaoVertical;
+    }
+
+    private void setPosicaoHorizontal(int posicaoHorizontal) {
+        this.posicaoHorizontal = posicaoHorizontal;
+    }
     
     public void destruir(){
         Container parent = this.label.getParent();
@@ -154,9 +143,9 @@ abstract class Veiculo {
                 public void run() {
                     for(int i=0; i<75;i++){
                         if(getFaixa()<faixa){
-                            posicaoVertical--;
+                            setPosicaoVertical(getPosicaoVertical()-1);
                         }else{
-                            posicaoVertical++;
+                            setPosicaoVertical(getPosicaoVertical()+1);
                         }
                         try {
                             Thread.sleep(5);

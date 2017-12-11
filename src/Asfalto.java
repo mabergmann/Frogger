@@ -4,16 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JLabel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package frogger;
-/**
- *
- * @author Júlia
- */
 public class Asfalto extends Pista {
 
     private int velocidade;
@@ -25,9 +15,21 @@ public class Asfalto extends Pista {
     public final static int ESQUERDA = Veiculo.ESQUERDA;
 
     public Asfalto(int faixa, int direcao, int velocidade) {
-        this.faixa = faixa;
+        this.setFaixa(faixa);
         this.setDirecao(direcao);
         this.setVelocidade(velocidade);
+    }
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public int getFaixa() {
+        return faixa;
+    }
+
+    public int getDirecao() {
+        return direcao;
     }
 
     public void inserirVeiculo(JLabel label) throws IOException {
@@ -60,31 +62,6 @@ public class Asfalto extends Pista {
         return false;
     }
     
-    public Veiculo veiculoTrocaPista(){
-        
-        Random random = new Random();
-        
-        int i = random.nextInt(veiculos.size());
-        
-        Veiculo veiculo = veiculos.get(i);
-        
-        veiculos.remove(i);
-        
-        return veiculo;
-        
-    }
-    
-    public boolean veiculoTrocou(Veiculo veiculo){
-        if(!estaColidindo(veiculo.getPosicaoHorizontal(), veiculo.getLargura())){
-            veiculo.setVelocidade(velocidade);
-            veiculos.add(veiculo);
-            veiculo.iniciaTrocaDePista(this.faixa);
-            return true;
-        }
-        
-        return false;
-    }
-    
     public Veiculo EscolheUmVeiculo(){
         Random random = new Random();
         
@@ -107,6 +84,10 @@ public class Asfalto extends Pista {
         if (direcao == DIREITA || direcao == ESQUERDA) {
             this.direcao = direcao;
         }
+    }
+
+    public void setFaixa(int faixa) {
+        this.faixa = faixa;
     }
 
     private void setVelocidade(int velocidade) {
@@ -138,9 +119,9 @@ public class Asfalto extends Pista {
     }
 
     boolean podeAdicionarVeiculo() {
-        if (this.direcao == DIREITA && estaColidindo(-100, 200)) {
+        if (this.getDirecao() == DIREITA && estaColidindo(-100, 200)) {
             return false;
-        } else if (this.direcao == ESQUERDA && estaColidindo(540, 200)) {
+        } else if (this.getDirecao() == ESQUERDA && estaColidindo(540, 200)) {
             return false;
         }
         return true;
@@ -148,7 +129,7 @@ public class Asfalto extends Pista {
     }
     
     public void aumentarVelocidade(){
-        velocidade*=1.5;
+        velocidade*=1.3;
         for(Veiculo veiculo : veiculos){
             veiculo.setVelocidade(velocidade);
         }
