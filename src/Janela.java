@@ -229,7 +229,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         pistas[0] = new Calcada();
         pistas[0].setLabel(componentesEstaticos.getCalcada2());
 
-        int index = 0;
+        /*int index = 0;
         for (Pista pista : pistas) {
             if (pista instanceof Asfalto) {
                 if (index == 1) {
@@ -246,7 +246,13 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             }
             index++;
 
-        }
+        }*/
+        pistas[5].setBackground(ImageIO.read(new File("imagens/calcadaTeste.png")));
+        pistas[4].setBackground(ImageIO.read(new File("imagens/AsfaltoFaixaBordaSuperior.png")));
+        pistas[3].setBackground(ImageIO.read(new File("imagens/AsfaltoFaixaPista.png")));
+        pistas[2].setBackground(ImageIO.read(new File("imagens/AsfaltoPistaFaixa.png")));
+        pistas[1].setBackground(ImageIO.read(new File("imagens/AsfaltoFaixaBordaInferior.png")));
+        pistas[0].setBackground(ImageIO.read(new File("imagens/calcadaTeste.png")));
     }
 
 
