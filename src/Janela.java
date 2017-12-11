@@ -316,6 +316,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             painelMenuFinal.getBoxNome().setVisible(true);
             painelMenuFinal.getLblAvisoRanking().setVisible(true);
             painelMenuFinal.getBtnRegistrar().setVisible(true);
+            painelMenuFinal.getBtnRegistrar().setEnabled(true);
         } else {
             painelMenuFinal.getBoxNome().setVisible(false);
             painelMenuFinal.getLblAvisoRanking().setVisible(false);
