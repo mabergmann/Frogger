@@ -57,6 +57,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         this.addKeyListener(this);
         this.setSize(640, 480);
         this.setVisible(true);
+        this.setResizable(false);
 
         lblTitulo.setIcon(titulo);
 
@@ -175,6 +176,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         inicializaPistas();
 
         inicializaElementos();
+        
+        //inicializaBarraDeInformacao();
 
         jogador = new Jogador(lblPersonagem);
 
@@ -405,8 +408,9 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         painelEmCamadas.add(componentesEstaticos, 0);
         painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
         painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
+        //painelEmCamadas.add(componentesEstaticos.getBarraSuperior(), 1);
         setContentPane(painelEmCamadas);
-
+        
         add(lblPersonagem, 0);
         this.requestFocus();
 
