@@ -49,6 +49,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
     private int tempo;
 
     private int nivel = 0;
+    
+    JLabel lblNivel = new JLabel();
+        
+    JLabel lblPontos = new JLabel();
 
     private Jogador jogador;
     
@@ -294,6 +298,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 jogador.setPista(0);
                 jogador.atualizaPosicao();
                 aumentaVelocidadeDasFaixas();
+                lblNivel.setText("Nível" + Integer.toString(nivel));
+                lblPontos.setText("Pontuação:" + Integer.toString(jogador.getPontuacao()));
             }
             
             barraDeTempo.setValue((int)calculaValorDaBarra(jogador,barraDeTempo));
@@ -381,6 +387,8 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
                 break;
             case 0:
                 retorno = 0;
+                jogador.setTempoInicio(System.currentTimeMillis());
+                jogador.matar();
                 break;
         }
         
@@ -617,8 +625,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         coracao2 = new JLabel();
         coracao3 = new JLabel();
         JLabel lblRotuloTempo = new JLabel();
-        JLabel lblNivel = new JLabel();
-        JLabel lblPontos = new JLabel();
         JLabel lblTitulo = new JLabel();
         barraDeTempo = new JProgressBar();
         add(barraTopo, 0);
