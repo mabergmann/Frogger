@@ -525,8 +525,10 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         coracao1.setBounds(15, 425, 30, 30);
         coracao2.setBounds(40, 425, 30, 30);
         coracao3.setBounds(65, 425, 30, 30);
+
+        lblRotuloTempo.setText("Tempo");
+        lblRotuloTempo.setBounds(220, 432, 50, 15);
         //lblRotuloTempo.setLocation(210, 430);
-       // lblRotuloTempo.setText("Tempo");
         barraDeTempo.setBounds(270, 432, 300, 15);
         barraDeTempo.setForeground(Color.green);
         barraDeTempo.setValue(100);
