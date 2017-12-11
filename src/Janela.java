@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 public class Janela extends javax.swing.JFrame implements KeyListener {
 
@@ -238,10 +239,6 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
         }
     }
 
-    private void inicializaBarraDeInformacao() {
-        componentesEstaticos.setIconeBarraInferior(new ImageIcon("imagens/Barra2.png"));
-        componentesEstaticos.setIconeBarraSuperior(new ImageIcon("imagens/Barra2.png"));
-    }
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
 
@@ -408,7 +405,7 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
         configuraElementosEstaticos();
 
-        painelEmCamadas.add(componentesEstaticos, 0);
+        painelEmCamadas.add(componentesEstaticos, 1);
         painelEmCamadas.setAlignmentX(LEFT_ALIGNMENT);
         painelEmCamadas.setAlignmentY(TOP_ALIGNMENT);
         //painelEmCamadas.add(componentesEstaticos.getBarraSuperior(), 1);
@@ -510,10 +507,35 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
 
     private void inicializaBarras() {
         JLabel barraTopo = new JLabel();
+        JLabel barraBase = new JLabel();
+        JLabel coracao1 = new JLabel();
+        JLabel coracao2 = new JLabel();
+        JLabel coracao3 = new JLabel();
+        JLabel lblRotuloTempo = new JLabel();
+        JProgressBar barraDeTempo = new JProgressBar();
         add(barraTopo, 0);
-        barraTopo.setBounds(0, 0, 640, 50);
+        add(barraBase, 0);
+        add(coracao1, 0);
+        add(coracao2, 0);
+        add(coracao3, 0);
+        add(lblRotuloTempo, 0);
+        add(barraDeTempo, 0);
+        barraTopo.setBounds(0, 0, 640, 20);
+        barraBase.setBounds(0, 430, 640, 20);
+        coracao1.setBounds(15, 425, 30, 30);
+        coracao2.setBounds(40, 425, 30, 30);
+        coracao3.setBounds(65, 425, 30, 30);
+        //lblRotuloTempo.setLocation(210, 430);
+       // lblRotuloTempo.setText("Tempo");
+        barraDeTempo.setBounds(270, 432, 300, 15);
+        barraDeTempo.setForeground(Color.green);
+        barraDeTempo.setValue(100);
         try {
-            barraTopo.setIcon(new ImageIcon(ImageIO.read(new File("imagens/sapoFrente1.png")).getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+            barraTopo.setIcon(new ImageIcon(ImageIO.read(new File("imagens/barra2.png")).getScaledInstance(640, 20, Image.SCALE_SMOOTH)));
+            barraBase.setIcon(new ImageIcon(ImageIO.read(new File("imagens/barra2.png")).getScaledInstance(640, 20, Image.SCALE_SMOOTH)));
+            coracao1.setIcon(new ImageIcon(ImageIO.read(new File("imagens/coracao.png")).getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+            coracao2.setIcon(new ImageIcon(ImageIO.read(new File("imagens/coracao.png")).getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+            coracao3.setIcon(new ImageIcon(ImageIO.read(new File("imagens/coracao.png")).getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
         } catch (IOException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }

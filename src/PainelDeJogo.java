@@ -44,21 +44,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
         return calcada2;
     }
 
-    public void setIconeBarraInferior(ImageIcon icone) {
-        this.barraInferior.setIcon(icone);
-    }
-
-    public void setIconeBarraSuperior(ImageIcon icone) {
-        this.barraSuperior.setIcon(icone);
-    }
-   
-    public JLabel getBarraInferior() {
-        return barraInferior;
-    }
-
-    public JLabel getBarraSuperior() {
-        return barraSuperior;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,14 +55,12 @@ public class PainelDeJogo extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel3 = new javax.swing.JLabel();
-        barraSuperior = new javax.swing.JLabel();
         calcada2 = new javax.swing.JLabel();
         asfalto4 = new javax.swing.JLabel();
         asfalto3 = new javax.swing.JLabel();
         asfalto2 = new javax.swing.JLabel();
         asfalto1 = new javax.swing.JLabel();
         calcada1 = new javax.swing.JLabel();
-        barraInferior = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
 
@@ -86,21 +69,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(640, 480));
         setPreferredSize(new java.awt.Dimension(640, 480));
         setLayout(new java.awt.GridBagLayout());
-
-        barraSuperior.setIcon(new javax.swing.ImageIcon("C:\\Users\\Júlia\\Pictures\\Barra.png")); // NOI18N
-        barraSuperior.setText("barraSuperior");
-        barraSuperior.setMaximumSize(new java.awt.Dimension(680, 75));
-        barraSuperior.setMinimumSize(new java.awt.Dimension(600, 14));
-        barraSuperior.setName(""); // NOI18N
-        barraSuperior.setPreferredSize(new java.awt.Dimension(640, 15));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 640;
-        gridBagConstraints.ipady = 15;
-        add(barraSuperior, gridBagConstraints);
 
         calcada2.setBackground(new java.awt.Color(51, 51, 255));
         calcada2.setText("calcada2");
@@ -168,18 +136,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 640;
         gridBagConstraints.ipady = 75;
         add(calcada1, gridBagConstraints);
-
-        barraInferior.setIcon(new javax.swing.ImageIcon("C:\\Users\\Júlia\\Pictures\\Barra.png")); // NOI18N
-        barraInferior.setText("barraInferior");
-        barraInferior.setPreferredSize(new java.awt.Dimension(640, 15));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 640;
-        gridBagConstraints.ipady = 15;
-        add(barraInferior, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -188,8 +144,6 @@ public class PainelDeJogo extends javax.swing.JPanel {
     private javax.swing.JLabel asfalto2;
     private javax.swing.JLabel asfalto3;
     private javax.swing.JLabel asfalto4;
-    private javax.swing.JLabel barraInferior;
-    private javax.swing.JLabel barraSuperior;
     private javax.swing.JLabel calcada1;
     private javax.swing.JLabel calcada2;
     private javax.swing.JLabel jLabel3;
