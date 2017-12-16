@@ -275,11 +275,11 @@ public class Janela extends javax.swing.JFrame implements KeyListener {
             pista = validaPista(pista);
             Pista pistaAtual = pistas[pista];
 
+            veiculosTrocaPista();
+            
             if (pistaAtual.estaColidindo(jogador.getPosicaoHorizontal(), jogador.getLargura())) {
                 jogador.matar();
             }
-
-            veiculosTrocaPista();
 
             gerarVeiculos();
             Thread.sleep(50);

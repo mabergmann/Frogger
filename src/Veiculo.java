@@ -11,7 +11,7 @@ abstract class Veiculo {
     private int posicaoVertical;
     private int posicaoHorizontal;
     private int faixa;
-    private int direcao; // Direcao = 1 para testar. (Sentido esquerda -> direita)
+    private int direcao;
     private int largura;
     private int altura;
     private int velocidade=1;

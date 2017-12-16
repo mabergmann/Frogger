@@ -1,3 +1,5 @@
+Mitei ->H	99270
+hg	49560
 mito	46020
 Bergmann	36360
 uhul	34470
@@ -6,5 +8,3 @@ top	34440
 julia	23150
 jogoTop	22990
 teste	22910
-eu again	22810
-juuuuuu	22810
